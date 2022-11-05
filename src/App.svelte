@@ -2,6 +2,7 @@
   import Card from './lib/components/Card.svelte'
   import { Canvas } from '@threlte/core'
   import Scene from './lib/components/Scene.svelte'
+  import SceneGlobe from './lib/components/SceneGlobe.svelte'
   import { activePage, data } from './stores/global.js'
   import dataSource from './data/data.json'
 
@@ -55,10 +56,10 @@
   */
 
   const testCriteria = [
-/*     {
+    {
       id: "origin",
       value: ["Greek"]
-    }, */
+    },
   ]
 
   filterData(testCriteria);
@@ -80,6 +81,10 @@
       <Scene />
     </Canvas>
   </div>
+
+  <!-- <div class='globe-gl-wrapper'>
+      <SceneGlobe />
+  </div> -->
 
   
  
