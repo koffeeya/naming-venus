@@ -1,0 +1,186 @@
+[
+  {
+    "feature": "vallis",
+    "feature_plural": "valles",
+    "definition": "a valley",
+    "diameter": "Under 400km",
+    "naming_convention": "River goddesses",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "vallis",
+    "feature_plural": "valles",
+    "definition": "a valley",
+    "diameter": "400km or over",
+    "naming_convention": "The word for Venus in various world languages",
+    "type": "Words for Venus"
+  },
+  {
+    "feature": "chasma",
+    "feature_plural": "chasmata",
+    "definition": "a deep, elongated, steep-sided depression",
+    "diameter": "",
+    "naming_convention": "Goddesses of the hunt or moon",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "colles",
+    "feature_plural": "colles",
+    "definition": "a collection of small hills or knobs",
+    "diameter": "",
+    "naming_convention": "Sea goddesses",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "dorsum",
+    "feature_plural": "dorsa",
+    "definition": "a ridge, sometimes called a wrinkle ridge",
+    "diameter": "",
+    "naming_convention": "Sky goddesses",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "fluctus",
+    "feature_plural": "fluctūs",
+    "definition": "terrain covered by outflow of liquid, like lava",
+    "diameter": "",
+    "naming_convention": "Miscellaneous goddesses",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "fossa",
+    "feature_plural": "fossae",
+    "definition": "a long, narrow, shallow depression",
+    "diameter": "",
+    "naming_convention": "Goddesses of war",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "labyrinthus",
+    "feature_plural": "labyrinthi",
+    "definition": "a complex of intersecting valleys or ridges",
+    "diameter": "",
+    "naming_convention": "Miscellaneous goddesses",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "mons",
+    "feature_plural": "montes",
+    "definition": "a mountain; plural montes",
+    "diameter": "",
+    "naming_convention": "Miscellaneous goddesses, and one radar scientist",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "patera",
+    "feature_plural": "paterae",
+    "definition": "an irregular crater, usually referring to the dish-shaped depression atop a volcano",
+    "diameter": "",
+    "naming_convention": "Famous women",
+    "type": "Famous women"
+  },
+  {
+    "feature": "planitia",
+    "feature_plural": "planitiae",
+    "definition": "a low plain",
+    "diameter": "",
+    "naming_convention": "Mythological heroines",
+    "type": "Heroines"
+  },
+  {
+    "feature": "planum",
+    "feature_plural": "plana",
+    "definition": "a plateau or high plain",
+    "diameter": "",
+    "naming_convention": "Goddesses of prosperity",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "rupes",
+    "feature_plural": "rupēs",
+    "definition": "a very steep bank or slope; i.e. a scarp",
+    "diameter": "",
+    "naming_convention": "Goddesses of the hearth and home",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "terra",
+    "feature_plural": "terrae",
+    "definition": "an extensive land mass or region that contains other surface features",
+    "diameter": "",
+    "naming_convention": "Goddesses of love",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "tholus",
+    "feature_plural": "tholi",
+    "definition": "a small domical mountain or hill",
+    "diameter": "",
+    "naming_convention": "Miscellaneous goddesses",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "undae",
+    "feature_plural": "Undae",
+    "definition": "a field of dunes",
+    "diameter": "",
+    "naming_convention": "Desert goddesses",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "crater",
+    "feature_plural": "craters",
+    "definition": "a circular depression created by an impact event",
+    "diameter": "Under 20km",
+    "naming_convention": "Common female first names",
+    "type": "Common female first names"
+  },
+  {
+    "feature": "crater",
+    "feature_plural": "craters",
+    "definition": "a circular depression created by an impact event",
+    "diameter": "20km or over",
+    "naming_convention": "Famous women",
+    "type": "Famous women"
+  },
+  {
+    "feature": "corona",
+    "feature_plural": "coronae",
+    "definition": "an oval-shaped feature",
+    "diameter": "",
+    "naming_convention": "Fertility and earth goddesses",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "farrum",
+    "feature_plural": "farra",
+    "definition": "a pancake-like structure, or a row of such structures",
+    "diameter": "",
+    "naming_convention": "Water goddesses",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "linea",
+    "feature_plural": "lineae",
+    "definition": "a general term for any long marking, dark or bright, on a planet's surface",
+    "diameter": "",
+    "naming_convention": "Goddesses of war",
+    "type": "Goddesses"
+  },
+  {
+    "feature": "regio",
+    "feature_plural": "regiones",
+    "definition": "a large area that is strongly differentiated in color or brightness from its surroundings",
+    "diameter": "",
+    "naming_convention": "Giantesses and Titanesses (and two after Greek letters of the alphabet)",
+    "type": "Female giants and titans"
+  },
+  {
+    "feature": "tessera",
+    "feature_plural": "tesserae",
+    "definition": "an area of tile-like, polygonal terrain. Often represents the oldest material at any given location",
+    "diameter": "",
+    "naming_convention": "Goddesses of fate and fortune",
+    "type": "Goddesses"
+  }
+]
