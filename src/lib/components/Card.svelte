@@ -168,7 +168,7 @@
         border-bottom: 1px solid #181818;
         border-radius: 100px 100px 0 0;
         background-color: #181818;
-        transform: translateY(13px);
+        transform: translateY(12.5px);
         margin: auto;
     }
 
