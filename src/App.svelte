@@ -56,8 +56,8 @@
 
   const testCriteria = [
     {
-      id: "origin",
-      value: ["Mexico"]
+      id: "year",
+      value: [1991]
     },
   ]
 
