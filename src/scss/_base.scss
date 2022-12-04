@@ -1,0 +1,27 @@
+:root {
+  font-family: "TragicGrotesk", sans-serif;
+  background-color: #030303;
+  color: white;
+
+  /* Fonts */
+  --tragic-grotesk: "TragicGrotesk", sans-serif;
+  --boecklins: "Boecklins Universe", sans-serif;
+
+  /* Type colors */
+  --goddess-color: #d7a954;
+  --heroine-color: #8ab67b;
+  --first-name-color: #6cb4cc;
+  --famous-woman-color: #c97889;
+  --other-color: #9b9b9b;
+
+  /* Font colors */
+  --font-gray: #757575;
+  --card-bg-color: #181818;
+
+  /* Fonts */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}

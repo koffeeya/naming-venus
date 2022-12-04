@@ -1,10 +1,10 @@
 <script>
-    import { SphereGeometry, MeshStandardMaterial, TextureLoader } from 'three'
+    import { SphereGeometry, MeshStandardMaterial, TextureLoader, Scene } from 'three'
     import {
         Mesh,
         PerspectiveCamera,
         OrbitControls,
-        AmbientLight,
+        DirectionalLight,
         useTexture,
         Object3DInstance
     } from '@threlte/core'
@@ -27,31 +27,27 @@
         }
     }
 
+    let Globe;
+
     /* 
     Make the globe and add the data layer using Three Globe
     Render the mesh using Threlte
-    Not sure why intellisense isn't recognizing the objects
+    Not sure why intellisense isn't recognizing the objects?
     */
     const contourImg = 'src/assets/venus-contour.png'
     const displacementImg = 'src/assets/height.jpg'
 
     //const geometry = new SphereGeometry(2.3, 128, 128)
-    const Globe = new ThreeGlobe()
-        .globeImageUrl(contourImg)
-        .pointsData($data)
-        .pointLat('center_lat')
-        .pointLng('center_long')
-        .pointAltitude(0.2)
-        .pointColor((d) => {
-            const color = themeColor(d.type, false).toString()
-            return color;
-        })
-        .pointRadius(0.15)
-        .pointsMerge(true)
-        .labelText((d) => {return d.name})
-        .labelSize(15)
-        .labelAltitude(0.15)
-        .showAtmosphere(false)
+    Globe = new ThreeGlobe({waitForGlobeReady: false})
+            .globeImageUrl(contourImg)
+            .pointsData($data)
+            .pointLat('center_lat')
+            .pointLng('center_long')
+            .pointAltitude(0.2)
+            .pointColor((d) => {
+                const color = themeColor(d.type, false).toString()
+                return color;
+            })
 
     const globeMaterial = Globe.globeMaterial()
 
@@ -61,16 +57,20 @@
         globeMaterial.displacementScale = 25;
     })
 
+    const myScene = new ThreeGlobe.Scene();
+    myScene.add(Globe)
+
 </script>
 
-<PerspectiveCamera fov={80} position={{ x: 50, y: 50, z: 50 }} lookAt={{ x: 0, y: 0, z: 0 }}>
-	<OrbitControls autoRotate={false} enableZoom={true} />
+<!-- <PerspectiveCamera fov={80} position={{ x: 50, y: 50, z: 50 }} lookAt={{ x: 0, y: 0, z: 0 }}>
+    <OrbitControls autoRotate={false} enableZoom={true} />
 </PerspectiveCamera>
 
-<AmbientLight intensity={1} />
-<!-- <Mesh interactive {material} {geometry}/> -->
+<DirectionalLight position={{ y: 10, z: 10 }} />
+<Mesh interactive {material} {geometry}/>
 
-<Object3DInstance object={Globe}  scale={0.5}/>
+<Object3DInstance object={Globe}  scale={0.5}/> -->
+
 
 <style>
 </style>

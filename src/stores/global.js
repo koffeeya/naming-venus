@@ -14,3 +14,4 @@ export const isLarge = derived(windowWidth,
 
 export const activePage = writable("Globe")
 export const data = writable(dataSource);
+export const selectedData = writable(dataSource);
