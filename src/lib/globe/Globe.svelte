@@ -1,36 +1,41 @@
 <script>
     import Globe from 'globe.gl';
     import * as THREE from 'three'
-    import { data, selectedData } from '../../stores/global.js'
+    import { data } from '../../stores/global.js'
     import { onMount } from 'svelte';
+    import { debounce, getThemeColor } from '../../js/utils.js'
 
     const textureImg = 'assets/venus-texture.png'
     const displacementImg = 'assets/height.jpg'
     const targetId = "globe-target";
+    let world;
 
-    function draw(data) {
+    function draw(data, width) {
         const myGlobe = Globe()
         const elem = document.getElementById(targetId)
 
-        myGlobe(elem)
+        world = myGlobe(elem)
+            .width(width)
+            .height(width)
+            .backgroundColor("#03030300")
             .globeImageUrl(textureImg)
             .pointsData(data)
             .pointLat('center_lat')
             .pointLng('center_long')
-            .pointAltitude(0.3)
-            .pointRadius(0.8)
-            .atmosphereColor(0x2d1504)
+            .pointAltitude(0.2)
+            .pointRadius(0.9)
+            .atmosphereColor(0x2d150400)
             .atmosphereAltitude(0)
             .pointColor((d) => {
                 //const color = themeColor(d.type, false).toString()
-                const color = "#ffffff00"
+                const color = "#ffffff00";
                 return color;
             })
             .labelLat('center_lat')
             .labelLng('center_long')
             .onPointHover(point => myGlobe
                 .pointColor((d) => {
-                    const pointColor = !point ? "#ffffff00" : d == point ? "#ffffff33" : "#ffffff00"
+                    const pointColor = !point ? "#ffffff00" : d == point ? getThemeColor(d.type) : "#ffffff00"
                     return pointColor;
                 })
             )
@@ -48,11 +53,19 @@
     }
 
     onMount(async () => {
-		draw($data);
+        const globeWrapper = document.querySelector(".globe-wrapper")
+        const globeWidth = globeWrapper.offsetWidth;
+        globeWrapper.height = globeWidth;
+        console.log("globe width", globeWidth);
+        draw($data, globeWidth);
+        world.width = [globeWidth]
+        world.height = [globeWidth]
 	});
 </script>
 
 <div id={targetId}></div>
+
+
 
 <style lang="scss">
 </style>
