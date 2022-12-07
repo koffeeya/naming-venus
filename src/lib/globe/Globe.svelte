@@ -4,6 +4,7 @@
     import { data } from '../../stores/global.js'
     import { onMount } from 'svelte';
     import { debounce, getThemeColor } from '../../js/utils.js'
+    import { fade } from 'svelte/transition';
 
     const textureImg = 'assets/venus-texture.png'
     const displacementImg = 'assets/height.jpg'
@@ -55,7 +56,6 @@
     onMount(async () => {
         const globeWrapper = document.querySelector(".globe-wrapper")
         const globeWidth = globeWrapper.offsetWidth;
-        globeWrapper.height = globeWidth;
         console.log("globe width", globeWidth);
         draw($data, globeWidth);
         world.width = [globeWidth]
@@ -63,7 +63,8 @@
 	});
 </script>
 
-<div id={targetId}></div>
+
+<div id={targetId} transition:fade></div>
 
 
 
