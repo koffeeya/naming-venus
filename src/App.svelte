@@ -1,7 +1,8 @@
 <script>
 	import { data } from './stores/global.js'
 	import Globe from "./lib/globe/Globe.svelte";
-	import Card from './lib/card/Card.svelte'
+	import Card from './lib/card/Card.svelte';
+	import Radar from './lib/chart/Radar.svelte';
 </script>
 
 <main>
@@ -13,7 +14,7 @@
 			<div class='globe-wrapper'>
 				<Globe />
 			</div>
-			<div>right side</div>
+			<Radar />
 			<div>a more, longer description of this</div>
 		</div>
 		<div class="card-wrapper">
@@ -30,14 +31,14 @@
 	}
 
 	main {
-		max-width: 65%;
+		max-width: 80%;
 		margin: auto;
 	}
 
 	.content {
 		display: grid;
-		grid-template-columns: 1fr 4fr;
-		column-gap: 1rem;
+		grid-template-columns: 1fr 3fr;
+		column-gap: 24px;
 	}
 
 	.globe-wrapper {
@@ -50,10 +51,10 @@
 
 	.card-wrapper {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		column-gap: 16px;
-		row-gap: 16px;
-		height: 500px;
+		grid-template-columns: repeat(auto-fit, minmax(275px, 1fr) );
+  		column-gap: 24px;
+  		row-gap: 24px;
+		height: 80vh;
 		overflow: scroll;
 	}
 

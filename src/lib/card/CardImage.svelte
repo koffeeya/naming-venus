@@ -4,7 +4,7 @@
     export let color;
 </script>
 
-{#if !src=="No Image"}
+{#if !src=="No image"}
     <div class='image-container' alt={alt} style="--theme-color:{color}">
         <img class='card-image' alt={alt} src={src} />
         <span class='image-overlay'></span>

@@ -18,16 +18,16 @@
     const imgCaption =      data.image_caption == "" ? "No image caption" : data.image_caption;
     const imgUrl =          data.image_url == "" ? "No image" : data.image_url;
     const description =     data.description == "" ? "N/A" : data.description;
-    const bio =             data.bio == "" ? "No bio" : data.bio;
+    const bio =             data.bio == "" ? "" : data.bio;
 </script>
 
 <div class='card' style="--theme-color:{themeColor}; --theme-light:{themeColorLight}">
     <div class='outer-border'>
         <div class='inner-border'>
             <div class='content'>
-                <CardHeader {name} {feature} {origin} {year} {imgCaption} {imgUrl} {themeColor} />
-                <CardBody {type} {description} {bio} />
-                <CardFooter {type} />
+                <CardHeader {themeColor} {name} {feature} {origin} {year} {imgCaption} {imgUrl} />
+                <CardBody {themeColor} {name} {description} {bio} />
+                <CardFooter {themeColor} />
             </div>
         </div>
     </div>

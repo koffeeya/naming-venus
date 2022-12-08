@@ -1,3 +1,5 @@
+import dataSource from '../data/data.json'
+
 // run a function on a delay
 const debounce = (func, delay) => {
     let timer;
@@ -23,7 +25,7 @@ function getThemeColor(type, alpha) {
     }
 
     const hexBase = colorMap[type] == undefined ? "Default" : colorMap[type]
-    const hexAlpha = alpha ? `0${Math.round((255 / 100) * alpha).toString(16)}`.slice(-2).toUpperCase() : "FF"
+    const hexAlpha = alpha ? `0${Math.round((255 / 100) * alpha).toString(16)}`.slice(-2).toUpperCase() : ""
     const output = `${hexBase}${hexAlpha}`
 
     return output;

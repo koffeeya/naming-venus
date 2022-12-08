@@ -56,4 +56,18 @@
         text-transform: uppercase;
     }
 
+    .category-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 0% 0% 5% 0%;
+        width: 100%;
+    }
+
+    .image-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 8% 0%;
+        width: 100%;
+    }
+
 </style>
