@@ -17,6 +17,8 @@
 
 <style lang="scss">
     button {
+        text-transform: uppercase;
+        font-family: "TragicGrotesk", sans-serif;
         background-color: transparent;
         border: none;
         color: var(--theme-color);
@@ -24,7 +26,8 @@
         text-underline-position: under;
         text-align: left;
         width: fit-content;
-        padding: 0px 2px;
+        padding: 2px 4px;
+        margin: 0px;
         border-radius: 2px;
 
         &:hover {

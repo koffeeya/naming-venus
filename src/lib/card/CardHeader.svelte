@@ -23,22 +23,14 @@
 </script>
 
 <div class='card-header' style="--theme-color:{themeColor}">
-    {#if !imgUrl}
-        <div class='name'>
-            <h3>{name}</h3>
-        </div>
-        <div class='category-grid'>
+    <h3 class='name'>{name}</h3>
+    <div class='category-grid'>
+        <div class='feature'>
             <HoverText text={feature} tooltip={featDefinition} color={themeColor} />
-            <p class='origin'>{origin}</p>
-            <p class='year'>{year}</p>
         </div>
-    {:else}
-        <div class='image-grid'>
-            <HoverText text={feature} tooltip={featDefinition} color={themeColor} />
-            <p class='origin year'>{origin}<br>{year}</p>
-            <CardImage src={imgUrl} alt={imgCaption} color={themeColor}/>
-        </div>
-    {/if}
+        <p class='year'>{year}</p>
+        <p class='origin'>{origin}</p>
+    </div>
 </div>
 
 <style lang="scss">
@@ -48,26 +40,42 @@
 
     .name {
         font-family: var(--boecklins);
-        padding: 5% 2% 2% 2%;
+        margin: 5% 0% 2%;
+        padding: 0% 1%;
         color: var(--theme-color);
+        font-size: 32px;
     }
 
-    .feature, .origin {
+    .feature {
         text-transform: uppercase;
+        text-align: left;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .origin {
+        text-transform: uppercase;
+        text-align: right;
+        font-size: 14px;
+        line-height: 14px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .year {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 14px;
+        line-height: 14px;
+        margin-top: auto;
+        margin-bottom: auto;
     }
 
     .category-grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        padding: 0% 0% 5% 0%;
-        width: 100%;
-    }
-
-    .image-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        padding: 8% 0%;
-        width: 100%;
+        padding: 3% 3% 3% 2%;
+        margin: 0% 2%;
     }
 
 </style>

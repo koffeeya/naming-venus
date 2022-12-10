@@ -4,18 +4,16 @@
     export let color;
 </script>
 
-{#if !src=="No image"}
-    <div class='image-container' alt={alt} style="--theme-color:{color}">
-        <img class='card-image' alt={alt} src={src} />
-        <span class='image-overlay'></span>
-    </div>
-{/if}
+
+<div class='image-container' alt={alt} style="--theme-color:{color}">
+    <img class='card-image' alt={alt} src={src} />
+<!--     <span class='image-overlay'></span> -->
+</div>
 
 <style lang="scss">
     .image-container {
-        display: flex;
         justify-content: center;
-        position: absolute;
+        display: inline-block; 
         width: 100px;
         height: 100px;
         border-radius: 125px;

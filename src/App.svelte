@@ -19,7 +19,6 @@
 				<Globe />
 			</div>
 			<Radar category={"type"} />
-			<Radar category={"continent"} />
 			<div>a more, longer description of this</div>
 		</div>
 		<div class="card-wrapper">
@@ -34,6 +33,55 @@
 	\:global {
 		@import "scss/style.scss";
 	}
+
+	:root {
+  font-family: "TragicGrotesk", sans-serif;
+  background-color: #030303;
+  font-size: 16px;
+  color: white;
+
+  /* Fonts */
+  --tragic-grotesk: "TragicGrotesk", sans-serif;
+  --boecklins: "Boecklins Universe", sans-serif;
+
+  /* Type colors */
+  --goddess-color: #d7a954;
+  --heroine-color: #8ab67b;
+  --first-name-color: #6cb4cc;
+  --famous-woman-color: #c97889;
+  --other-color: #9b9b9b;
+
+  /* Font colors */
+  --font-gray: #757575;
+  --card-bg-color: #181818;
+
+  /* Fonts */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1 {
+  font-size: 3.2rem;
+  line-height: 1.1;
+  margin: 0px;
+  padding: 0px;
+}
+
+h3 {
+  font-size: 2.2em;
+  margin: 0px;
+  padding: 0px;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+  font-size: 1rem;
+}
+
 
 	main {
 		max-width: 80%;
@@ -61,8 +109,8 @@
 	.card-wrapper {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(275px, 1fr) );
-  		column-gap: 1%;
-  		row-gap: 1%;
+  		column-gap: 15px;
+  		row-gap: 15px;
 		height: 75vh;
 		overflow: scroll;
 	}

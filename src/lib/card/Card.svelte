@@ -16,7 +16,7 @@
     const origin =          data.origin == undefined ? "N/A" : data.origin;
     const feature =         data.feature == undefined ? "N/A" : data.feature;
     const imgCaption =      data.image_caption == "" ? "No image caption" : data.image_caption;
-    const imgUrl =          data.image_url == "" ? "No image" : data.image_url;
+    const imgUrl =          data.image_url;
     const description =     data.description == "" ? "N/A" : data.description;
     const bio =             data.bio == "" ? "" : data.bio;
 </script>

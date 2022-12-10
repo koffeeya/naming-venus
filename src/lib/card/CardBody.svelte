@@ -1,16 +1,25 @@
 <script>
     export let themeColor, name, description, bio;
+
+    function shortenBio(bio) {
+        if (bio.length > 0) {
+            const split = bio.split(" ")
+            const keep = split.slice(0, 11)
+            keep.push("...")
+            const join = keep.join(" ")
+            return join;
+        } else {
+            return bio;
+        }
+    }
 </script>
 
 <div class='card-body' style="--theme-color:{themeColor}; --theme-opacity:{themeColor}26;">
-    <div class='card-name'>
-        <h3>{name}</h3>
-    </div>
     <div class='card-description'>
         <p>{description}</p>
     </div>
     <div class='card-bio'>
-        <p>{bio}</p>
+        <p>{shortenBio(bio)}</p>
     </div>
 </div>
 
@@ -33,7 +42,7 @@
         line-height: 125%;
         width: fit-content;
         max-width: 70%;
-        padding: 0.3em 0.6em 0.1em 0.6em;
+        padding:  1px 10px;
         margin: 5% auto;
         border-radius: 8px;
         font-weight: 500;
