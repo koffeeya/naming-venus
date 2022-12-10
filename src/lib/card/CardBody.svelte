@@ -42,17 +42,13 @@
     .card-bio {
         font-family: var(--tragic-grotesk);
         margin: 5% 10%;
-        line-height: 80%;
+        line-height: 100%;
         font-size: 1rem;
-        /* display: block; */
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
 
-        p {
+        /* p {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
+        } */
     }
 </style>

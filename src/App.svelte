@@ -8,13 +8,18 @@
 <main>
 	<div class='header'>
 		<h1>Naming Venus</h1>
+		<div class='intro'>
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+		</div>
 	</div>
+	
 	<div class='content'>
 		<div class ='column'>
 			<div class='globe-wrapper'>
 				<Globe />
 			</div>
-			<Radar />
+			<Radar category={"type"} />
+			<Radar category={"continent"} />
 			<div>a more, longer description of this</div>
 		</div>
 		<div class="card-wrapper">
@@ -35,10 +40,14 @@
 		margin: auto;
 	}
 
+	.header {
+		margin: 1% 0% 5% 0%;
+	}
+
 	.content {
 		display: grid;
 		grid-template-columns: 1fr 3fr;
-		column-gap: 24px;
+		column-gap: 10%;
 	}
 
 	.globe-wrapper {
@@ -52,9 +61,9 @@
 	.card-wrapper {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(275px, 1fr) );
-  		column-gap: 24px;
-  		row-gap: 24px;
-		height: 80vh;
+  		column-gap: 1%;
+  		row-gap: 1%;
+		height: 75vh;
 		overflow: scroll;
 	}
 

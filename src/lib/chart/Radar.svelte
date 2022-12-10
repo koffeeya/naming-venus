@@ -3,6 +3,8 @@
     import { Radar } from 'svelte-chartjs';
     import 'chart.js/auto';
 
+    export let category;
+
     function buildChartData(data, category) {
         const labels = [...new Set(data.map(item => item[category]))]
         const values = labels.map(label => {
@@ -21,9 +23,21 @@
             ]
         }
     }
+    
+    const options = {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+        }
+      },
+      layout: {
+        padding: 20,
+      }
+    }
 
     let selected = "type";
-    let testData = buildChartData($data, selected)
+    let testData = buildChartData($data, category)
 
     console.log(selected, testData);
 
@@ -51,11 +65,11 @@
 </script>
 
 <div class='chart-container'>
-    <Radar data={dataSource} options={{ responsive: true }} />
-    <select bind:value={selected}>
+    <Radar data={dataSource} {options} />
+    <!-- <select bind:value={selected}>
         <option value="type">Type</option>
         <option value="continent">Continent</option>
-    </select>
+    </select> -->
 </div>
 
 <style lang="scss">
@@ -66,10 +80,12 @@
     expand to fill it.
   */
   .chart-container {
-    font-family: var(--tragic-grotesk);
     width: 100%;
-    height: 300px;
     background-color: white;
-    margin: 15px;
+
+    canvas {
+      font-family: var(--tragic-grotesk);
+      font-size: 14px;
+    }
   }
 </style>
