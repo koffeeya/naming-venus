@@ -1,4 +1,5 @@
 import dataSource from '../data/data.json'
+import { data } from '../stores/global.js'
 
 // run a function on a delay
 const debounce = (func, delay) => {
@@ -14,7 +15,7 @@ const debounce = (func, delay) => {
 
 // Get the theme color based on the feature
 // Optional "alpha" param to control transparency (0-100)
-function getThemeColor(type, alpha) {
+function getThemeColor(type, alpha, light) {
     const colorMap = {
         "Default": "#9B9B9B",
         "Goddess": "#D7A954",
@@ -24,11 +25,73 @@ function getThemeColor(type, alpha) {
         "Other": "#9B9B9B"
     }
 
-    const hexBase = colorMap[type] == undefined ? "Default" : colorMap[type]
+    //#f7e8ea
+    const lightColorMap = {
+        "Default": "#dddddd",
+        "Goddess": "#f6e1c5",
+        "Heroine": "#d8e7d2",
+        "First Name": "#d0e6ee",
+        "Famous Woman": "#efd1d6",
+        "Other": "#9B9B9B"
+    }
+
+    let hexBase;
+
+    if (light == true) {
+        hexBase = lightColorMap[type] == undefined ? "Default" : lightColorMap[type]
+    } else {
+        hexBase = colorMap[type] == undefined ? "Default" : colorMap[type];
+    }
+
     const hexAlpha = alpha ? `0${Math.round((255 / 100) * alpha).toString(16)}`.slice(-2).toUpperCase() : ""
     const output = `${hexBase}${hexAlpha}`
 
     return output;
 }
 
-export { debounce, getThemeColor };
+/* 
+[
+    {
+        category: "id",
+        values: []
+    },
+    {
+        category: "type",
+        values: []
+    },
+    {
+        category: "origin",
+        values: []
+    },
+    {
+        category: "continent",
+        values: []
+    },
+    {
+        category: "year",
+        values: []
+    },
+]
+
+*/
+
+function filterData(filterObj) {
+    const currentData = dataSource;
+    if (filterObj.length == 0) {
+        $data.set(dataSource);
+    } else {
+        const filtered = currentData.filter(item => {
+            return filterObj.every(filter => {
+                return filter.value.includes(item[filter.id])
+            })
+        })
+        $data.set(filtered);
+    }
+}
+
+
+function clearSelectedData() {
+
+}
+
+export { debounce, getThemeColor, filterData };

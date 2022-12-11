@@ -25,7 +25,7 @@
     <div class='outer-border'>
         <div class='inner-border'>
             <div class='content'>
-                <CardHeader {themeColor} {name} {feature} {origin} {year} {imgCaption} {imgUrl} />
+                <CardHeader {type} {name} {feature} {origin} {year} {imgCaption} {imgUrl} />
                 <CardBody {themeColor} {name} {description} {bio} />
                 <CardFooter {themeColor} />
             </div>
@@ -44,6 +44,7 @@
         text-align: center;
         height: fit-content;
         max-width: 350px;
+        box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.75);
     }
 
     .outer-border {

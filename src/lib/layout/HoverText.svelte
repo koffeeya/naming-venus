@@ -2,6 +2,7 @@
     export let text;
     export let tooltip;
     export let color;
+    export let align;
     import tippy from "sveltejs-tippy";
 
     const props = {
@@ -11,8 +12,8 @@
     }
 </script>
 
-<div class='hover-text' style="--theme-color:{color}">
-    <button class='hover-button' use:tippy={props} title={text}>{text}</button>
+<div class='hover-text' style="--theme-color:{color};">
+    <button class='hover-button' style="text-align: {align};" use:tippy={props} title={text}>{text}</button>
 </div>
 
 <style lang="scss">
@@ -24,17 +25,14 @@
         color: var(--theme-color);
         text-decoration: underline dashed var(--theme-color) 1px;
         text-underline-position: under;
-        text-align: left;
         width: fit-content;
-        padding: 2px 4px;
         margin: 0px;
         border-radius: 2px;
 
         &:hover {
             cursor: pointer;
-            background-color: var(--theme-color);
             color: white;
-            text-decoration: none;
+            text-decoration: underline dashed white 1px;
         }
     }
 

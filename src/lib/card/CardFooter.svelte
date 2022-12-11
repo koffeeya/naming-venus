@@ -21,10 +21,10 @@
         width: 100px;
         height: 50px;
         border: 1px solid var(--theme-color);
-        border-bottom: 1px solid var(--card-bg-color);
+        border-bottom: 1px solid var(--theme-color);
         border-radius: 100px 100px 0 0;
         background-color: var(--card-bg-color);
-        transform: translateY(12.5px);
+        transform: translateY(12px);
         margin: auto;
     }
 </style>

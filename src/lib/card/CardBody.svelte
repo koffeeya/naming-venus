@@ -29,12 +29,6 @@
         height: fit-content;
     }
 
-    .card-name {
-        font-family: var(--boecklins);
-        padding: 16% 2% 2% 2%;
-        color: var(--theme-color);
-    }
-
     .card-description {
         background-color: var(--theme-opacity);
         color: var(--theme-color);
@@ -42,7 +36,7 @@
         line-height: 125%;
         width: fit-content;
         max-width: 70%;
-        padding:  1px 10px;
+        padding:  6px 6px 3px 6px;
         margin: 5% auto;
         border-radius: 8px;
         font-weight: 500;

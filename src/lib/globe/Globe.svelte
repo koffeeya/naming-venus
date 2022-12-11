@@ -23,25 +23,32 @@
             .pointsData(data)
             .pointLat('center_lat')
             .pointLng('center_long')
-            .pointAltitude(0.2)
-            .pointRadius(0.9)
+            .pointAltitude(0.1)
+            .pointRadius(3)
             .atmosphereColor(0x2d150400)
             .atmosphereAltitude(0)
             .pointColor((d) => {
                 //const color = themeColor(d.type, false).toString()
-                const color = "#ffffff00";
+                const color = "#ffffff0D";
                 return color;
             })
             .labelLat('center_lat')
             .labelLng('center_long')
-            .onPointHover(point => myGlobe
-                .pointColor((d) => {
-                    const pointColor = !point ? "#ffffff00" : d == point ? getThemeColor(d.type) : "#ffffff00"
+            /* .onPointHover(point => {
+                myGlobe.pointColor((d) => {
+                    const pointColor = "#ffffff4D"
                     return pointColor;
                 })
-            )
-            .onPointClick((d) => {
-                console.log(d);
+            }) */
+            .onPointClick(point => {
+                console.log(point);
+                const lat = point.center_lat;
+                const lng = point.center_long;
+                
+                myGlobe.pointOfView({
+                    lat: lat,
+                    lng: lng
+                }, 200)
             })
 
         const globeMaterial = myGlobe.globeMaterial()

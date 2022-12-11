@@ -1,4 +1,5 @@
 <script>
+    import { getThemeColor } from '../../js/utils.js'
     import featureData from '../../data/features.json'
     import HoverText from "../layout/HoverText.svelte";
     import CardImage from "./CardImage.svelte";
@@ -9,7 +10,7 @@
     export let year;
     export let imgCaption;
     export let imgUrl;
-    export let themeColor;
+    export let type;
     export let featDefinition = getDefinition(feature);
 
     function getDefinition(feature) {
@@ -22,14 +23,18 @@
     }
 </script>
 
-<div class='card-header' style="--theme-color:{themeColor}">
+<div class='card-header' style="--theme-color:{getThemeColor(type)}; --light-theme:{getThemeColor(type, 100, true)}">
     <h3 class='name'>{name}</h3>
     <div class='category-grid'>
-        <div class='feature'>
-            <HoverText text={feature} tooltip={featDefinition} color={themeColor} />
+        <div class='category feature'>
+            <HoverText text={feature} tooltip={featDefinition} color={getThemeColor(type)} align="left" />
         </div>
-        <p class='year'>{year}</p>
-        <p class='origin'>{origin}</p>
+        <p class='category year'>
+            <HoverText text={year} tooltip="Year discovered" color={getThemeColor(type)} align="center" />
+        </p>
+        <p class='category origin'>
+            <HoverText text={origin} tooltip="Culture or country of origin" color={getThemeColor(type)} align="right" />
+        </p>
     </div>
 </div>
 
@@ -42,33 +47,16 @@
         font-family: var(--boecklins);
         margin: 5% 0% 2%;
         padding: 0% 1%;
-        color: var(--theme-color);
+        color: var(--light-theme);
         font-size: 32px;
     }
 
-    .feature {
+    .category {
         text-transform: uppercase;
-        text-align: left;
         margin-top: auto;
         margin-bottom: auto;
-    }
-
-    .origin {
-        text-transform: uppercase;
-        text-align: right;
         font-size: 14px;
         line-height: 14px;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-
-    .year {
-        text-transform: uppercase;
-        text-align: center;
-        font-size: 14px;
-        line-height: 14px;
-        margin-top: auto;
-        margin-bottom: auto;
     }
 
     .category-grid {
