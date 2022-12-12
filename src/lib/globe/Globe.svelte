@@ -1,21 +1,19 @@
 <script>
     import Globe from 'globe.gl';
     import * as THREE from 'three'
-    import { data } from '../../stores/global.js'
+    import { data, globe } from '../../stores/global.js';
+    import { moveGlobeToPoint } from '../../js/utils.js';
     import { onMount } from 'svelte';
-    import { debounce, getThemeColor } from '../../js/utils.js'
-    import { fade } from 'svelte/transition';
 
     const textureImg = 'assets/venus-texture.png'
     const displacementImg = 'assets/height.jpg'
     const targetId = "globe-target";
-    let world;
 
     function draw(data, width) {
-        const myGlobe = Globe()
-        const elem = document.getElementById(targetId)
+        const myGlobe = Globe();
+        const elem = document.getElementById(targetId);
 
-        world = myGlobe(elem)
+        const world = myGlobe(elem)
             .width(width)
             .height(width)
             .backgroundColor("#03030300")
@@ -23,33 +21,17 @@
             .pointsData(data)
             .pointLat('center_lat')
             .pointLng('center_long')
-            .pointAltitude(0.1)
+            .pointAltitude(0.4)
             .pointRadius(3)
             .atmosphereColor(0x2d150400)
             .atmosphereAltitude(0)
             .pointColor((d) => {
-                //const color = themeColor(d.type, false).toString()
-                const color = "#ffffff0D";
+                const color = "#ffffff00";
                 return color;
             })
-            .labelLat('center_lat')
+            /* .labelLat('center_lat')
             .labelLng('center_long')
-            /* .onPointHover(point => {
-                myGlobe.pointColor((d) => {
-                    const pointColor = "#ffffff4D"
-                    return pointColor;
-                })
-            }) */
-            .onPointClick(point => {
-                console.log(point);
-                const lat = point.center_lat;
-                const lng = point.center_long;
-                
-                myGlobe.pointOfView({
-                    lat: lat,
-                    lng: lng
-                }, 200)
-            })
+            .pointLabel(d => `<p style='font-family: "TragicGrotesk", sans-serif;'>${d.name}</p>`) */
 
         const globeMaterial = myGlobe.globeMaterial()
 
@@ -58,22 +40,32 @@
             globeMaterial.displacementScale = 25;
             globeMaterial.shininess = 0;
         })
+
+        // Add auto-rotation
+        world.controls().autoRotate = true;
+        world.controls().autoRotateSpeed = 0.6;
+
+        return world;
     }
 
     onMount(async () => {
         const globeWrapper = document.querySelector(".globe-wrapper")
         const globeWidth = globeWrapper.offsetWidth;
         console.log("globe width", globeWidth);
-        draw($data, globeWidth);
-        world.width = [globeWidth]
-        world.height = [globeWidth]
+        const world = draw($data, globeWidth);
+        $globe = world;
+        $globe.width = [globeWidth]
+        $globe.height = [globeWidth]
 	});
 </script>
 
 
-<div id={targetId} transition:fade></div>
+<div id={targetId}></div>
 
 
 
 <style lang="scss">
+    .scene-tooltip {
+        font-family: "TragicGrotesk", sans-serif;
+    }
 </style>

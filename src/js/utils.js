@@ -89,9 +89,21 @@ function filterData(filterObj) {
     }
 }
 
+function moveGlobeToPoint(id, data, world) {
+    const found = data.find(element => element.feature_id == id);
+    const lat = found.center_lat;
+    const lng = found.center_long;
 
-function clearSelectedData() {
+    world.pointOfView({
+        lat: lat,
+        lng: lng
+    }, 200)
 
+    world.pointColor((d, point) => {
+        console.log(point);
+        const pointColor = !point ? "#ffffff00" : d == point ? getThemeColor(d.type) : "#ffffff00"
+        return pointColor;
+    })
 }
 
-export { debounce, getThemeColor, filterData };
+export { debounce, getThemeColor, filterData, moveGlobeToPoint };

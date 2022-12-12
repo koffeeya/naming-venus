@@ -6,3 +6,4 @@ export const data = writable(dataSource);
 export const selectedData = writable();
 
 export const globeWidth = writable(window.innerWidth);
+export const globe = writable();

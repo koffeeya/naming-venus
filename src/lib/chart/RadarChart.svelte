@@ -4,6 +4,7 @@
     import 'chart.js/auto';
 
     export let category;
+    export let chartTitle;
 
     function buildChartData(data, category) {
         const labels = [...new Set(data.map(item => item[category]))]
@@ -16,7 +17,7 @@
             labels: labels,
             datasets: [
                 {
-                    backgroundColor: "red",
+                    backgroundColor: "white",
                     borderColor: "white",
                     data: values
                 }
@@ -44,14 +45,14 @@
     export let dataSource = testData;
 
     import {
-    Chart as ChartJS,
-    Title,
-    Tooltip,
-    Legend,
-    PointElement,
-    RadialLinearScale,
-    LineElement,
-  } from 'chart.js';
+      Chart as ChartJS,
+      Title,
+      Tooltip,
+      Legend,
+      PointElement,
+      RadialLinearScale,
+      LineElement,
+    } from 'chart.js';
 
   ChartJS.register(
     Title,
@@ -65,6 +66,7 @@
 </script>
 
 <div class='chart-container'>
+    <p class='chart-title'>{chartTitle}</p>
     <Radar data={dataSource} {options} />
     <!-- <select bind:value={selected}>
         <option value="type">Type</option>
@@ -81,11 +83,11 @@
   */
   .chart-container {
     width: 100%;
-    background-color: white;
+    margin: 0px;
+    padding: 0px;
+  }
 
-    canvas {
-      font-family: var(--tragic-grotesk);
-      font-size: 14px;
-    }
+  .chart-title {
+    text-align: center;
   }
 </style>

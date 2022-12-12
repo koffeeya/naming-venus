@@ -1,6 +1,7 @@
 <script>
-    import { getThemeColor } from '../../js/utils.js'
-    export let data;
+    import { getThemeColor, moveGlobeToPoint } from '../../js/utils.js';
+    import { data, globe } from '../../stores/global.js'
+    export let cardData;
 
     // Card components
     import CardHeader from './CardHeader.svelte';
@@ -8,20 +9,22 @@
     import CardFooter from './CardFooter.svelte'
     
     // Data
-    const themeColor =      data.type == undefined ? getThemeColor("default") : getThemeColor(data.type);
-    const themeColorLight = data.type == undefined ? getThemeColor("default", 15) : getThemeColor(data.type, 15);
-    const type =            data.type == undefined ? "Other" : data.type;
-    const name =            data.name == undefined ? "N/A" : data.name;
-    const year =            data.year == undefined ? 2022 : data.year;
-    const origin =          data.origin == undefined ? "N/A" : data.origin;
-    const feature =         data.feature == undefined ? "N/A" : data.feature;
-    const imgCaption =      data.image_caption == "" ? "No image caption" : data.image_caption;
-    const imgUrl =          data.image_url;
-    const description =     data.description == "" ? "N/A" : data.description;
-    const bio =             data.bio == "" ? "" : data.bio;
+    const id =              cardData.feature_id
+    const themeColor =      cardData.type == undefined ? getThemeColor("default") : getThemeColor(cardData.type);
+    const themeColorLight = cardData.type == undefined ? getThemeColor("default", 15) : getThemeColor(cardData.type, 15);
+    const type =            cardData.type == undefined ? "Other" : cardData.type;
+    const name =            cardData.name == undefined ? "N/A" : cardData.name;
+    const year =            cardData.year == undefined ? 2022 : cardData.year;
+    const origin =          cardData.origin == undefined ? "N/A" : cardData.origin;
+    const feature =         cardData.feature == undefined ? "N/A" : cardData.feature;
+    const imgCaption =      cardData.image_caption == "" ? "No image caption" : cardData.image_caption;
+    const imgUrl =          cardData.image_url;
+    const description =     cardData.description == "" ? "N/A" : cardData.description;
+    const bio =             cardData.bio == "" ? "" : cardData.bio;
+
 </script>
 
-<div class='card' style="--theme-color:{themeColor}; --theme-light:{themeColorLight}">
+<div class='card' style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" on:mouseover={moveGlobeToPoint(id, $data, $globe)}>
     <div class='outer-border'>
         <div class='inner-border'>
             <div class='content'>
