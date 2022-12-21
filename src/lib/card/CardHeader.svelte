@@ -1,7 +1,7 @@
 <script>
     import { getThemeColor } from '../../js/utils.js'
     import featureData from '../../data/features.json'
-    import HoverText from "../layout/HoverText.svelte";
+    import HoverText from "../elements/HoverText.svelte";
     import CardImage from "./CardImage.svelte";
 
     export let name;

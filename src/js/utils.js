@@ -99,8 +99,8 @@ function moveGlobeToPoint(id, data, world) {
         lng: lng
     }, 200)
 
-    world.pointColor((d, point) => {
-        console.log(point);
+    world.pointColor(() => d => {
+        console.log(d);
         const pointColor = !point ? "#ffffff00" : d == point ? getThemeColor(d.type) : "#ffffff00"
         return pointColor;
     })

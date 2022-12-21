@@ -1,5 +1,5 @@
 <script>
-    import Star from "./Star.svelte";
+    import Star from "../svg/Star.svelte";
     export let themeColor;
 </script>
 

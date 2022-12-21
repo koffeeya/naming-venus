@@ -4,7 +4,7 @@
     const textColor = "white";
 </script>
 
-<svg class='box-svg' width="350" height="600" viewBox="0 0 350 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class='title-card-svg' width="350" height="600" viewBox="0 0 350 600" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect width="350" height="600" fill="#181818"/>
     <rect x="32.1871" y="29.5" width="285.626" height="541" rx="2.5" stroke="#4F4F4F"/>
     <rect x="15.5" y="12.5" width="319" height="575" rx="8.5" stroke="#4F4F4F"/>
@@ -245,8 +245,5 @@
     
 
 <style lang="scss">
-    .box-svg {
-        background-color: "#181818";
-        padding: 0px 10px 5px 10px;
-    }
+
 </style>
