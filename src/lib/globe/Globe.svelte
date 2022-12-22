@@ -1,15 +1,19 @@
 <script>
     import Globe from 'globe.gl';
     import * as THREE from 'three'
-    import { data, globe } from '../../stores/global.js';
+    import { data, globe, drawGlobe } from '../../stores/global.js';
     import { moveGlobeToPoint } from '../../js/utils.js';
     import { onMount } from 'svelte';
 
-    const textureImg = 'assets/venus-texture.png'
-    const displacementImg = 'assets/height.jpg'
-    const targetId = "globe-target";
+    // Initial draw of globe to create nodes
+    export function init(data) {
+        console.log("initial draw of globe with", data.length, "features")
+        const textureImg = 'assets/venus-texture.png'
+        const displacementImg = 'assets/height.jpg'
 
-    function drawGlobe(data, width) {
+        const globeWrapper = document.querySelector(".title-section");
+        const width = globeWrapper == null ? 350 : globeWrapper.offsetWidth * 0.8;
+
         const myGlobe = Globe();
         const elem = document.getElementById("globe-target");
 
@@ -43,27 +47,24 @@
         world.controls().autoRotate = true;
         world.controls().autoRotateSpeed = 0.6;
 
-        return world;
+        // update store
+        globe.set(world);
     }
 
-    
-
     onMount(async () => {
-        const globeWrapper = document.querySelector(".title-section");
-        const globeWidth = globeWrapper.offsetWidth * 0.8;
-        $globe = drawGlobe($data, globeWidth);
-        $globe.width = [globeWidth]
-        $globe.height = [globeWidth]
+        init($data);
 	});
 </script>
 
 
 <div id="globe-target"></div>
 
-
-
 <style lang="scss">
     .scene-tooltip {
         font-family: "TragicGrotesk", sans-serif;
+    }
+
+    .globe-target {
+        overflow: hidden;
     }
 </style>

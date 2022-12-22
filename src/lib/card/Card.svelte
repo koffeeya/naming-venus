@@ -24,7 +24,7 @@
 
 </script>
 
-<div class='card' style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" on:mouseover={moveGlobeToPoint(id, $data, $globe)} >
+<div class='card' style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" >
     <div class='outer-border'>
         <div class='inner-border'>
             <div class='content'>
@@ -41,11 +41,12 @@
     .card {
         padding: 0px;
         border: none;
-        margin: 0px;
+        margin: 10px;
         background-color: var(--card-bg-color);
         border-radius: 16px;
         text-align: center;
         height: fit-content;
+        min-width: 150px;
         max-width: 350px;
         box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.75);
     }
