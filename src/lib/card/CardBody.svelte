@@ -43,7 +43,6 @@
     }
 
     .card-bio {
-        font-family: var(--gentium);
         margin: 5% 10%;
         line-height: 100%;
         font-size: 1rem;

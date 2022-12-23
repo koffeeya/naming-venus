@@ -1,81 +1,117 @@
 <script>
-	import { data, activePage, setActivePage, filterData, resetData } from './stores/global.js'
+	import { data, activePage, activeFilter, setActivePage, filterData, resetData } from './stores/global.js'
 	import TitleCard from './lib/svg/TitleCard.svelte';
 	import Globe from "./lib/globe/Globe.svelte";
 	import Card from './lib/card/Card.svelte';
 	import TitleSvg from './lib/svg/TitleSvg.svelte';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import { tweened } from 'svelte/motion';
+	import { cubicOut } from 'svelte/easing';
 
 	const testFilter = [
 		{
 			id: "year",
-			value: [1998, 1999, 2000, 2001]
+			value: [1985, 1984]
 		},
 		{
 			id: "type",
-			value: ["Goddess"]
+			value: ["Heroine"]
 		}
 	]
 
 	let ready = false;
 
 	onMount(async () => {
+		filterData();
 		ready = true;
 	});
 
 	$: introStatus = $activePage == "intro" ? "" : "hide";
 	$: contentStatus = $activePage == "main" ? "" : "hide";
+	$: globeMargin = $activePage == "intro" ? "-475px 40px" : "100px -40px";
+
+	const globeOpacity = tweened(100, {
+		duration: 50,
+		easing: cubicOut,
+		delay: 0
+	})
+
+	function handlePageChange(newPage) {
+		globeOpacity.set(0)
+		setActivePage(newPage)
+		globeOpacity.set(100)
+	}
+
 </script>
 
 <main>
-	<!-- INTRO SECTION -->
-	<div class='intro {introStatus}' in:fade={{ delay: 500 }} out:fade={{ delay: 500 }}>
-		<div class='title-section'>
-			<div class='globe-wrapper' in:fade={{ delay: 1200 }} out:fade={{ delay: 500 }} aria-hidden="true" focusable="false">
-				<Globe />
-			</div>
-			<TitleCard width={350} height={600} />
-			<h1 class='sr-only'>Naming Venus: a data visualization project by Kavya Beheraj</h1>
-		</div>
-		<div class='text-section' in:fade={{ delay: 500 }} out:fade={{ delay: 500 }}>
-			<div class='intro-text'>
-				<h2 class='sr-only'>Introduction</h2>
-				<p>Venus, the morning star, Earth's twin, has been inspiring humanity for thousands of years.</p>
-				<br>
-				<p>Beneath its swirling superhot atmosphere, nearly every discovered surface feature — every mountain, valley, and crater — has been named after a woman.</p>
-				<br>
-				<p>Carved into Venus's alien landscape are stories of pioneering explorers, war godesses, mythical heroines, and more. This project aims to tell their stories.</p>
-			</div>
-			<div on:click={e => setActivePage("main")} on:keypress={e => setActivePage("main")}>
-				<button id='intro-button'>Explore the names</button>
-			</div>
-			<div class='filter-button' on:click={e => filterData(testFilter)} on:keypress={e => filterData(testFilter)}>
-				<button>Test filter</button>
-			</div>
-			<div class='reset-button' on:click={e => resetData(testFilter)} on:keypress={e => resetData(testFilter)}>
-				<button>Reset filter</button>
-			</div>
-		</div>
+{#if ready == true}
+	<div class='header {contentStatus}'>
+		<h1 class='sr-only'>Naming Venus: a data visualization project by Kavya Beheraj</h1>
+		<button aria-expanded="false" id='title-button' on:click={e => handlePageChange("intro")} on:keypress={e => handlePageChange("intro")} >
+			<TitleSvg borderColor="black" textColor="white" starColor="#c97889" />
+		</button>
 	</div>
 
-	<!-- CONTENT SECTION -->
-	<div class='content {contentStatus}'>
-		<div class='header'>
-			<h1 class='sr-only'>Naming Venus: a data visualization project by Kavya Beheraj</h1>
-			<button aria-expanded="false" id='title-button' on:click={e => setActivePage("intro")} on:keypress={e => setActivePage("intro")} in:fade={{ delay: 2500 }} out:fade={{ delay: 2500 }}>
-				<TitleSvg borderColor="black" textColor="white" starColor="#c97889" aria-hidden="true" focusable="false" />
-			</button>
-		</div>
-		<div class="card-wrapper">
-			{#each $data as feature}
-			<div in:fade={{ delay: 2500 }}>
-				<Card cardData={feature} />
+	<div class='content {$activePage}-mode'>
+		<div class='left-content'>
+			<div>
+				<div class='{introStatus}' aria-hidden="true" focusable="false">
+					<TitleCard width={350} height={600} />
+				</div>
+				<!-- Key blocks destroy and recreate their contents when the value of an expression changes. -->
+				<!-- {#key $data} -->
+					<div class='globe-wrapper' style='margin: {globeMargin}; opacity: {globeOpacity}%' aria-hidden="true" focusable="false" in:fade={{ delay: 1200 }} >
+						<Globe />
+					</div>
+				<!-- {/key} -->
 			</div>
-			{/each}
+			<div class='{contentStatus}'>
+				<div>
+					<div class='feature-count'>Showing {$data.length} features</div>
+					<button class='filter-button' on:click={e => filterData(testFilter)} on:keypress={e => filterData(testFilter)}>Test filter</button>
+					<button class='reset-button' on:click={e => resetData(testFilter)} on:keypress={e => resetData(testFilter)}>Reset filter</button>
+				</div>
+				<div>
+					{#each $activeFilter as filter}
+						Filtering <b>{filter.id}</b> for <b>{filter.value.sort().join(", ")}</b><br>
+					{/each}
+				</div>
+			</div>
+		</div>
+		<div class='right-content'>
+			<div>
+				<div class='intro-text {introStatus}'>
+					<h2 class='sr-only'>Introduction</h2>
+					<p>Venus, the morning star, Earth's twin, has been inspiring humanity for thousands of years. Beneath its swirling superhot atmosphere, nearly every discovered surface feature — every mountain, valley, and crater — has been named after a woman. Carved into Venus's alien landscape are stories of pioneering explorers, war godesses, mythical heroines, and more. This project aims to tell their stories.</p>
+
+					<div>
+						<button id='intro-button' on:click={e => handlePageChange("main")} on:keypress={e => handlePageChange("main")}>Explore the names</button>
+						<div class='feature-count'>Showing {$data.length} features</div>
+						<button class='filter-button' on:click={e => filterData(testFilter)} on:keypress={e => filterData(testFilter)}>Test filter</button>
+						<button class='reset-button' on:click={e => resetData(testFilter)} on:keypress={e => resetData(testFilter)}>Reset filter</button>
+					</div>
+					<div>
+						{#each $activeFilter as filter}
+							Filtering <b>{filter.id}</b> for <b>{filter.value.join(", ")}</b><br>
+						{/each}
+					</div>
+				</div>
+			</div>
+
+			<div class="card-wrapper {contentStatus}">
+				{#key $data}
+					{#each $data as feature}
+						<div in:fade={{ delay: 500 }}>
+							<Card cardData={feature} />
+						</div>
+					{/each}
+				{/key}
+			</div>
 		</div>
 	</div>
-	
+{/if}
 </main>
 
 <style lang="scss">
@@ -84,7 +120,6 @@
 	}
 
 	main {
-		max-width: 80%;
 		margin: auto;
 	}
 
@@ -93,54 +128,53 @@
 		width: 100%;
 	}
 
-	.intro {
+	.intro-mode {
 		margin: auto;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		column-gap: 24px;
-		max-width: 50%;
+		max-width: 35%;
+		height: 90vh;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 98vh;
+	}
+
+	.main-mode {
+		margin: auto;
+		display: grid;
+		grid-template-columns: 1fr 3fr;
+		column-gap: 24px;
+		max-width: 90%;
 	}
 
 	.intro-text {
-		margin: auto;
+		margin: auto auto auto 10%;
 		min-width: 200px;
-		font-size: 25px;
 		color: white;
+	}
+
+	.intro-text>p {
+		font-size: 16px;
+		padding: auto auto 10% auto;
 	}
 
 	.title-section, .chart-section {
 		margin: auto;
-		width: fit-content;
 	}
 
+	/* margin: 130px 36px; */
 	.globe-wrapper {
 		z-index: 100;
-		margin: 130px 36px;
 		position: absolute;
+		max-width: 300px;
+		max-height: 300px;
+		overflow: hidden;
+		transition: opacity 2s;
 	}
 
-	/* .card-wrapper {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(230px, 1fr) );
-  		column-gap: 12px;
-  		row-gap: 12px;
-		height: 80vh;
-		overflow: auto;
-	} */
-
-	/*   display: flex;
-  flex-flow: row wrap;
-  margin: 15px 3px; */
-
-
   .card-wrapper {
-		display: flex;
-		flex-flow: row wrap;
-		margin: 15px 3px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr) );
+  		column-gap: 8px;
+  		row-gap: 8px;
 		height: 80vh;
 		overflow: auto;
 	}

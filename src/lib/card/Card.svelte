@@ -28,7 +28,7 @@
     <div class='outer-border'>
         <div class='inner-border'>
             <div class='content'>
-                <CardHeader {type} {name} {feature} {origin} {year} {imgCaption} {imgUrl} />
+                <CardHeader {id} {type} {name} {feature} {origin} {year} {imgCaption} {imgUrl} />
                 <CardBody {themeColor} {name} {description} {bio} />
                 <CardFooter {themeColor} />
             </div>

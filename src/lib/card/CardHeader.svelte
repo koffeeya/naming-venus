@@ -1,9 +1,12 @@
 <script>
-    import { getThemeColor } from '../../js/utils.js'
+    import { getThemeColor, moveGlobeToPoint } from '../../js/utils.js'
     import featureData from '../../data/features.json'
     import HoverText from "../elements/HoverText.svelte";
     import CardImage from "./CardImage.svelte";
+    import VenusIcon from '../svg/VenusIcon.svelte';
+    import { data, globe } from '../../stores/global.js';
 
+    export let id;
     export let name;
     export let feature;
     export let origin;
@@ -21,10 +24,21 @@
             return found.definition;
         }
     }
+
+    $: hovering = false;
+
+    function handlePlanetMove() {
+        moveGlobeToPoint(id, $data, $globe)
+    }
 </script>
 
 <div class='card-header' style="--theme-color:{getThemeColor(type)}; --light-theme:{getThemeColor(type, 100, true)}">
-    <h3 class='name'>{name}</h3>
+    <div class='name-header'>
+        <button class='card-icon' aria-expanded="false" id='move-button-{id}' on:click={e => handlePlanetMove()} title={"Move globe to feature"}>
+			<VenusIcon themeFill={hovering == false ? getThemeColor(type) : getThemeColor(type, 100, true)} />
+		</button>
+        <h3 class='name'>{name}</h3>
+    </div>
     <div class='category-grid'>
         <div class='category feature'>
             <HoverText text={feature} tooltip={featDefinition} color={getThemeColor(type)} align="left" />
@@ -43,12 +57,19 @@
         border-bottom: 1px solid var(--theme-color);
     }
 
+    .card-icon {
+        float: left;
+        padding: 8px 4px 0px 10px;
+        background-color: transparent;
+    }
+
     .name {
         font-family: var(--boecklins);
-        margin: 5% 0% 2%;
+        margin: 5% auto 2% auto;
         padding: 0% 1%;
         color: var(--light-theme);
         font-size: 32px;
+        max-width: 80%;
     }
 
     .category {

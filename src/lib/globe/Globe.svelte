@@ -1,58 +1,82 @@
 <script>
     import Globe from 'globe.gl';
     import * as THREE from 'three'
-    import { data, globe, drawGlobe } from '../../stores/global.js';
-    import { moveGlobeToPoint } from '../../js/utils.js';
+    import { data, globe, setGlobeData } from '../../stores/global.js';
     import { onMount } from 'svelte';
+    import dataSource from '../../data/data.json'
+    import { getThemeColor } from '../../js/utils.js';
 
-    // Initial draw of globe to create nodes
-    export function init(data) {
-        console.log("initial draw of globe with", data.length, "features")
+    // instead of re-rendering the globe every time data updates, maybe just re-assign globe.pointsData(data)?
+    // there needs to be an initial globe setup, and then an update
+
+    function init(data, dataSource) {
+        console.log("drawing globe with", data.length, "features")
+
+        // elements
+        const elem = document.getElementById("globe-target");
+        const globeWrapper = document.querySelector(".title-section");
+
+        // assets
         const textureImg = 'assets/venus-texture.png'
+        const textureImgGrayscale = 'assets/venus-texture-grayscale.png'
         const displacementImg = 'assets/height.jpg'
 
-        const globeWrapper = document.querySelector(".title-section");
-        const width = globeWrapper == null ? 350 : globeWrapper.offsetWidth * 0.8;
+        // globe settings
+        const width = globeWrapper == null ? 275 : globeWrapper.offsetWidth * 0.6;
+        const myGlobe = Globe({
+            animateIn: false
+        });
 
-        const myGlobe = Globe();
-        const elem = document.getElementById("globe-target");
+        let world;
+        
+        // If showing all points, just render the globe without points
+        if (data.length == dataSource.length) {
+            world = myGlobe(elem)
+                .width(width)
+                .height(width)
+                .backgroundColor("#03030300")
+                .globeImageUrl(textureImg)
+                .atmosphereColor(0x2d150400)
+                .atmosphereAltitude(0)
+        } else {
+            world = myGlobe(elem)
+                .width(width)
+                .height(width)
+                .backgroundColor("#03030300")
+                .globeImageUrl(textureImg)
+                .atmosphereColor(0x2d150400)
+                .atmosphereAltitude(0)
+                //points info
+                .pointsData(data)
+                .pointLat('center_lat')
+                .pointLng('center_long')
+                .pointAltitude(0)
+                .pointRadius(0.6)
+                .pointColor((d) => {
+                    return getThemeColor(d.type, 100, false)
+                })
+        }
 
-        const world = myGlobe(elem)
-            .width(width)
-            .height(width)
-            .backgroundColor("#03030300")
-            .globeImageUrl(textureImg)
-            .pointsData(data)
-            .pointLat('center_lat')
-            .pointLng('center_long')
-            .pointAltitude(2)
-            .pointRadius(1.5)
-            .atmosphereColor(0x2d150400)
-            .atmosphereAltitude(0)
-            .pointLabel('')
-            .pointColor((d) => {
-                const color = "#ffffff00";
-                return color;
-            })
+        myGlobe.globeMaterial().shininess = 0;
 
-        const globeMaterial = myGlobe.globeMaterial()
-
-        new THREE.TextureLoader().load(displacementImg, texture => {
-            /* globeMaterial.displacementMap = texture;
-            globeMaterial.displacementScale = 25; */
+        // Add a displacement map - not needed since globe is so small?
+        /* new THREE.TextureLoader().load(displacementImg, texture => {
+            const globeMaterial = myGlobe.globeMaterial()
+            globeMaterial.displacementMap = texture;
+            globeMaterial.displacementScale = 25;
             globeMaterial.shininess = 0;
-        })
+        }) */
 
         // Add auto-rotation
         world.controls().autoRotate = true;
-        world.controls().autoRotateSpeed = 0.6;
+        world.controls().autoRotateSpeed = 0.4;
 
         // update store
         globe.set(world);
     }
 
     onMount(async () => {
-        init($data);
+        init($data, dataSource)
 	});
 </script>
 
