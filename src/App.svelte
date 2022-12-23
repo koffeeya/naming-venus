@@ -1,22 +1,28 @@
 <script>
 	import { data, activePage, activeFilter, setActivePage, filterData, resetData } from './stores/global.js'
+	import dataSource from "./data/data.json";
 	import TitleCard from './lib/svg/TitleCard.svelte';
 	import Globe from "./lib/globe/Globe.svelte";
 	import Card from './lib/card/Card.svelte';
 	import TitleSvg from './lib/svg/TitleSvg.svelte';
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { fade, crossfade } from 'svelte/transition';
+	import { cubicOut, quintOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
-	import { cubicOut } from 'svelte/easing';
-
+  	import FilterGroup from './lib/elements/FilterGroup.svelte';
+	
 	const testFilter = [
 		{
-			id: "year",
-			value: [1985, 1984]
+			id: "type",
+			value: ["Famous Woman", "Goddess", "Heroine", "First Name", "Other"]
 		},
 		{
-			id: "type",
-			value: ["Heroine"]
+			id: "feature",
+			value: ["Crater", "Tholus", "Vallis", "Planitia"]
+		},
+		{
+			id: "origin",
+			value: ["Japan", "United States"]
 		}
 	]
 
@@ -29,7 +35,7 @@
 
 	$: introStatus = $activePage == "intro" ? "" : "hide";
 	$: contentStatus = $activePage == "main" ? "" : "hide";
-	$: globeMargin = $activePage == "intro" ? "-475px 40px" : "100px -40px";
+	$: globeMargin = $activePage == "intro" ? "-475px 40px" : "0px 0px";
 
 	const globeOpacity = tweened(100, {
 		duration: 50,
@@ -47,36 +53,32 @@
 
 <main>
 {#if ready == true}
-	<div class='header {contentStatus}'>
+	<div class='header {contentStatus}' in:fade={{ delay: 500 }}>
 		<h1 class='sr-only'>Naming Venus: a data visualization project by Kavya Beheraj</h1>
 		<button aria-expanded="false" id='title-button' on:click={e => handlePageChange("intro")} on:keypress={e => handlePageChange("intro")} >
 			<TitleSvg borderColor="black" textColor="white" starColor="#c97889" />
 		</button>
 	</div>
 
-	<div class='content {$activePage}-mode'>
+	<div class='content {$activePage}-mode' in:fade={{ delay: 500 }}>
 		<div class='left-content'>
 			<div>
 				<div class='{introStatus}' aria-hidden="true" focusable="false">
 					<TitleCard width={350} height={600} />
 				</div>
-				<!-- Key blocks destroy and recreate their contents when the value of an expression changes. -->
-				<!-- {#key $data} -->
-					<div class='globe-wrapper' style='margin: {globeMargin}; opacity: {globeOpacity}%' aria-hidden="true" focusable="false" in:fade={{ delay: 1200 }} >
-						<Globe />
-					</div>
-				<!-- {/key} -->
+				<div class='globe-wrapper' style='margin: {globeMargin}; opacity: {globeOpacity}%' aria-hidden="true" focusable="false" in:fade={{ delay: 1200 }} >
+					<Globe />
+				</div>
 			</div>
 			<div class='{contentStatus}'>
+				<div class='globe-spacer'></div>
 				<div>
 					<div class='feature-count'>Showing {$data.length} features</div>
 					<button class='filter-button' on:click={e => filterData(testFilter)} on:keypress={e => filterData(testFilter)}>Test filter</button>
 					<button class='reset-button' on:click={e => resetData(testFilter)} on:keypress={e => resetData(testFilter)}>Reset filter</button>
 				</div>
 				<div>
-					{#each $activeFilter as filter}
-						Filtering <b>{filter.id}</b> for <b>{filter.value.sort().join(", ")}</b><br>
-					{/each}
+					<FilterGroup />
 				</div>
 			</div>
 		</div>
@@ -93,17 +95,16 @@
 						<button class='reset-button' on:click={e => resetData(testFilter)} on:keypress={e => resetData(testFilter)}>Reset filter</button>
 					</div>
 					<div>
-						{#each $activeFilter as filter}
-							Filtering <b>{filter.id}</b> for <b>{filter.value.join(", ")}</b><br>
-						{/each}
+						<FilterGroup />
 					</div>
 				</div>
 			</div>
 
+			<!-- in:fade={{ delay: 500 }}  -->
 			<div class="card-wrapper {contentStatus}">
 				{#key $data}
 					{#each $data as feature}
-						<div in:fade={{ delay: 500 }}>
+						<div>
 							<Card cardData={feature} />
 						</div>
 					{/each}
@@ -160,6 +161,10 @@
 		margin: auto;
 	}
 
+	.globe-spacer {
+		height: 300px;
+	}
+
 	/* margin: 130px 36px; */
 	.globe-wrapper {
 		z-index: 100;
@@ -170,9 +175,9 @@
 		transition: opacity 2s;
 	}
 
-  .card-wrapper {
+  	.card-wrapper {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr) );
+		grid-template-columns: repeat(auto-fit, minmax(275px, 1fr) );
   		column-gap: 8px;
   		row-gap: 8px;
 		height: 80vh;

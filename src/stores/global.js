@@ -17,7 +17,7 @@ export function setActivePage(page) {
 export function filterData(filterObj) {
     console.log("filtering", filterObj);
 
-    if (filterObj == null || filterObj == undefined || filterObj[0].value.length == 0) {
+    if (filterObj == null || filterObj == undefined || filterObj.length == 0) {
         console.log("keeping old data");
         activeFilter.set([]);
         data.set(dataSource);
