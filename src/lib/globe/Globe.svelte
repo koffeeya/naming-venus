@@ -38,6 +38,15 @@
                 .globeImageUrl(textureImg)
                 .atmosphereColor(0x2d150400)
                 .atmosphereAltitude(0)
+                //points info
+                /* .pointsData(data)
+                .pointLat('center_lat')
+                .pointLng('center_long')
+                .pointAltitude(0)
+                .pointRadius(0.6)
+                .pointColor((d) => {
+                    return getThemeColor(d.type, 100, false)
+                }) */
         } else {
             world = myGlobe(elem)
                 .width(width)

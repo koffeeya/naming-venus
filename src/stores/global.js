@@ -4,6 +4,7 @@ import dataSource from "../data/data.json";
 
 export const data = writable(dataSource);
 export const activeFilter = writable([]);
+export const page = writable(0)
 
 export const globeWidth = writable(window.innerWidth);
 export const globe = writable();
@@ -14,8 +15,10 @@ export function setActivePage(page) {
     activePage.set(page);
 }
 
+// Takes a filter object, 
 export function filterData(filterObj) {
     console.log("filtering", filterObj);
+    page.set(0)
 
     if (filterObj == null || filterObj == undefined || filterObj.length == 0) {
         console.log("keeping old data");
@@ -35,6 +38,7 @@ export function filterData(filterObj) {
 
 export function resetData() {
     console.log("resetting data");
+    page.set(0)
     data.set(dataSource);
     activeFilter.set([])
 }

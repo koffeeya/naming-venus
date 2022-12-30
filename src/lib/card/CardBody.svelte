@@ -4,7 +4,7 @@
     function shortenBio(bio) {
         if (bio.length > 0) {
             const split = bio.split(" ")
-            const keep = split.slice(0, 11)
+            const keep = split.slice(0, 8)
             keep.push("...")
             const join = keep.join(" ")
             return join;
