@@ -1,17 +1,20 @@
 <script>
+    import { pageTheme } from "../../stores/global";
+    import { getThemeColor } from "../../js/utils";
     export let borderColor = "black";
     export let textColor = "white";
-    export let starColor = "#c97889" // "#E0E0E0"
+    $: starColor = getThemeColor($pageTheme);
     export let backgroundColor = "#000000"
 </script>
 
-<svg width="532" height="125" viewBox="0 0 532 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<svg id='title-svg' width="532" height="125" viewBox="0 0 532 125" fill="none" xmlns="http://www.w3.org/2000/svg" >
     <g id="title-group">
     <g id="star">
-    <path id="Star 3" d="M309.265 18.3979L299.041 60.9745L341.617 50.7503L299.633 63.1842L329.775 94.9445L298.015 64.8018L285.581 106.786L295.805 64.2097L253.229 74.4339L295.213 62L265.071 30.2397L296.831 60.3824L309.265 18.3979Z" fill={starColor}/>
-    <path id="Star 4" d="M285.459 18.2241L297.893 60.2086L329.653 30.0659L299.511 61.8262L341.495 74.2601L298.919 64.0359L309.143 106.612L296.709 64.628L264.949 94.7707L295.091 63.0104L253.107 50.5765L295.683 60.8007L285.459 18.2241Z" fill={starColor}/>
-    <path id="Star 1" d="M274.42 22.8763L297.296 55.6368L320.173 22.8763L303.24 59.0683L343.049 62.4998L303.24 65.9312L320.173 102.123L297.296 69.3627L274.42 102.123L291.353 65.9312L251.543 62.4998L291.353 59.0683L274.42 22.8763Z" fill={starColor}/>
-    <path id="Star 2" d="M297.166 16.6743L300.597 56.484L336.789 39.5509L304.029 62.4275L336.789 85.3041L300.597 68.371L297.166 108.181L293.734 68.371L257.542 85.3041L290.303 62.4275L257.542 39.5509L293.734 56.484L297.166 16.6743Z" fill={starColor}/>
+    <path id="Star3" d="M309.265 18.3979L299.041 60.9745L341.617 50.7503L299.633 63.1842L329.775 94.9445L298.015 64.8018L285.581 106.786L295.805 64.2097L253.229 74.4339L295.213 62L265.071 30.2397L296.831 60.3824L309.265 18.3979Z" fill={starColor}/>
+    <path id="Star4" d="M285.459 18.2241L297.893 60.2086L329.653 30.0659L299.511 61.8262L341.495 74.2601L298.919 64.0359L309.143 106.612L296.709 64.628L264.949 94.7707L295.091 63.0104L253.107 50.5765L295.683 60.8007L285.459 18.2241Z" fill={starColor}/>
+    <path id="Star1" d="M274.42 22.8763L297.296 55.6368L320.173 22.8763L303.24 59.0683L343.049 62.4998L303.24 65.9312L320.173 102.123L297.296 69.3627L274.42 102.123L291.353 65.9312L251.543 62.4998L291.353 59.0683L274.42 22.8763Z" fill={starColor}/>
+    <path id="Star2" d="M297.166 16.6743L300.597 56.484L336.789 39.5509L304.029 62.4275L336.789 85.3041L300.597 68.371L297.166 108.181L293.734 68.371L257.542 85.3041L290.303 62.4275L257.542 39.5509L293.734 56.484L297.166 16.6743Z" fill={starColor}/>
     </g>
     <g id="title-words">
     <mask id="path-5-outside-1_235_87" maskUnits="userSpaceOnUse" x="0" y="27.3394" width="532" height="72" fill={backgroundColor}>
@@ -24,5 +27,20 @@
     </g>
 </svg>
 
+
 <style lang="scss">
+    #Star1, #Star2, #Star3, #Star4 {
+        transition: 0.3s ease all;
+    }
+
+    #title-svg {
+        transform: scale(1);
+        transition: 0.1s ease all;
+    }
+
+    #title-svg:hover {
+        cursor: pointer;
+        transform: scale(1.01);
+        transition: 0.1s ease all;
+    }
 </style>

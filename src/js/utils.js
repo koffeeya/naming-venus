@@ -17,22 +17,22 @@ const debounce = (func, delay) => {
 // Optional "alpha" param to control transparency (0-100)
 function getThemeColor(type, alpha, light) {
     const colorMap = {
-        Default: "#9B9B9B",
-        Goddess: "#D7A954",
-        Heroine: "#8AB67B",
+        "Default": "#6b6b6b",
+        "Goddess": "#D7A954",
+        "Heroine": "#8AB67B",
         "First Name": "#6CB4CC",
         "Famous Woman": "#C97889",
-        Other: "#9B9B9B",
+        "Other": "#9B9B9B",
     };
 
     //#f7e8ea
     const lightColorMap = {
-        Default: "#dddddd",
-        Goddess: "#f6e1c5",
-        Heroine: "#d8e7d2",
+        "Default": "#dddddd",
+        "Goddess": "#f6e1c5",
+        "Heroine": "#d8e7d2",
         "First Name": "#d0e6ee",
         "Famous Woman": "#efd1d6",
-        Other: "#9B9B9B",
+        "Other": "#9B9B9B",
     };
 
     let hexBase;
@@ -49,49 +49,8 @@ function getThemeColor(type, alpha, light) {
     return output;
 }
 
-/* 
-[
-    {
-        category: "id",
-        values: []
-    },
-    {
-        category: "type",
-        values: []
-    },
-    {
-        category: "origin",
-        values: []
-    },
-    {
-        category: "continent",
-        values: []
-    },
-    {
-        category: "year",
-        values: []
-    },
-]
-
-*/
-
-function filterData(filterObj) {
-    const currentData = dataSource;
-    if (filterObj.length == 0) {
-        $data.set(dataSource);
-    } else {
-        const filtered = currentData.filter((item) => {
-            return filterObj.every((filter) => {
-                return filter.value.includes(item[filter.id]);
-            });
-        });
-        $data.set(filtered);
-    }
-}
-
 function moveGlobeToPoint(id, data, world) {
     const found = data.find((element) => element.feature_id == id);
-    console.log("Moving globe to", found.name);
     const lat = found.center_lat;
     const lng = found.center_long;
 
@@ -102,9 +61,25 @@ function moveGlobeToPoint(id, data, world) {
         },
         300
     );
-
-    /* setTimeout(() => { world.pauseAnimation() }, 300);
-    setTimeout(() => { world.resumeAnimation() }, 2000); */
 }
 
-export { debounce, getThemeColor, filterData, moveGlobeToPoint };
+// show one or more points on the globe
+function showGlobePoints(idArray, world) {
+    if (idArray == null || idArray == [] || idArray == undefined) {
+        world.pointRadius(d => 0)
+    } else {
+        world.pointRadius((d) => {
+            if (idArray.includes(d.feature_id)) {
+                return 1
+            } else {
+                return 0
+            }
+        })
+    }
+}
+
+function clearGlobePoints(world) {
+    world.pointRadius(d => 0)
+}
+
+export { getThemeColor, moveGlobeToPoint, showGlobePoints, clearGlobePoints };

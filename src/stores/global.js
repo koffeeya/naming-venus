@@ -1,21 +1,17 @@
-import { active } from "d3";
-import { writable, derived } from "svelte/store";
+import { writable } from "svelte/store";
 import dataSource from "../data/data.json";
 
 export const data = writable(dataSource);
 export const activeFilter = writable([]);
 export const page = writable(0)
 
+// globe
 export const globeWidth = writable(window.innerWidth);
 export const globe = writable();
+export const activePage = writable("intro"); // or main
+export const pageTheme = writable("Default");
 
-export const activePage = writable("intro");
-
-export function setActivePage(page) {
-    activePage.set(page);
-}
-
-// Takes a filter object, 
+// Takes a filter object and updates the data source
 export function filterData(filterObj) {
     console.log("filtering", filterObj);
     page.set(0)
@@ -40,10 +36,6 @@ export function resetData() {
     console.log("resetting data");
     page.set(0)
     data.set(dataSource);
-    activeFilter.set([])
-}
-
-export function setGlobeData(data) {
-    console.log("setting new globe data", globe);
-    globe.set(globe.pointsData(data));
+    activeFilter.set([]);
+    pageTheme.set("Default");
 }

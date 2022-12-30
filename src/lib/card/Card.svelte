@@ -1,6 +1,6 @@
 <script>
     import { getThemeColor, moveGlobeToPoint } from '../../js/utils.js';
-    import { data, globe } from '../../stores/global.js'
+    import { pageTheme } from '../../stores/global.js'
     export let cardData;
 
     // Card components
@@ -22,9 +22,12 @@
     const description =     cardData.description == "" ? "N/A" : cardData.description;
     const bio =             cardData.bio == "" ? "" : cardData.bio;
 
+    function handleCardHover(e) {
+        pageTheme.set(type)
+    }
 </script>
 
-<div class='card' style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" >
+<div class='card' on:mouseover='{handleCardHover}' on:focus={handleCardHover} style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" >
     <div class='outer-border'>
         <div class='inner-border'>
             <div class='content'>
@@ -43,12 +46,22 @@
         border: none;
         margin: 10px;
         background-color: var(--card-bg-color);
+        opacity: 90%;
         border-radius: 16px;
         text-align: center;
         height: fit-content;
         min-width: 150px;
         max-width: 350px;
         box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.75);
+        transform: scale(1);
+        transition: 0.1s ease all;
+    }
+
+    .card:hover {
+        cursor: pointer;
+        opacity: 100%;
+        transform: scale(1.01);
+        transition: 0.1s ease all;
     }
 
     .outer-border {
