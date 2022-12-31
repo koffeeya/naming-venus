@@ -55,21 +55,19 @@
 	}
 
 	function handlePageChange(newPage) {
-		const introGlobe = document.querySelector("#intro-globe");
-		const cardsGlobe = document.querySelector("#cards-globe");
+		const introSection = document.querySelector(`.intro-mode`);
+		const mainSection = document.querySelector(`.main-mode`);
 
 		if (newPage == "intro") {
 			clearGlobePoints($globe);
-			introGlobe.style.opacity = 0;
-			introGlobe.style.opacity = 1;
-			cardsGlobe.style.opacity = 0;
+			mainSection.style.opacity = 0;
+			introSection.style.opacity = 1;
 		} else {
 			showGlobePoints(idArray, $globe);
-			introGlobe.style.opacity = 0;
-			cardsGlobe.style.opacity = 0;
-			cardsGlobe.style.opacity = 1;
+			mainSection.style.opacity = 1;
+			introSection.style.opacity = 0;
 		}
-		
+
 		activePage.set(newPage);
 	}
 	/* 
@@ -89,34 +87,35 @@
 
 <main>
 {#if ready == true}
-	<!-- Intro page -->
-	<div class='intro-mode {introStatus}' in:fade={{ delay: 600 }}>
+	<!-- Intro page in:fade={{ duration: 600 }}-->
+	<div class='intro-mode {introStatus}'>
 		<!-- Title card -->
 		<div class='title-section'>
-			<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false">
+			<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" in:fade="{{duration: 500, delay: 2000}}">
 				<Globe targetNode="intro-globe" />
 			</div>
-			<div class='title-card-wrapper' aria-hidden="true" focusable="false">
+			<div class='title-card-wrapper' aria-hidden="true" focusable="false" in:fade="{{duration: 500}}">
 				<TitleCard width={350} height={600} />
 			</div>
 		</div>
 		<!-- Intro text -->
 		<div class='intro-text'>
 			<!-- Text -->
-			<div>
+			<div in:fade="{{duration: 500, delay: 500}}">
 				<h2 class='sr-only'>Introduction</h2>
 				<p>Venus, the morning star, Earth's twin, has been inspiring humanity for thousands of years. Beneath its swirling superhot atmosphere, nearly every discovered surface feature — every mountain, valley, and crater — has been named after a woman.</p>
+				<br>
 				<p>Carved into Venus's alien landscape are stories of pioneering explorers, war godesses, mythical heroines, and more. This project aims to tell their stories.</p>
 			</div>
 			<!-- Call to action -->
-			<div>
+			<div in:fade="{{duration: 500, delay: 1000}}">
 				<button id='intro-button' on:click={e => handlePageChange("main")} on:keypress={e => handlePageChange("main")}>Explore the names</button>
 			</div>
 		</div>	
 	</div>
 
 	<!-- Card page -->
-	<div class='main-mode {contentStatus}' in:fade={{ delay: 600 }}>
+	<div class='main-mode {contentStatus}'>
 		<!-- Header section -->
 		<div class='header'>
 			<!-- Title -->
@@ -125,14 +124,15 @@
 				<button aria-expanded="false" id='title-button' on:click={e => handlePageChange("intro")} on:keypress={e => handlePageChange("intro")} >
 					<TitleSvg borderColor="black" textColor="white" />
 				</button>
-				<!-- Globe for intro -->
-				<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" >
-					<Globe targetNode="cards-globe" />
-				</div>
+				
+			</div>
+			<!-- Globe for intro -->
+			<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" >
+				<Globe targetNode="cards-globe" />
 			</div>
 			<!-- Filters -->
 			<div class='filter-section'>
-				<!-- <div class='globe-spacer'></div> -->
+				<div class='globe-spacer'></div>
 				<div>
 					<button class='filter-button' on:click={e => filterData(testFilter)} on:keypress={e => filterData(testFilter)}>Test filter</button>
 					<button class='reset-button' on:click={e => resetData(testFilter)} on:keypress={e => resetData(testFilter)}>Reset filter</button>
@@ -176,24 +176,24 @@
 		max-width: 80vw;
 	}
 
-	.header {
-		text-align: center;
-		width: 100%;
-	}
-
 	.intro-mode {
 		margin: auto;
 		max-width: 45%;
 		height: 90vh;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
+		opacity: 1;
+        transition: 0.4s ease all;
 	}
 
 	.main-mode {
 		margin: auto;
 		display: grid;
-		grid-template-columns: 1fr 8fr;
-		column-gap: 24px;
+		grid-template-columns: 1fr 3fr;
+		opacity: 0;
+        transition: 0.4s ease all;
+		width: fit-content;
+		height: fit-content;
 	}
 
 	.intro-text {
@@ -226,12 +226,17 @@
 		transition: opacity 2s;
 	}
 
+	.globe-spacer {
+		margin: 275px 0px 0px 0px;
+	}
+
   	.card-wrapper {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
   		column-gap: 0px;
   		row-gap: 0px;
 		height: fit-content;
+		width: fit-content;
 		margin: auto;
 	}
 
@@ -268,18 +273,37 @@
 		height: fit-content;
 	}
 
-	@media only screen and (max-width: 700px) {
-		.main-mode {
-			grid-template-columns: 1fr;
+	@media only screen and (max-width: 1200px) {
+		main {
+			max-width: 90vw;
 		}
-		
+
 		.card-wrapper {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 		}
 	}
 
-	@media only screen and (max-width: 500px) {
+	@media only screen and (max-width: 1000px) {
+		main {
+			max-width: 90vw;
+		}
+
+		.main-mode {
+			grid-template-columns: 1fr;
+		}
+
+		.card-wrapper {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media only screen and (max-width: 600px) {
+		main {
+			max-width: 95vw;
+		}
+
 		.main-mode {
 			grid-template-columns: 1fr;
 		}

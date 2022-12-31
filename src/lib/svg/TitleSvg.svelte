@@ -9,7 +9,7 @@
 
 
 <div class='svg-container'>
-    <svg id='title-svg' width="532" height="125" viewBox="0 0 532 125" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg" >
+    <svg id='title-svg' width="300" viewBox="0 0 550 125" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg" >
         <g id="title-group">
         <g id="star">
         <path id="Star3" d="M309.265 18.3979L299.041 60.9745L341.617 50.7503L299.633 63.1842L329.775 94.9445L298.015 64.8018L285.581 106.786L295.805 64.2097L253.229 74.4339L295.213 62L265.071 30.2397L296.831 60.3824L309.265 18.3979Z" fill={starColor}/>
@@ -39,6 +39,7 @@
     #title-svg {
         transform: scale(0.98);
         transition: 0.1s ease all;
+        margin: auto;
     }
 
     #title-svg:hover {

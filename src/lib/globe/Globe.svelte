@@ -75,16 +75,17 @@
     }
 
     onMount(async () => {
-        init($data, targetNode)
+        init($data, targetNode);
 	});
 </script>
 
-
-{#if targetNode=='intro-globe'}
-    <div id='intro-globe'></div>
-{:else}
-    <div id='cards-globe'></div>
-{/if}
+<div>
+    {#if targetNode=='intro-globe'}
+        <div id='intro-globe'></div>
+    {:else}
+        <div id='cards-globe'></div>
+    {/if}
+</div>
 
 
 <style lang="scss">
