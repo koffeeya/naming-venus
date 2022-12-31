@@ -12,7 +12,7 @@
     // Dynamically show pagination buttons
 	$: {
 		if (numberOfPages >= 10) {
-			const minValues = [0, 1, 2, 3]; // first 4 pages
+			const minValues = [0, 1, 2]; // first 4 pages
 			const maxValues = minValues.map(v => numberOfPages - v - 1).sort(); // last 4 pages
 
 			// format the navigation bar
@@ -32,7 +32,7 @@
 </script>
 
 <div style='--theme-color:{themeColor};'>
-    <div class='feature-count'>Showing {formatValue($data.length)} features</div>
+    <!-- <div class='feature-count'>Showing {formatValue($data.length)} features</div> -->
     <div class='nav-buttons'>
         <button class='nav-arrow' aria-expanded="false" id="previous-button" title='Go to the previous page' disabled='{ $page <= 0 }' on:click={e => page.set($page - 1)}>&larr;</button>
         <div class='page-button-group'>
@@ -54,6 +54,9 @@
 <style lang="scss">
     .nav-buttons {
         display: flex;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
     }
 
     .nav-arrow {
@@ -80,8 +83,11 @@
 
     .page-button-group {
         display: flex;
-		margin: auto;
         padding: 0% 1%;
+        width: 300px;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
     }
     
 	.page-button {

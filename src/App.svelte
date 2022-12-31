@@ -10,10 +10,8 @@
 	import FilterGroup from './lib/elements/FilterGroup.svelte';
 
 	// svelte libraries
-	import { onMount } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	import { cubicOut} from 'svelte/easing';
-	import { tweened } from 'svelte/motion';
   	
 	// utils
 	import { showGlobePoints, clearGlobePoints } from './js/utils.js';
@@ -36,14 +34,10 @@
 
 	let ready = false;
 
-	onMount(async () => {
-		filterData();
-		ready = true;
-	});
-
 	$: introStatus = $activePage == "intro" ? "" : "hide";
 	$: contentStatus = $activePage == "main" ? "" : "hide";
-	$: globeMargin = $activePage == "intro" ? "-475px 40px" : "0px 0px";
+	// $: globeMargin = $activePage == "intro" ? "-32.5% 5.2%" : "0% 0%";
+	$: globeMargin = $activePage == "intro" ? "148px 55px" : "0% 0%";
 	$: cardsPerPage = 6;
 	let visibleData, idArray;
 	$: {
@@ -61,15 +55,23 @@
 	}
 
 	function handlePageChange(newPage) {
+		const introGlobe = document.querySelector("#intro-globe");
+		const cardsGlobe = document.querySelector("#cards-globe");
+
 		if (newPage == "intro") {
 			clearGlobePoints($globe);
+			introGlobe.style.opacity = 0;
+			introGlobe.style.opacity = 1;
+			cardsGlobe.style.opacity = 0;
 		} else {
-			showGlobePoints(idArray, $globe)
+			showGlobePoints(idArray, $globe);
+			introGlobe.style.opacity = 0;
+			cardsGlobe.style.opacity = 0;
+			cardsGlobe.style.opacity = 1;
 		}
 		
 		activePage.set(newPage);
 	}
-
 	/* 
 	Streamline the active page thing - intro vs. content is killing me
 	Add real filters
@@ -79,33 +81,58 @@
 	Mobile responsiveness
 	*/
 
+	onMount(async () => {
+		filterData();
+		ready = true;
+	})
 </script>
 
 <main>
 {#if ready == true}
-	<div class='header {contentStatus}' in:fade={{ delay: 500 }}>
-		<h1 class='sr-only'>Naming Venus: a data visualization project by Kavya Beheraj</h1>
-		<button aria-expanded="false" id='title-button' on:click={e => handlePageChange("intro")} on:keypress={e => handlePageChange("intro")} >
-			<TitleSvg borderColor="black" textColor="white" />
-		</button>
-
-		<div class='page-buttons-wrapper {contentStatus}'>
-			<PageNavigation {cardsPerPage} />
+	<!-- Intro page -->
+	<div class='intro-mode {introStatus}' in:fade={{ delay: 600 }}>
+		<!-- Title card -->
+		<div class='title-section'>
+			<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false">
+				<Globe targetNode="intro-globe" />
+			</div>
+			<div class='title-card-wrapper' aria-hidden="true" focusable="false">
+				<TitleCard width={350} height={600} />
+			</div>
 		</div>
+		<!-- Intro text -->
+		<div class='intro-text'>
+			<!-- Text -->
+			<div>
+				<h2 class='sr-only'>Introduction</h2>
+				<p>Venus, the morning star, Earth's twin, has been inspiring humanity for thousands of years. Beneath its swirling superhot atmosphere, nearly every discovered surface feature — every mountain, valley, and crater — has been named after a woman.</p>
+				<p>Carved into Venus's alien landscape are stories of pioneering explorers, war godesses, mythical heroines, and more. This project aims to tell their stories.</p>
+			</div>
+			<!-- Call to action -->
+			<div>
+				<button id='intro-button' on:click={e => handlePageChange("main")} on:keypress={e => handlePageChange("main")}>Explore the names</button>
+			</div>
+		</div>	
 	</div>
 
-	<div class='content {$activePage}-mode' in:fade={{ delay: 500 }}>
-		<div class='left-content'>
+	<!-- Card page -->
+	<div class='main-mode {contentStatus}' in:fade={{ delay: 600 }}>
+		<!-- Header section -->
+		<div class='header'>
+			<!-- Title -->
 			<div>
-				<div class='{introStatus}' aria-hidden="true" focusable="false">
-					<TitleCard width={350} height={600} />
-				</div>
-				<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" in:fade={{ delay: 600 }} >
-					<Globe />
+				<h1 class='sr-only'>Naming Venus: a data visualization project by Kavya Beheraj</h1>
+				<button aria-expanded="false" id='title-button' on:click={e => handlePageChange("intro")} on:keypress={e => handlePageChange("intro")} >
+					<TitleSvg borderColor="black" textColor="white" />
+				</button>
+				<!-- Globe for intro -->
+				<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" >
+					<Globe targetNode="cards-globe" />
 				</div>
 			</div>
-			<div class='{contentStatus}'>
-				<div class='globe-spacer'></div>
+			<!-- Filters -->
+			<div class='filter-section'>
+				<!-- <div class='globe-spacer'></div> -->
 				<div>
 					<button class='filter-button' on:click={e => filterData(testFilter)} on:keypress={e => filterData(testFilter)}>Test filter</button>
 					<button class='reset-button' on:click={e => resetData(testFilter)} on:keypress={e => resetData(testFilter)}>Reset filter</button>
@@ -116,19 +143,14 @@
 			</div>
 		</div>
 
-		<div class='right-content'>
-			<div>
-				<div class='intro-text {introStatus}'>
-					<h2 class='sr-only'>Introduction</h2>
-					<p>Venus, the morning star, Earth's twin, has been inspiring humanity for thousands of years. Beneath its swirling superhot atmosphere, nearly every discovered surface feature — every mountain, valley, and crater — has been named after a woman. Carved into Venus's alien landscape are stories of pioneering explorers, war godesses, mythical heroines, and more. This project aims to tell their stories.</p>
-
-					<div>
-						<button id='intro-button' on:click={e => handlePageChange("main")} on:keypress={e => handlePageChange("main")}>Explore the names</button>
-					</div>
-				</div>
+		<!-- Card section -->
+		<div>
+			<!-- Page navigation -->
+			<div class='page-buttons-wrapper {contentStatus}'>
+				<PageNavigation {cardsPerPage} />
 			</div>
-
-			<div class="card-wrapper {contentStatus}" >
+			<!-- Cards -->
+			<div class="card-wrapper">
 				{#key $data}
 					{#key $page}
 						{#each visibleData as feature}
@@ -138,7 +160,7 @@
 						{/each}
 					{/key}
 				{/key}
-			</div>
+			</div>	
 		</div>
 	</div>
 {/if}
@@ -151,6 +173,7 @@
 
 	main {
 		margin: auto;
+		max-width: 80vw;
 	}
 
 	.header {
@@ -160,19 +183,17 @@
 
 	.intro-mode {
 		margin: auto;
-		max-width: 35%;
+		max-width: 45%;
 		height: 90vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
 	}
 
 	.main-mode {
 		margin: auto;
 		display: grid;
-		grid-template-columns: 1fr 3fr;
+		grid-template-columns: 1fr 8fr;
 		column-gap: 24px;
-		max-width: 90%;
 	}
 
 	.intro-text {
@@ -183,22 +204,19 @@
 
 	.intro-text>p {
 		font-size: 16px;
-		padding: auto auto 10% auto;
+		padding: 2% auto 10% auto;
 	}
 
-	.title-section, .chart-section {
+	.title-section {
 		margin: auto;
-	}
-
-	.globe-spacer {
-		height: 300px;
+		width: fit-content;
+		height: fit-content;
 	}
 
 	.feature-count {
 		margin: 1% 2%;
 	}
 
-	/* margin: 130px 36px; */
 	.globe-wrapper {
 		z-index: 100;
 		position: absolute;
@@ -211,10 +229,10 @@
   	.card-wrapper {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
-  		column-gap: 8px;
-  		row-gap: 8px;
-		height: 80vh;
-		overflow: auto;
+  		column-gap: 0px;
+  		row-gap: 0px;
+		height: fit-content;
+		margin: auto;
 	}
 
 	.page-buttons-wrapper {
@@ -246,19 +264,30 @@
 		margin: 0px;
 		padding: 0px;
 		border: none;
+		width: fit-content;
+		height: fit-content;
 	}
 
-	@media only screen 
-	and (min-device-width: 320px) 
-	and (max-device-width: 480px)
-	and (-webkit-min-device-pixel-ratio: 2) {
+	@media only screen and (max-width: 700px) {
+		.main-mode {
+			grid-template-columns: 1fr;
+		}
+		
+		.card-wrapper {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media only screen and (max-width: 500px) {
+		.main-mode {
+			grid-template-columns: 1fr;
+		}
+
 		.card-wrapper {
 			display: grid;
 			grid-template-columns: 1fr;
-			max-width: 100%;
-			height: 98vh;
 		}
-
 	}
 
 </style>

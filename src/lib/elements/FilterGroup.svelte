@@ -40,21 +40,24 @@
 
 
 <p>Active filters:</p>
-{#each $activeFilter as filter}
-    <div class='filter-group'>
-        <div class='filter-title'>
-            <p>Filter <b>{filter.id}</b> for</p>
+<div class='filter-section'>
+    {#each $activeFilter as filter}
+        <div class='filter-group'>
+            <div class='filter-title'>
+                <p>Filter <b>{filter.id}</b> for</p>
+            </div>
+            <div class='active-filter-buttons'>
+                {#each filter.value as filterItem, i}
+                    <button class='filter-item' on:click={clearFilterItem(filter.id, filterItem)} title={"Clear item from filter"}>{filterItem}</button>
+                {/each}
+                {#if filter.value.length > 0}
+                    <button class='clear-all-button' on:click={clearFilter([filter.id])} title={"Clear filter"}>X Clear All</button>
+                {/if}
+            </div>
         </div>
-        <div class='active-filter-buttons'>
-            {#each filter.value as filterItem, i}
-                <button class='filter-item' on:click={clearFilterItem(filter.id, filterItem)} title={"Clear item from filter"}>{filterItem}</button>
-            {/each}
-            {#if filter.value.length > 0}
-                <button class='clear-all-button' on:click={clearFilter([filter.id])} title={"Clear filter"}>X Clear All</button>
-            {/if}
-        </div>
-    </div>
-{/each}
+    {/each}
+</div>
+
 
 <style lang="scss">
     .filter-group {

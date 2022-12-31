@@ -44,23 +44,21 @@
     .card {
         padding: 0px;
         border: none;
-        margin: 10px;
+        margin: 5px;
         background-color: var(--card-bg-color);
         opacity: 90%;
         border-radius: 16px;
-        text-align: center;
         height: fit-content;
-        min-width: 150px;
-        max-width: 350px;
-        box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.75);
-        transform: scale(1);
+        text-align: center;
+        transform: scale(0.98);
         transition: 0.1s ease all;
+        width: clamp(200px, 300px, 300px);
     }
 
     .card:hover {
         cursor: pointer;
         opacity: 100%;
-        transform: scale(1.01);
+        transform: scale(1);
         transition: 0.1s ease all;
     }
 

@@ -4,25 +4,39 @@
     import { data, globe } from '../../stores/global.js';
     import { getThemeColor } from '../../js/utils.js';
     import { onMount } from 'svelte';
+    import { fade } from 'svelte/transition';
 
-    function init(data) {
+    export let targetNode;
+
+    function init(data, targetNode) {
+        /* const newElement = document.createElement("div");
+        newElement.setAttribute('id', targetNode);
+        const elem = document.getElementById(targetNode); */
         console.log("drawing globe with", data.length, "features")
 
         // elements
-        let elem = document.getElementById("globe-target");
+        const elem = document.getElementById(targetNode);
         const globeWrapper = document.querySelector(".title-section");
-
-        // assets
         const textureImg = 'assets/venus-texture.png'
-        const displacementImg = 'assets/height.jpg'
 
         // globe settings
-        const width = globeWrapper == null ? 275 : globeWrapper.offsetWidth * 0.6;
+        const width = globeWrapper == null ? 275 : globeWrapper.offsetWidth * 0.7;
         const myGlobe = Globe({
             animateIn: false
         });
 
-        let world = myGlobe(elem)
+        let world;
+
+        if (targetNode == 'intro-globe') {
+            world = myGlobe(elem)
+                .width(width)
+                .height(width)
+                .backgroundColor("#03030300")
+                .globeImageUrl(textureImg)
+                .atmosphereColor(0x2d150400)
+                .atmosphereAltitude(0)
+        } else {
+            world = myGlobe(elem)
                 .width(width)
                 .height(width)
                 .backgroundColor("#03030300")
@@ -38,34 +52,44 @@
                 .pointColor((d) => {
                     return getThemeColor(d.type, 100, false)
                 })
-
+            
+            // update store with the cards globe
+            globe.set(world);
+        }
+        
         // settings
         world.controls().autoRotate = true;
         world.controls().autoRotateSpeed = 0.4;
         myGlobe.globeMaterial().shininess = 0;
 
-        // Add a displacement map - not needed since globe is so small?
-        /* new TextureLoader().load(displacementImg, texture => {
+        /* 
+        // Add a displacement map - not needed since globe is so small
+        const displacementImg = 'assets/height.jpg'
+        new TextureLoader().load(displacementImg, texture => {
             const globeMaterial = myGlobe.globeMaterial()
             globeMaterial.displacementMap = texture;
             globeMaterial.displacementScale = 25;
             globeMaterial.shininess = 0;
-        }) */
-
-        // update store
-        globe.set(world);
+        }) 
+        */
     }
 
     onMount(async () => {
-        init($data)
+        init($data, targetNode)
 	});
 </script>
 
 
-<div id="globe-target"></div>
+{#if targetNode=='intro-globe'}
+    <div id='intro-globe'></div>
+{:else}
+    <div id='cards-globe'></div>
+{/if}
+
 
 <style lang="scss">
-    #globe-target {
-        overflow: hidden;
+    #intro-globe, #cards-globe {
+        opacity: 1;
+        transition: 0.4s ease all;
     }
 </style>
