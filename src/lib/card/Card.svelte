@@ -1,6 +1,6 @@
 <script>
-    import { getThemeColor, moveGlobeToPoint } from '../../js/utils.js';
-    import { pageTheme } from '../../stores/global.js'
+    import { getThemeColor, showGlobePoints, moveGlobeToPoint } from '../../js/utils.js';
+    import { pageTheme, data, globe } from '../../stores/global.js'
     export let cardData;
 
     // Card components
@@ -24,6 +24,8 @@
 
     function handleCardHover(e) {
         pageTheme.set(type)
+        moveGlobeToPoint(id, $data, $globe);
+        showGlobePoints([id], $globe);
     }
 </script>
 
@@ -51,7 +53,7 @@
         height: fit-content;
         text-align: center;
         transform: scale(0.98);
-        transition: 0.1s ease all;
+        transition: 0.1s ease-in-out all;
         width: clamp(200px, 300px, 300px);
     }
 
@@ -59,7 +61,7 @@
         cursor: pointer;
         opacity: 100%;
         transform: scale(1);
-        transition: 0.1s ease all;
+        transition: 0.1s ease-in-out all;
     }
 
     .outer-border {

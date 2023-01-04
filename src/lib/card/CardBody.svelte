@@ -18,9 +18,11 @@
     <div class='card-description'>
         <p>{description}</p>
     </div>
-    <div class='card-bio'>
-        <p>{shortenBio(bio)}</p>
-    </div>
+    <!-- {#if bio.length > 0}
+        <div class='card-bio'>
+            <p>Learn more...</p>
+        </div>
+    {/if}   --> 
 </div>
 
 <style lang="scss">

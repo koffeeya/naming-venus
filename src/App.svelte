@@ -1,59 +1,52 @@
 <script>
 	// stores
-	import { data, activePage, filterData, resetData, page, globe } from './stores/global.js'
+	import { data, activePage, resetData, page, globe, filterObj, defaultFilters } from './stores/global.js'
 
 	// components
 	import TitleCard from './lib/svg/TitleCard.svelte';
 	import Globe from "./lib/globe/Globe.svelte";
 	import Card from './lib/card/Card.svelte';
-	import TitleSvg from './lib/svg/TitleSvg.svelte';
-	import FilterGroup from './lib/elements/FilterGroup.svelte';
+	import Filter from './lib/elements/Filter.svelte';
+	import PageNavigation from './lib/elements/PageNavigation.svelte';
 
 	// svelte libraries
-	import { afterUpdate, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
   	
 	// utils
-	import { showGlobePoints, clearGlobePoints } from './js/utils.js';
-  	import PageNavigation from './lib/elements/PageNavigation.svelte';
-	
-	const testFilter = [
-		{
-			id: "type",
-			value: ["Famous Woman", "Goddess", "Heroine", "First Name", "Other"]
-		},
-		{
-			id: "feature",
-			value: ["Crater", "Tholus", "Vallis", "Planitia"]
-		},
-		{
-			id: "origin",
-			value: ["Japan", "United States"]
-		}
-	]
+	import { showGlobePoints, clearGlobePoints, filterData } from './js/utils.js';
+	import dataSource from "./data/data.json";
 
+	// Waits for page load to add svelte transitions
 	let ready = false;
 
+	// Add "hide" class to page that is not active
 	$: introStatus = $activePage == "intro" ? "" : "hide";
 	$: contentStatus = $activePage == "main" ? "" : "hide";
-	// $: globeMargin = $activePage == "intro" ? "-32.5% 5.2%" : "0% 0%";
-	$: globeMargin = $activePage == "intro" ? "148px 55px" : "0% 0%";
-	$: cardsPerPage = 6;
+
+	// How many cards to show on a single page
 	let visibleData, idArray;
+	$: cardsPerPage = 6;
+	// Only show active cards
 	$: {
+		// Get the indices of the first and last cards to show
 		const minIndex = ($page * cardsPerPage) + 0;
 		const maxIndex = ($page * cardsPerPage) + (cardsPerPage - 1);
 		const filtered = $data.filter((value, index) => {
-			if (index <= maxIndex && index >= minIndex) {
+			if (index >= minIndex && index <= maxIndex) {
 				return value;
 			}
 		});
-
+		// Get IDs of visible cards, to show them on the globe too
 		idArray = $activePage == "intro" ? null : filtered.map(v => v.feature_id);
 		$globe == undefined ? null : showGlobePoints(idArray, $globe);
+		// Update the cards visible on the page
 		visibleData = filtered;
 	}
 
+	$: globeMargin = $activePage == "intro" ? "148px 55px" : "0% 0%";
+
+	// Change the active page
 	function handlePageChange(newPage) {
 		const introSection = document.querySelector(`.intro-mode`);
 		const mainSection = document.querySelector(`.main-mode`);
@@ -63,31 +56,33 @@
 			mainSection.style.opacity = 0;
 			introSection.style.opacity = 1;
 		} else {
-			showGlobePoints(idArray, $globe);
+			//showGlobePoints(idArray, $globe);
 			mainSection.style.opacity = 1;
 			introSection.style.opacity = 0;
 		}
 
 		activePage.set(newPage);
 	}
+
 	/* 
 	Streamline the active page thing - intro vs. content is killing me
 	Add real filters
+	!TODO change the filtering method to apply to everything - active status isn't working :(
 	Search bar
 	Bar charts
 	Modal
 	Mobile responsiveness
+	Accessibility - check tabbing order
 	*/
-
 	onMount(async () => {
-		filterData();
+		resetData();
 		ready = true;
 	})
 </script>
 
 <main>
 {#if ready == true}
-	<!-- Intro page in:fade={{ duration: 600 }}-->
+	<!-- INTRO PAGE -->
 	<div class='intro-mode {introStatus}'>
 		<!-- Title card -->
 		<div class='title-section'>
@@ -98,6 +93,7 @@
 				<TitleCard width={350} height={600} />
 			</div>
 		</div>
+
 		<!-- Intro text -->
 		<div class='intro-text'>
 			<!-- Text -->
@@ -112,44 +108,58 @@
 				<button id='intro-button' on:click={e => handlePageChange("main")} on:keypress={e => handlePageChange("main")}>Explore the names</button>
 			</div>
 		</div>	
+
 	</div>
 
-	<!-- Card page -->
+	<!-- CARDS PAGE -->
 	<div class='main-mode {contentStatus}'>
-		<!-- Header section -->
+		<!-- Top header -->
 		<div class='header'>
-			<!-- Title -->
+			<!-- Logo button -->
 			<div>
 				<h1 class='sr-only'>Naming Venus: a data visualization project by Kavya Beheraj</h1>
-				<button aria-expanded="false" id='title-button' on:click={e => handlePageChange("intro")} on:keypress={e => handlePageChange("intro")} >
-					<TitleSvg borderColor="black" textColor="white" />
-				</button>
-				
+				<button aria-expanded="false" id='title-button' on:click={e => handlePageChange("intro")} on:keypress={e => handlePageChange("intro")} >Naming Venus</button>
 			</div>
-			<!-- Globe for intro -->
-			<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" >
-				<Globe targetNode="cards-globe" />
-			</div>
-			<!-- Filters -->
-			<div class='filter-section'>
-				<div class='globe-spacer'></div>
-				<div>
-					<button class='filter-button' on:click={e => filterData(testFilter)} on:keypress={e => filterData(testFilter)}>Test filter</button>
-					<button class='reset-button' on:click={e => resetData(testFilter)} on:keypress={e => resetData(testFilter)}>Reset filter</button>
-				</div>
-				<div>
-					<FilterGroup />
-				</div>
-			</div>
-		</div>
-
-		<!-- Card section -->
-		<div>
 			<!-- Page navigation -->
 			<div class='page-buttons-wrapper {contentStatus}'>
 				<PageNavigation {cardsPerPage} />
 			</div>
-			<!-- Cards -->
+		</div>
+
+		<!-- Content -->
+		<div class='content-grid'>
+			<!-- Globe and filters sidebar -->
+			<div class='sidebar'>
+				<!-- Globe for intro -->
+				<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" >
+					<Globe targetNode="cards-globe" />
+				</div>
+				<!-- Filters -->
+				<div class='filter-section'>
+					<div class='globe-spacer'></div>
+					<div>
+						<h3>Showing {$data.length} {$data.length == 1 ? "feature" : "features"}</h3>
+					</div>
+
+					{#if $data.length == dataSource.length}
+						<div>
+							<button class='reset-button' on:click={e => filterData($filterObj, defaultFilters["type"], "type", $data, false)} on:keypress={e => filterData($filterObj, defaultFilters["type"], "type", $data, false)}>Hide all</button>
+						</div>
+					{:else}
+						<div>
+							<button class='reset-button' on:click={e => resetData()} on:keypress={e => resetData()}>Show all</button>
+						</div>
+					{/if}
+					
+					<div>
+						{#each Object.keys($filterObj) as variable}
+							<Filter {variable} />
+						{/each}
+					</div>
+				</div>
+			</div>
+
+			<!-- Card section -->
 			<div class="card-wrapper">
 				{#key $data}
 					{#key $page}
@@ -160,7 +170,7 @@
 						{/each}
 					{/key}
 				{/key}
-			</div>	
+			</div>
 		</div>
 	</div>
 {/if}
@@ -188,12 +198,25 @@
 
 	.main-mode {
 		margin: auto;
-		display: grid;
-		grid-template-columns: 1fr 3fr;
 		opacity: 0;
         transition: 0.4s ease all;
 		width: fit-content;
 		height: fit-content;
+	}
+
+	.content-grid {
+		margin: auto;
+		display: grid;
+		grid-template-columns: 1fr 3fr;
+	}
+
+	.header {
+		position: sticky;
+		top: 0;
+		background-color: black;
+		z-index: 200;
+		display: grid;
+		grid-template-columns: 1fr 3fr;
 	}
 
 	.intro-text {
@@ -236,7 +259,6 @@
   		column-gap: 0px;
   		row-gap: 0px;
 		height: fit-content;
-		width: fit-content;
 		margin: auto;
 	}
 
@@ -245,12 +267,16 @@
 		margin: auto;
 	}
 
+	.reset-button {
+		padding: 5px;
+	}
+
 	#intro-button {
 		display: inline-block;
 		border: none;
 		padding: 1rem 2rem;
 		border-radius: 8px;
-		margin: 0;
+		margin: 3% 0%;
 		text-decoration: none;
 		background: #ffffffaa;
 		color: var(--card-bg-color);
@@ -259,9 +285,18 @@
 		font-weight: 600;
 		cursor: pointer;
 		text-align: center;
-		transition: background 250ms ease-in-out, transform 150ms ease;
+		transform: scale(0.98);
+        transition: 0.1s ease-in-out all;
+		opacity: 90%;
 		-webkit-appearance: none;
 		-moz-appearance: none;
+	}
+
+	#intro-button:hover {
+		cursor: pointer;
+        opacity: 100%;
+        transform: scale(1);
+        transition: 0.1s ease all;
 	}
 
 	#title-button {
@@ -271,6 +306,20 @@
 		border: none;
 		width: fit-content;
 		height: fit-content;
+		font-family: var(--boecklins);
+		font-size: 36px;
+		white-space: nowrap;
+		color: white;
+		transform: scale(0.98);
+        transition: 0.1s ease-in-out all;
+		opacity: 90%;
+	}
+
+	#title-button:hover {
+		cursor: pointer;
+        opacity: 100%;
+        transform: scale(1);
+        transition: 0.1s ease all;
 	}
 
 	@media only screen and (max-width: 1200px) {

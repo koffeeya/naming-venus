@@ -11,19 +11,19 @@
 	let pageArray = []
     // Dynamically show pagination buttons
 	$: {
-		if (numberOfPages >= 10) {
-			const minValues = [0, 1, 2]; // first 4 pages
-			const maxValues = minValues.map(v => numberOfPages - v - 1).sort(); // last 4 pages
+		if (numberOfPages >= 8) {
+			const firstPages = [0, 1, 2];
+			const lastPages = firstPages.map(v => numberOfPages - v - 1).sort((a, b) => a - b);
 
 			// format the navigation bar
-			if (minValues.includes($page) || maxValues.includes($page)) {
-				pageArray = [minValues, "...", maxValues].flat();
-			} else if ($page == Math.max(...minValues) + 1 ) {
-				pageArray = [minValues, $page, "...", maxValues].flat();
-			} else if ( $page == Math.min(...maxValues) - 1 ) {
-				pageArray = [minValues, "...", $page, maxValues].flat();
+			if (firstPages.includes($page) || lastPages.includes($page)) {
+				pageArray = [firstPages, "...", lastPages].flat();
+			} else if ($page == Math.max(...firstPages) + 1 ) {
+				pageArray = [firstPages, $page, "...", lastPages].flat();
+			} else if ( $page == Math.min(...lastPages) - 1 ) {
+				pageArray = [firstPages, "...", $page, lastPages].flat();
 			} else {
-				pageArray = [minValues, "...", $page, "...", maxValues].flat();
+				pageArray = [firstPages, "...", $page, "...", lastPages].flat();
 			}
 		} else {
 			pageArray = [...Array(numberOfPages).keys()]

@@ -47,7 +47,7 @@
                 .pointsData(data)
                 .pointLat('center_lat')
                 .pointLng('center_long')
-                .pointAltitude(0.1)
+                .pointAltitude(0.3)
                 .pointRadius(0) // initial value
                 .pointColor((d) => {
                     return getThemeColor(d.type, 100, false)
