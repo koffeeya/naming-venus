@@ -35,3 +35,7 @@ export function resetData() {
     filterObj.set(defaultFilters);
     pageTheme.set("Default");
 }
+
+export function setActivePage(newPage) {
+    activePage.set(newPage)
+}

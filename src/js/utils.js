@@ -1,5 +1,5 @@
 import dataSource from "../data/data.json";
-import { data, updateData } from "../stores/global.js";
+import { data, updateData, setActivePage } from "../stores/global.js";
 
 // run a function on a delay
 const debounce = (func, delay) => {
@@ -123,10 +123,30 @@ function filterData(filterObj, targetValues, variable, dataToFilter, activate) {
     updateData(filteredData, newFilterObj);
 }
 
+
+function handlePageChange(activePage, globe) {
+    const introSection = document.querySelector(`.intro-mode`);
+    const mainSection = document.querySelector(`.main-mode`);
+    const newPage = activePage == "intro" ? "main" : "intro";
+
+    if (newPage == "intro") {
+        clearGlobePoints(globe);
+        mainSection.style.opacity = 0;
+        introSection.style.opacity = 1;
+    } else {
+        //showGlobePoints(idArray, $globe);
+        mainSection.style.opacity = 1;
+        introSection.style.opacity = 0;
+    }
+
+    setActivePage(newPage);
+}
+
 export {
     getThemeColor,
     moveGlobeToPoint,
     showGlobePoints,
     clearGlobePoints,
-    filterData
+    filterData,
+    handlePageChange
 };
