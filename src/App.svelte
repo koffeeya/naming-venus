@@ -1,9 +1,8 @@
 <script>
 	// stores
-	import { data, activePage, resetData, page, globe, filterObj, defaultFilters } from './stores/global.js'
+	import { data, activePage, resetData, page, globe, filterObj, defaultFilters, isMobile } from './stores/global.js'
 
 	// components
-	import TitleCard from './lib/svg/TitleCard.svelte';
 	import Globe from "./lib/globe/Globe.svelte";
 	import Card from './lib/card/Card.svelte';
 	import Filter from './lib/elements/Filter.svelte';
@@ -23,12 +22,13 @@
 	let ready = false;
 
 	// Add "hide" class to page that is not active
-	$: introStatus = $activePage == "intro" ? "" : "hide";
-	$: contentStatus = $activePage == "main" ? "" : "hide";
+	$: showIntroPage = $activePage == "intro" ? "" : "hide";
+	$: showMainPage = $activePage == "main" ? "" : "hide";
 
 	// How many cards to show on a single page
 	let visibleData, idArray;
 	$: cardsPerPage = 9;
+	
 	// Only show active cards
 	$: {
 		// Get the indices of the first and last cards to show
@@ -48,16 +48,6 @@
 
 	$: globeMargin = $activePage == "intro" ? "148px 55px" : "0% 0%";
 
-	/* 
-	Streamline the active page thing - intro vs. content is killing me
-	Add real filters
-	!TODO change the filtering method to apply to everything - active status isn't working :(
-	Search bar
-	Bar charts
-	Modal
-	Mobile responsiveness
-	Accessibility - check tabbing order
-	*/
 	onMount(async () => {
 		resetData();
 		ready = true;
@@ -67,31 +57,18 @@
 <main>
 {#if ready == true}
 	<!-- HEADER -->
-	<div class='header-wrapper'>
+	<div class='header-wrapper {showMainPage}'>
 		<Header />
 	</div>
 
 	<!-- INTRO PAGE -->
-	<div class='intro-mode {introStatus}'>
-		<!-- Title card -->
-		<div class='title-section'>
-			<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" in:fade="{{duration: 500, delay: 2000}}">
-				<Globe targetNode="intro-globe" />
-			</div>
-			<div class='title-card-wrapper' aria-hidden="true" focusable="false" in:fade="{{duration: 500}}">
-				<TitleCard width={350} height={600} />
-			</div>
-			<div>
-				<p class='credit-line'>A data visualization project by Kavya Beheraj</p>
-			</div>
-		</div>
-
-		<!-- Intro text -->
+	<div class='intro-mode {showIntroPage}'>
 		<IntroSection />
+		<!-- <BarChart /> -->
 	</div>
 
 	<!-- CARDS PAGE -->
-	<div class='main-mode content-grid {contentStatus}'>
+	<div class='main-mode content-grid {showMainPage}'>
 		<!-- Globe and filters sidebar -->
 		<div class='sidebar'>
 			<!-- Globe for intro -->
@@ -124,8 +101,8 @@
 		</div>
 
 		<!-- Card section -->
-		<div>
-			<div class='page-buttons-wrapper {contentStatus}'>
+		<div class='{showMainPage}'>
+			<div class='page-buttons-wrapper'>
 				<PageNavigation {cardsPerPage} />
 			</div>
 			<div class="card-wrapper">
@@ -152,7 +129,10 @@
 
 	main {
 		margin: auto;
-		max-width: 70vw;
+		width: 90vw;
+		height: 90vh;
+		display: flex;
+		justify-content: center;
 	}
 
 	.header-wrapper {
@@ -168,9 +148,18 @@
 		margin: auto;
 		opacity: 1;
         transition: 0.4s ease all;
+	}
+
+	.credit-line {
+		text-align: center;
+	}
+
+	.title-card-wrapper {
+		width: fit-content;
 		display: grid;
-		grid-template-columns: 1fr 3fr;
-		max-width: 60%;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 15px;
+		margin: auto;
 	}
 
 	.main-mode {
@@ -188,9 +177,9 @@
 	}
 
 	.title-section {
-		margin: auto;
 		width: fit-content;
 		height: fit-content;
+		margin: 1rem auto;
 	}
 
 	.feature-count {
@@ -227,81 +216,4 @@
 	.reset-button {
 		padding: 5px;
 	}
-
-	#title-button {
-		background-color: transparent;
-		margin: 0px;
-		padding: 0px;
-		border: none;
-		width: fit-content;
-		height: fit-content;
-		font-family: var(--boecklins);
-		font-size: 36px;
-		white-space: nowrap;
-		color: white;
-		transform: scale(0.98);
-        transition: 0.1s ease-in-out all;
-		opacity: 90%;
-	}
-
-	#title-button:hover {
-		cursor: pointer;
-        opacity: 100%;
-        transform: scale(1);
-        transition: 0.1s ease all;
-	}
-
-	@media only screen and (max-width: 1200px) {
-		main {
-			max-width: 90vw;
-		}
-
-		.intro-mode {
-			max-width: 50%;
-		}
-
-		.card-wrapper {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	@media only screen and (max-width: 1000px) {
-		main {
-			max-width: 90vw;
-		}
-
-		.intro-mode {
-			max-width: 60%;
-		}
-
-		.main-mode {
-			grid-template-columns: 1fr;
-		}
-
-		.card-wrapper {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	@media only screen and (max-width: 600px) {
-		main {
-			max-width: 95vw;
-		}
-
-		.intro-mode {
-			max-width: 80%;
-		}
-
-		.main-mode {
-			grid-template-columns: 1fr;
-		}
-
-		.card-wrapper {
-			display: grid;
-			grid-template-columns: 1fr;
-		}
-	}
-
 </style>

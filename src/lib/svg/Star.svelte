@@ -1,7 +1,7 @@
 <script>
     export let fill;
-    export let width = "2.5rem";
-    export let height = "2.5rem";
+    export let width = "25px";
+    export let height = "25px";
 </script>
 
 <svg class='star-svg' {width} {height} viewBox="0 0 422 422" {fill} xmlns="http://www.w3.org/2000/svg">

@@ -1,51 +1,98 @@
 <script>
+    import { Splide, SplideSlide } from "@splidejs/svelte-splide";
     import { activePage, globe } from "../../stores/global";
     import { handlePageChange } from "../../js/utils";
+    import IntroTextCard from "./IntroTextCard.svelte";
+    import Globe from "../globe/Globe.svelte";
+    import TitleCard from "../svg/TitleCard.svelte";
+    import { fade } from "svelte/transition";
+    import "@splidejs/splide/dist/css/splide.min.css";
+
+    $: globeMargin = $activePage == "intro" ? "134px 40px" : "0% 0%";
+
+    const options = {
+        padding: '5rem',
+        focus  : 'center',
+        autoWidth: true,
+    }
 </script>
 
 <div class='intro'>
     <h2 class='sr-only'>Introduction</h2>
-    <div class='text-grid'>
-        <!-- Text -->
-        <div class='intro-text section-1'>
-            <p class='intro-paragraph'>Venus — Earth's twin, the Morning Star — has captured our collective imagination for more than 5,000 years. But until about 50 years ago, no one knew what its surface looked like.</p>
 
-            <p class='intro-paragraph'>The invention of the radar telescope in the 1960s was a breakthrough. For the first time, astronomers could peer through swirling acid clouds and see craters, valleys and mountains. There was an unprecedented explosion of discovery. And the features they saw, they named.</p>
-            
-            <p class='intro-paragraph'>Nearly all of the features on Venus are named after women: goddesses, heroines, famous women, and female first names. But not everyone on Earth can look at Venus and see themselves reflected back: nearly 40% of those names are European in origin.</p>
-
-            <p class='intro-paragraph'>Why do we name features on other worlds? Giving something a name makes it easier to talk about, of course. But the act of naming goes deeper: it is an expression of culture and ownership. An alien landscape feels more human, more ours, when we call it names from home. And like any colonial endeavor, it is subject to the bias of those in power.</p>
-        </div>
-
-        <!-- Section 2: Naming -->
-        <div class='intro-text section-2'>
-
-            <!-- Call to action -->
-            <div>
-                <button id='intro-button' on:click={e => handlePageChange($activePage, $globe)} on:keypress={e => handlePageChange($activePage, $globe)}>Explore the names</button>
-            </div>
-        </div>
-    </div>
-
+    <section class='carousel'>
+        <Splide {options} aria-label="Introduction">
+            <!-- in:fade="{{duration: 500}}" -->
+            <SplideSlide>
+                <div class='intro-card' id="card-1">
+                    <div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" in:fade="{{duration: 500, delay: 2000}}">
+                        <Globe targetNode="intro-globe" />
+                    </div>
+                    <TitleCard width={350} height={600} />
+                </div>
+            </SplideSlide>
     
+            <SplideSlide>
+                <div class='intro-card'>
+                    <IntroTextCard delay={300} cardNumber={2}>
+                        <p class='intro-paragraph'>Venus — Earth's twin, the Morning Star — has captured our collective imagination for more than 5,000 years. But until 1961, and the invention of radar telescopes, the planet's surface remained a mystery — neither the naked eye nor regular telescopes could pierce through its thick acid clouds.</p>
+                
+                        <p class='intro-paragraph'>Nearly all of the features on Venus are named after women: goddesses, heroines, famous women, and female first names. But not everyone on Earth can look at Venus and see themselves reflected back: 40% of those names are European in origin.</p>
+                    </IntroTextCard>
+                </div>
+            </SplideSlide>
+    
+            <SplideSlide>
+                <div class='intro-card'>
+                    <IntroTextCard delay={600} cardNumber={3}>
+                        <p class='intro-paragraph'>Nearly all of the features on Venus are named after women: goddesses, heroines, famous women, and female first names. But not everyone on Earth can look at Venus and see themselves reflected back: 40% of those names are European in origin.</p>
+
+                        <div>
+                            <button id='intro-button' on:click={e => handlePageChange($activePage, $globe)} on:keypress={e => handlePageChange($activePage, $globe)}>Explore the names</button>
+                        </div>
+                    </IntroTextCard>
+                </div>
+            </SplideSlide>
+
+            <SplideSlide>
+                <div class='intro-card'>
+                    <IntroTextCard delay={600} cardNumber={4}>
+                        <p class='intro-paragraph'>Nearly all of the features on Venus are named after women: goddesses, heroines, famous women, and female first names. But not everyone on Earth can look at Venus and see themselves reflected back: 40% of those names are European in origin.</p>
+                    </IntroTextCard>
+                </div>
+            </SplideSlide>
+        </Splide>
+    </section>
 </div>
 
+
 <style lang="scss">
+    .intro {
+        margin: auto;
+        max-width: 50vw;
+    }
+
+    .faded {
+        opacity: 70%;
+    }
+
     .intro-text {
-		margin: 3% auto auto 10%;
+		margin: 0px auto auto 10px;
 		color: white;
 	}
 
-    .text-grid {
-        display: grid;
-        grid-template-columns: 1fr;
+    .intro-card {
+        margin: 15px;
     }
 
-    .credit-line {
-        text-align: center;
-        margin: 2%;
-        font-size: 1.2rem;
-    }
+    .globe-wrapper {
+		z-index: 100;
+		position: absolute;
+		max-width: 300px;
+		max-height: 300px;
+		overflow: hidden;
+		transition: opacity 2s;
+	}
 
     .intro-paragraph {
         display: inline-block;
@@ -53,25 +100,6 @@
         font-family: var(--gentium);
         line-height: 1.5rem;
         font-size: 1.2rem;
-    }
-
-    .intro-subhed {
-        display: inline-block;
-        font-size: 1.5rem;
-        font-family: var(--tragic-grotesk);
-        margin: 1.2rem 0rem 1rem 0rem;
-        line-height: 1.7rem;
-        color: var(--famous-woman-color);
-    }
-
-    .quote {
-        display: inline-block;
-        margin: auto;
-        padding: 0rem 1rem;
-        font-family: var(--tragic-grotesk);
-        line-height: 1.3rem;
-        border-left: 2px solid var(--famous-woman-color);
-        max-width: 80%;
     }
 
     #intro-button {
@@ -91,8 +119,6 @@
 		transform: scale(0.98);
         transition: 0.1s ease-in-out all;
 		opacity: 90%;
-		-webkit-appearance: none;
-		-moz-appearance: none;
 	}
 
 	#intro-button:hover {
@@ -101,4 +127,17 @@
         transform: scale(1);
         transition: 0.1s ease all;
 	}
+
+    @media (max-width: 1200px) {
+        .intro {
+            max-width: 100vw;
+        }
+    }
+
+
+    @media (max-width: 700px) {
+        .intro {
+            max-width: 100vw;
+        }
+    }
 </style>

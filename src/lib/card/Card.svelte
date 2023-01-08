@@ -1,12 +1,13 @@
 <script>
     import { getThemeColor, showGlobePoints, moveGlobeToPoint } from '../../js/utils.js';
-    import { pageTheme, data, globe } from '../../stores/global.js'
+    import { pageTheme, data, globe, isMobile } from '../../stores/global.js'
     export let cardData;
 
     // Card components
     import CardHeader from './CardHeader.svelte';
     import CardBody from './CardBody.svelte'
     import CardFooter from './CardFooter.svelte'
+    import CardMini from './CardMini.svelte';
     
     // Data
     const id =              cardData.feature_id
@@ -29,17 +30,21 @@
     }
 </script>
 
-<div class='card' on:mouseover='{handleCardHover}' on:focus={handleCardHover} style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" >
-    <div class='outer-border'>
-        <div class='inner-border'>
-            <div class='content'>
-                <CardHeader {id} {type} {name} {feature} {origin} {year} {imgCaption} {imgUrl} />
-                <CardBody {themeColor} {name} {description} {bio} />
-                <CardFooter {themeColor} />
+{#if $isMobile}
+    <CardMini {type} />
+{:else}
+    <div class='card' on:mouseover='{handleCardHover}' on:focus={handleCardHover} style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" >
+        <div class='outer-border'>
+            <div class='inner-border'>
+                <div class='content'>
+                    <CardHeader {id} {type} {name} {feature} {origin} {year} {imgCaption} {imgUrl} />
+                    <CardBody {themeColor} {name} {description} {bio} />
+                    <CardFooter {themeColor} />
+                </div>
             </div>
         </div>
     </div>
-</div>
+{/if}
 
 
 <style lang="scss">

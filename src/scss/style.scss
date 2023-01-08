@@ -1,1 +1,82 @@
-@use "base";
+:root {
+    font-family: "TragicGrotesk", sans-serif;
+    /* font-family: "Gentium Book Basic", sans-serif; */
+    /* background: linear-gradient(#000a0e, #110004); */
+    background-color: #000000;
+    font-size: 16px;
+    color: white;
+  
+    /* Fonts */
+    --tragic-grotesk: "TragicGrotesk", sans-serif;
+    --gentium: "Gentium Book Basic", "TragicGrotesk", serif;
+    --boecklins: "Boecklins Universe", "TragicGrotesk", sans-serif;
+  
+    /* Type colors */
+    --goddess-color: #d7a954;
+    --heroine-color: #8ab67b;
+    --first-name-color: #6cb4cc;
+    --famous-woman-color: #c97889;
+    --other-color: #9b9b9b;
+  
+    /* Font colors */
+    --font-gray: #757575;
+    --card-bg-color: #181818;
+  
+    /* Fonts */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+  
+  /* Custom styles */
+  
+  h1 {
+    font-size: 3.2rem;
+    line-height: 1.1;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  h3 {
+    font-size: 2.2rem;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  p {
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
+  }
+  
+  .sr-only {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  
+  .hide {
+    position: absolute;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0,0,0,0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+  
+  button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: var(--tragic-grotesk);
+    cursor: pointer;
+    text-align: center;
+  }

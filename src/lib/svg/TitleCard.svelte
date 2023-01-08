@@ -1,32 +1,6 @@
 <script>
-	import { draw, fade } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
-    import { onMount } from 'svelte';
-
-    const fillColor = "#181818";
-    const borderColor = "#4F4F4F";
-    let textColor = "#ffffff";
-
-    export let width; // 350
+	export let width; // 350
     export let height; // 600
-
-    function changeOpacity(node, params) {
-        const {
-            delay = 0,
-            duration = 400,
-            easing = cubicOut
-        } = params;
-
-        const opacity = parseFloat(getComputedStyle(node).opacity);
-
-        return {
-            delay,
-            duration,
-            easing,
-            css: t => `opacity: ${t}`
-        }
-    }
-    
 </script>
 
 
@@ -317,5 +291,6 @@
 <style lang="scss">
     .title-card-svg {
         border: 1px solid #ffffff66;
+        border-radius: 20px;
     }
 </style>

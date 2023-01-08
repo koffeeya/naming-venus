@@ -1,10 +1,9 @@
 <script>
     import Globe from 'globe.gl';
     // import { TextureLoader } from 'three'
-    import { data, globe } from '../../stores/global.js';
+    import { data, globe, activePage } from '../../stores/global.js';
     import { getThemeColor } from '../../js/utils.js';
     import { onMount } from 'svelte';
-    import { fade } from 'svelte/transition';
 
     export let targetNode;
 
@@ -20,7 +19,8 @@
         const textureImg = 'assets/venus-texture.png'
 
         // globe settings
-        const width = globeWrapper == null ? 275 : globeWrapper.offsetWidth * 0.7;
+        //const width = globeWrapper == null ? 275 : globeWrapper.offsetWidth * 0.7;
+        const width = $activePage == "intro" ? 275 : 375;
         const myGlobe = Globe({
             animateIn: false
         });
@@ -47,7 +47,7 @@
                 .pointsData(data)
                 .pointLat('center_lat')
                 .pointLng('center_long')
-                .pointAltitude(0.3)
+                .pointAltitude(0.1)
                 .pointRadius(0) // initial value
                 .pointColor((d) => {
                     return getThemeColor(d.type, 100, false)

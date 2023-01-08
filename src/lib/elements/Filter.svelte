@@ -85,6 +85,7 @@
     </div>
 </div>
 {/if}
+
 <style lang="scss">
     .filter-group {
         margin: 3% 0%;
