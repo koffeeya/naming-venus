@@ -1,8 +1,9 @@
 <script>
     export let text;
-    export let tooltip;
-    export let color;
-    export let align;
+    export let tooltip = null;
+    export let color = "white";
+    export let align = "center";
+    export let link = null;
     import tippy from "sveltejs-tippy";
 
     const props = {
@@ -12,9 +13,16 @@
     }
 </script>
 
-<div class='hover-text' style="--theme-color:{color};">
-    <button class='hover-button' style="text-align: {align};" use:tippy={props} title={text}>{text}</button>
-</div>
+{#if tooltip == null}
+    <span class='hover-text' style="--theme-color:{color}; text-align: {align};">
+        <button class='hover-button' title={text}>{text}</button>
+    </span>
+{:else}
+    <span class='hover-text' style="--theme-color:{color}; text-align: {align};">
+        <button class='hover-button' use:tippy={props} title={text}>{text}</button>
+    </span>
+{/if}
+
 
 <style lang="scss">
     button {

@@ -56,11 +56,6 @@
 
 <main>
 {#if ready == true}
-	<!-- HEADER -->
-	<div class='header-wrapper {showMainPage}'>
-		<Header />
-	</div>
-
 	<!-- INTRO PAGE -->
 	<div class='intro-mode {showIntroPage}'>
 		<IntroSection />
@@ -68,7 +63,12 @@
 	</div>
 
 	<!-- CARDS PAGE -->
-	<div class='main-mode content-grid {showMainPage}'>
+	<div class='main-mode {showMainPage}'><!-- HEADER -->
+		<div class='header-wrapper {showMainPage}'>
+			<Header />
+		</div>
+
+		<div class='content-grid'>
 		<!-- Globe and filters sidebar -->
 		<div class='sidebar'>
 			<!-- Globe for intro -->
@@ -117,7 +117,7 @@
 				{/key}
 			</div>
 		</div>
-
+	</div>
 	</div>
 {/if}
 </main>

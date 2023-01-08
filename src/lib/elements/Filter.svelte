@@ -21,15 +21,34 @@
         })
     }
 
+    function getBgColor(variable, value) {
+        let colorMap;
+
+        if (variable == "type") {
+            colorMap = {
+                "Default": "#6b6b6b",
+                "Goddess": "#D7A954",
+                "Heroine": "#8AB67B",
+                "First Name": "#6CB4CC",
+                "Famous Woman": "#C97889",
+                "Other": "#9B9B9B",
+            };
+            return colorMap[value];
+        } else {
+            return "white";
+        }
+    }
+
     function highlightBar(value) {
         const bar = document.querySelector(`#bar-${variable}-${value.toLowerCase().replace(" ","")}`)
-        bar.style.backgroundColor = "red";
+        bar.style.opacity = "100%";
     }
 
     function removeHighlightBar(value) {
         const bar = document.querySelector(`#bar-${variable}-${value.toLowerCase().replace(" ","")}`)
-        bar.style.backgroundColor = "white";
+        bar.style.opacity = "80%";
     }
+
 </script>
 
 {#if allValues.length < 25}
@@ -40,7 +59,7 @@
     <div class='bar-container'>
         {#each allValues as value}
             {#if share[value] > 0}
-                <div class='value-bar' id='bar-{variable}-{value.toLowerCase().replace(" ","")}' style='min-width: {share[value]}%; opacity: {share[value] + 20}%'></div>
+                <div class='value-bar' id='bar-{variable}-{value.toLowerCase().replace(" ","")}' style='min-width: {share[value]}%; border-right: 1px solid black; opacity: 80%; background-color: {getBgColor(variable, value)}'></div>
             {/if}
         {/each}
     </div>
@@ -53,7 +72,9 @@
                     class={`active-filter filter-item`}
                     on:click={filterData($filterObj, [value], variable, $data, false)}
                     on:mouseover={() => highlightBar(value)}
+                    on:focus={() => highlightBar(value)}
                     on:mouseleave={() => removeHighlightBar(value)}
+                    style='background-color: {getBgColor(variable, value)}'
                     >
                 {value}
                 </button>
@@ -62,7 +83,9 @@
                     title={`Click to show "${value.toLowerCase()}"`}
                     id='filter-{variable}-{value.toLowerCase().replace(" ","")}-inactive' 
                     class="inactive-filter filter-item"
-                    on:click={filterData($filterObj, [value], variable, $data, true)}>
+                    on:click={filterData($filterObj, [value], variable, $data, true)}
+                    style='background-color: {getBgColor(variable, value)}'
+                    >
                 {value}
                 </button>
             {/if}
@@ -93,7 +116,7 @@
 
     .bar-container {
         display: flex;
-        max-width: 100px;
+        max-width: 200px;
         margin: 2% 0%;
     }
 
@@ -101,7 +124,6 @@
         transition: 0.2s ease-in-out all;
         height: 10px;
         margin: 0px;
-        background-color: white;
     }
 
     .active-filter-buttons {
@@ -110,9 +132,8 @@
     }
 
     .active-filter {
-        background-color: white;
         color: black;
-        opacity: 80%;
+        opacity: 90%;
         transition: 0.2s ease-in-out all;
     }
 
@@ -121,14 +142,13 @@
     }
 
     .inactive-filter {
-        background-color: #292929;
-        color: rgb(146, 146, 146);
-        opacity: 80%;
+        color: black;
+        opacity: 40%;
         transition: 0.2s ease-in-out all;
     }
 
     .inactive-filter:hover {
-        opacity: 100%;
+        opacity: 50%;
     }
 
     .filter-item {

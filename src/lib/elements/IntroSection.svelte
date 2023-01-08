@@ -34,17 +34,17 @@
     
             <SplideSlide>
                 <div class='intro-card'>
-                    <IntroTextCard delay={300} cardNumber={2}>
-                        <p class='intro-paragraph'>Venus — Earth's twin, the Morning Star — has captured our collective imagination for more than 5,000 years. But until 1961, and the invention of radar telescopes, the planet's surface remained a mystery — neither the naked eye nor regular telescopes could pierce through its thick acid clouds.</p>
+                    <IntroTextCard cardNumber={2}>
+                        <p class='intro-paragraph'>Venus — Earth's twin, the Morning Star, the brightest planet in our sky — has captured our imagination for more than 5,000 years. But until remarkably recently, its surface was a mystery. Neither the naked eye nor regular telescopes can see through the thick acid clouds that envelop the whole planet.</p>
                 
-                        <p class='intro-paragraph'>Nearly all of the features on Venus are named after women: goddesses, heroines, famous women, and female first names. But not everyone on Earth can look at Venus and see themselves reflected back: 40% of those names are European in origin.</p>
+                        <p class='intro-paragraph'>The invention of radar telescopes in 1961 brought about a flurry of interest in Venus </p>
                     </IntroTextCard>
                 </div>
             </SplideSlide>
     
             <SplideSlide>
                 <div class='intro-card'>
-                    <IntroTextCard delay={600} cardNumber={3}>
+                    <IntroTextCard cardNumber={3}>
                         <p class='intro-paragraph'>Nearly all of the features on Venus are named after women: goddesses, heroines, famous women, and female first names. But not everyone on Earth can look at Venus and see themselves reflected back: 40% of those names are European in origin.</p>
 
                         <div>
@@ -56,7 +56,7 @@
 
             <SplideSlide>
                 <div class='intro-card'>
-                    <IntroTextCard delay={600} cardNumber={4}>
+                    <IntroTextCard cardNumber={4}>
                         <p class='intro-paragraph'>Nearly all of the features on Venus are named after women: goddesses, heroines, famous women, and female first names. But not everyone on Earth can look at Venus and see themselves reflected back: 40% of those names are European in origin.</p>
                     </IntroTextCard>
                 </div>
