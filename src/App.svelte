@@ -7,10 +7,11 @@
 	import Card from './lib/card/Card.svelte';
 	import Filter from './lib/elements/Filter.svelte';
 	import PageNavigation from './lib/elements/PageNavigation.svelte';
-	import IntroSection from './lib/elements/IntroSection.svelte';
+	import SectionIntro from './lib/elements/SectionIntro.svelte';
 	import Header from './lib/elements/Header.svelte';
+	import SectionCards from './lib/elements/SectionCards.svelte';
 
-	// svelte libraries
+	// libraries
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
   	
@@ -27,7 +28,7 @@
 
 	// How many cards to show on a single page
 	let visibleData, idArray;
-	$: cardsPerPage = 9;
+	const cardsPerPage = 9;
 	
 	// Only show active cards
 	$: {
@@ -58,7 +59,7 @@
 {#if ready == true}
 	<!-- INTRO PAGE -->
 	<div class='intro-mode {showIntroPage}'>
-		<IntroSection />
+		<SectionIntro />
 		<!-- <BarChart /> -->
 	</div>
 
@@ -106,15 +107,7 @@
 				<PageNavigation {cardsPerPage} />
 			</div>
 			<div class="card-wrapper">
-				{#key $data}
-					{#key $page}
-						{#each visibleData as feature}
-							<div in:fade={{ delay: 50 }}>
-								<Card cardData={feature} />
-							</div>
-						{/each}
-					{/key}
-				{/key}
+				<SectionCards {cardsPerPage} />
 			</div>
 		</div>
 	</div>

@@ -5,6 +5,7 @@
     import IntroTextCard from "./IntroTextCard.svelte";
     import Globe from "../globe/Globe.svelte";
     import TitleCard from "../svg/TitleCard.svelte";
+    import HoverText from "./HoverText.svelte";
     import { fade } from "svelte/transition";
     import "@splidejs/splide/dist/css/splide.min.css";
 
@@ -57,7 +58,7 @@
             <SplideSlide>
                 <div class='intro-card'>
                     <IntroTextCard cardNumber={4}>
-                        <p class='intro-paragraph'>Nearly all of the features on Venus are named after women: goddesses, heroines, famous women, and female first names. But not everyone on Earth can look at Venus and see themselves reflected back: 40% of those names are European in origin.</p>
+                        <p class='intro-paragraph'>The primary data source for this project is the <HoverText text="International Astronomical Union" /> International Astronomical Union’s Gazetteer of Planetary Nomenclature. The countries of origin were edited slightly for clarity and accuracy.</p>
                     </IntroTextCard>
                 </div>
             </SplideSlide>

@@ -23,6 +23,7 @@
     "svelte-preprocess": "^4.10.7"
   },
   "dependencies": {
+    "@splidejs/splide-extension-grid": "^0.4.1",
     "@splidejs/svelte-splide": "^0.2.9",
     "chart.js": "^4.0.1",
     "d3": "^7.7.0",
