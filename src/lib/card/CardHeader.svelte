@@ -30,9 +30,9 @@
 
 <div class='card-header' style="--theme-color:{getThemeColor(type)}; --light-theme:{getThemeColor(type, 100, true)}">
     <div class='name-header'>
-        <button class='card-icon' aria-expanded="false" id='move-button-{id}' title={"Move globe to feature"}>
+        <!-- <button class='card-icon' aria-expanded="false" id='move-button-{id}' title={"Move globe to feature"}>
 			<VenusIcon themeFill={hovering == false ? getThemeColor(type) : getThemeColor(type, 100, true)} />
-		</button>
+		</button> -->
         <h3 class='name'>{name}</h3>
     </div>
     <div class='category-grid'>

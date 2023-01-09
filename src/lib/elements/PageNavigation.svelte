@@ -1,13 +1,9 @@
 <script>
-    import { page, data, pageTheme } from "../../stores/global";
+    import { page, data, pageTheme, cardsPerPage } from "../../stores/global";
     import { getThemeColor } from "../../js/utils";
-    import { format } from 'd3'
-    export let cardsPerPage;
-
-    const formatValue = format(",");
     
     $: themeColor = getThemeColor($pageTheme, 100, false)
-	$: numberOfPages = Math.ceil($data.length / cardsPerPage);
+	$: numberOfPages = Math.ceil($data.length / $cardsPerPage);
 	let pageArray = []
     // Dynamically show pagination buttons
 	$: {
@@ -31,7 +27,7 @@
 	}
 </script>
 
-<div style='--theme-color:{themeColor};'>
+<div class='navbar' style='--theme-color:{themeColor};'>
     <!-- <div class='feature-count'>Showing {formatValue($data.length)} features</div> -->
     <div class='nav-buttons'>
         <button class='nav-arrow' aria-expanded="false" id="previous-button" title='Go to the previous page' disabled='{ $page <= 0 }' on:click={e => page.set($page - 1)}>&larr;</button>
@@ -52,6 +48,12 @@
 
 
 <style lang="scss">
+    .navbar {
+        margin: 0rem;
+        background-color: black;
+        padding: 5px;
+    }
+
     .nav-buttons {
         display: flex;
         margin: auto;
@@ -60,10 +62,10 @@
     }
 
     .nav-arrow {
-        padding: 0% 1%;
+        padding: 0rem;
         background-color: transparent;
         color: white;
-        font-size: 16px;
+        font-size: 2rem;
         font-weight: 900;
         margin: auto;
     }

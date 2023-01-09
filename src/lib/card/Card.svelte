@@ -1,5 +1,5 @@
 <script>
-    import { getThemeColor, showGlobePoints, moveGlobeToPoint } from '../../js/utils.js';
+    import { getThemeColor, showGlobePoints, moveGlobeToPoint, resetGlobe } from '../../js/utils.js';
     import { pageTheme, data, globe, isMobile } from '../../stores/global.js'
     export let cardData;
 
@@ -7,7 +7,6 @@
     import CardHeader from './CardHeader.svelte';
     import CardBody from './CardBody.svelte'
     import CardFooter from './CardFooter.svelte'
-    import CardMini from './CardMini.svelte';
     
     // Data
     const id =              cardData.feature_id
@@ -26,25 +25,21 @@
     function handleCardHover(e) {
         pageTheme.set(type)
         moveGlobeToPoint(id, $data, $globe);
-        showGlobePoints([id], $globe);
+        //showGlobePoints([id], $globe);
     }
 </script>
 
-{#if $isMobile}
-    <CardMini {type} />
-{:else}
-    <div class='card' on:mouseover='{handleCardHover}' on:focus={handleCardHover} style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" >
-        <div class='outer-border'>
-            <div class='inner-border'>
-                <div class='content'>
-                    <CardHeader {id} {type} {name} {feature} {origin} {year} {imgCaption} {imgUrl} />
-                    <CardBody {themeColor} {name} {description} {bio} />
-                    <CardFooter {themeColor} />
-                </div>
+<div class='card' on:mouseover='{handleCardHover}' on:focus={handleCardHover} style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" >
+    <div class='outer-border'>
+        <div class='inner-border'>
+            <div class='content'>
+                <CardHeader {id} {type} {name} {feature} {origin} {year} {imgCaption} {imgUrl} />
+                <CardBody {themeColor} {name} {description} {bio} />
+                <CardFooter {themeColor} />
             </div>
         </div>
     </div>
-{/if}
+</div>
 
 
 <style lang="scss">
@@ -59,7 +54,7 @@
         text-align: center;
         transform: scale(0.98);
         transition: 0.1s ease-in-out all;
-        width: clamp(200px, 300px, 300px);
+        /* width: clamp(200px, 300px, 300px); */
     }
 
     .card:hover {

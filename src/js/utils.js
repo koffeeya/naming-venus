@@ -56,8 +56,18 @@ function moveGlobeToPoint(id, data, world) {
 
     world.pointOfView(
         {
-            //lat: lat,
+            lat: lat,
             lng: lng,
+        },
+        300
+    );
+}
+
+function resetGlobe(world) {
+    world.pointOfView(
+        {
+            lat: 0,
+            lng: 0
         },
         300
     );
@@ -142,11 +152,21 @@ function handlePageChange(activePage, globe) {
     setActivePage(newPage);
 }
 
+function parseValue(value) {
+    if (typeof(value) == "string") {
+        return value.toLowerCase().replace(" ","")
+    } else {
+        return value
+    }
+}
+
 export {
     getThemeColor,
     moveGlobeToPoint,
+    resetGlobe,
     showGlobePoints,
     clearGlobePoints,
     filterData,
-    handlePageChange
+    handlePageChange,
+    parseValue,
 };

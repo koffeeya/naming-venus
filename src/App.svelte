@@ -1,11 +1,10 @@
 <script>
 	// stores
-	import { data, activePage, resetData, page, globe, filterObj, defaultFilters, isMobile } from './stores/global.js'
+	import { data, activePage, resetData, filterObj, defaultFilters, visibleData, globe } from './stores/global.js'
 
 	// components
 	import Globe from "./lib/globe/Globe.svelte";
-	import Card from './lib/card/Card.svelte';
-	import Filter from './lib/elements/Filter.svelte';
+	import Filter from './lib/filter/Filter.svelte';
 	import PageNavigation from './lib/elements/PageNavigation.svelte';
 	import SectionIntro from './lib/elements/SectionIntro.svelte';
 	import Header from './lib/elements/Header.svelte';
@@ -13,11 +12,12 @@
 
 	// libraries
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { format } from 'd3'
   	
 	// utils
-	import { showGlobePoints, filterData } from './js/utils.js';
+	import { filterData, resetGlobe } from './js/utils.js';
 	import dataSource from "./data/data.json";
+	const formatValue = format(",");
 
 	// Waits for page load to add svelte transitions
 	let ready = false;
@@ -25,29 +25,7 @@
 	// Add "hide" class to page that is not active
 	$: showIntroPage = $activePage == "intro" ? "" : "hide";
 	$: showMainPage = $activePage == "main" ? "" : "hide";
-
-	// How many cards to show on a single page
-	let visibleData, idArray;
-	const cardsPerPage = 9;
-	
-	// Only show active cards
-	$: {
-		// Get the indices of the first and last cards to show
-		const minIndex = ($page * cardsPerPage) + 0;
-		const maxIndex = ($page * cardsPerPage) + (cardsPerPage - 1);
-		const filtered = $data.filter((value, index) => {
-			if (index >= minIndex && index <= maxIndex) {
-				return value;
-			}
-		});
-		// Get IDs of visible cards, to show them on the globe too
-		idArray = $activePage == "intro" ? null : filtered.map(v => v.feature_id);
-		$globe == undefined ? null : showGlobePoints(idArray, $globe);
-		// Update the cards visible on the page
-		visibleData = filtered;
-	}
-
-	$: globeMargin = $activePage == "intro" ? "148px 55px" : "0% 0%";
+	$: globeMargin = $activePage == "intro" ? "148px 55px" : "0px 35px";
 
 	onMount(async () => {
 		resetData();
@@ -60,40 +38,44 @@
 	<!-- INTRO PAGE -->
 	<div class='intro-mode {showIntroPage}'>
 		<SectionIntro />
-		<!-- <BarChart /> -->
 	</div>
 
 	<!-- CARDS PAGE -->
 	<div class='main-mode {showMainPage}'><!-- HEADER -->
 		<div class='header-wrapper {showMainPage}'>
 			<Header />
+			<PageNavigation />
 		</div>
 
 		<div class='content-grid'>
 		<!-- Globe and filters sidebar -->
 		<div class='sidebar'>
 			<!-- Globe for intro -->
+			<button class='globe-reset' on:click={() => resetGlobe($globe)} title="Reset the globe's latitude and longitude" aria-hidden="true">Reset globe</button>
 			<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" >
 				<Globe targetNode="cards-globe" />
 			</div>
 			<!-- Filters -->
 			<div class='filter-section'>
 				<div class='globe-spacer'></div>
-				<div>
-					<p>Showing {$data.length} {$data.length == 1 ? "feature" : "features"}</p>
+				<!-- Filter header -->
+				<div class='filter-header'>
+					<div class='filter-numbers'>
+						<p class='feature-number'>{formatValue($data.length)} {$data.length == 1 ? "feature" : "features"}</p>
+						<p class='visible-number'>{$visibleData.length} visible on globe</p>
+					</div>
+					{#if $data.length == dataSource.length}
+						<div>
+							<button class='reset-button' on:click={e => filterData($filterObj, defaultFilters["type"], "type", $data, false)} on:keypress={e => filterData($filterObj, defaultFilters["type"], "type", $data, false)}>Hide all</button>
+						</div>
+					{:else}
+						<div>
+							<button class='reset-button' on:click={e => resetData()} on:keypress={e => resetData()}>Show all</button>
+						</div>
+					{/if}
 				</div>
-
-				{#if $data.length == dataSource.length}
-					<div>
-						<button class='reset-button' on:click={e => filterData($filterObj, defaultFilters["type"], "type", $data, false)} on:keypress={e => filterData($filterObj, defaultFilters["type"], "type", $data, false)}>Hide all</button>
-					</div>
-				{:else}
-					<div>
-						<button class='reset-button' on:click={e => resetData()} on:keypress={e => resetData()}>Show all</button>
-					</div>
-				{/if}
-				
-				<div>
+				<!-- Filters -->
+				<div class='filter-wrapper'>
 					{#each Object.keys($filterObj) as variable}
 						<Filter {variable} />
 					{/each}
@@ -102,13 +84,8 @@
 		</div>
 
 		<!-- Card section -->
-		<div class='{showMainPage}'>
-			<div class='page-buttons-wrapper'>
-				<PageNavigation {cardsPerPage} />
-			</div>
-			<div class="card-wrapper">
-				<SectionCards {cardsPerPage} />
-			</div>
+		<div class='nav-cards {showMainPage}'>
+			<SectionCards />
 		</div>
 	</div>
 	</div>
@@ -122,7 +99,7 @@
 
 	main {
 		margin: auto;
-		width: 90vw;
+		width: 80vw;
 		height: 90vh;
 		display: flex;
 		justify-content: center;
@@ -143,10 +120,6 @@
         transition: 0.4s ease all;
 	}
 
-	.credit-line {
-		text-align: center;
-	}
-
 	.title-card-wrapper {
 		width: fit-content;
 		display: grid;
@@ -159,14 +132,18 @@
 		margin: auto;
 		opacity: 0;
         transition: 0.4s ease all;
-		width: fit-content;
-		height: fit-content;
+		min-height: 90vh;
+	}
+
+	.nav-cards {
+		margin: 15px auto auto auto;
 	}
 
 	.content-grid {
 		margin: auto;
 		display: grid;
 		grid-template-columns: 1fr 3fr;
+		column-gap: 10px;
 	}
 
 	.title-section {
@@ -188,17 +165,21 @@
 		transition: opacity 2s;
 	}
 
-	.globe-spacer {
-		margin: 275px 0px 0px 0px;
+	.globe-reset {
+		position: absolute;
+		z-index: 101;
+		margin: 225px 16px;
+		background-color: transparent;
+		color: white;
+		opacity: 80%
 	}
 
-  	.card-wrapper {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-  		column-gap: 0px;
-  		row-gap: 0px;
-		height: fit-content;
-		margin: auto;
+	.globe-reset:hover {
+		opacity: 100%;
+	}
+
+	.globe-spacer {
+		margin: 275px 0px 0px 0px;
 	}
 
 	.page-buttons-wrapper {
@@ -206,7 +187,65 @@
 		margin: auto;
 	}
 
+	.feature-number {
+		font-size: 1.3rem;
+		font-weight: 600;
+	}
+
+	.visible-number {
+		font-size: 0.9rem;
+		color: gray;
+	}
+
 	.reset-button {
 		padding: 5px;
+		float: right;
 	}
+
+	.filter-section {
+		margin: 1.2rem 1.2rem 2rem 1.2rem;
+
+	}
+
+	.filter-header {
+		display: grid;
+		grid-template-columns: 4fr 1fr;
+	}
+
+	@media (max-width: 1200px) {
+        .content-grid {
+			margin: auto;
+			display: grid;
+			grid-template-columns: 1fr 2fr;
+		}
+    }
+
+	@media (max-width: 800px) {
+        .content-grid {
+			margin: auto;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.header-wrapper {
+			grid-template-columns: 1fr;
+			margin: auto;
+			text-align: center;
+		}
+    }
+
+
+    @media (max-width: 700px) {
+        .content-grid {
+			margin: auto;
+			display: grid;
+			grid-template-columns: 1fr;
+		}
+
+		.header-wrapper {
+			grid-template-columns: 1fr;
+			margin: auto;
+			text-align: center;
+		}
+    }
 </style>

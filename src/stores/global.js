@@ -8,12 +8,21 @@ export const isMobile = derived(windowWidth,
     $windowWidth => $windowWidth <= 560 ? true : false
 )
 
+export const isMidsize = derived(windowWidth,
+    $windowWidth => $windowWidth > 560 && $windowWidth <= 900 ? true : false
+)
+
 export const isLarge = derived(windowWidth,
     $windowWidth => $windowWidth > 1200 ? true : false
 )
 
+export const cardsPerPage = derived(windowWidth,
+    $windowWidth => $windowWidth <= 560 ? 6 : 9
+)
+
 
 export const data = writable(dataSource);
+export const visibleData = writable(6);
 export const activeFilter = writable([]);
 export const page = writable(0);
 
@@ -28,7 +37,7 @@ export const defaultFilters = {
     "type": [...new Set(dataSource.map(d => d["type"]))].sort(),
     "feature": [...new Set(dataSource.map(d => d["feature"]))].sort(),
     "continent": [...new Set(dataSource.map(d => d["continent"]))].sort(),
-    "origin": [...new Set(dataSource.map(d => d["origin"]))].sort(),
+    "year": [...new Set(dataSource.map(d => d["year"]))].sort(),
 }
 
 export const filterObj = writable(defaultFilters)

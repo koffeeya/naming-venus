@@ -39,6 +39,10 @@
                         <p class='intro-paragraph'>Venus — Earth's twin, the Morning Star, the brightest planet in our sky — has captured our imagination for more than 5,000 years. But until remarkably recently, its surface was a mystery. Neither the naked eye nor regular telescopes can see through the thick acid clouds that envelop the whole planet.</p>
                 
                         <p class='intro-paragraph'>The invention of radar telescopes in 1961 brought about a flurry of interest in Venus </p>
+
+                        <div>
+                            <button id='intro-button' on:click={e => handlePageChange($activePage, $globe)} on:keypress={e => handlePageChange($activePage, $globe)}>Explore the names</button>
+                        </div>
                     </IntroTextCard>
                 </div>
             </SplideSlide>
