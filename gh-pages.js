@@ -1,15 +1,15 @@
 var ghpages = require('gh-pages');
-
-console.log('publishing!');
+require('dotenv').config()
 
 ghpages.publish(
-    'public', // path to public directory
+    'public',
     {
         branch: 'gh-pages',
-        repo: 'https://github.com/koffeeya/naming-venus.git', // Update to point to your repository  
+        silent: true,
+        repo: 'https://' + process.env.GITHUB_TOKEN + '@github.com/koffeeya/naming-venus.git',
         user: {
-            name: 'Kavya Beheraj', // update to use your name
-            email: 'kavya.beheraj@gmail.com' // Update to use your email
+            name: 'Kavya Beheraj',
+            email: 'kavya.beheraj@gmail.com'
         }
     },
     () => {

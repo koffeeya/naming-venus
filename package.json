@@ -6,7 +6,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --no-clear",
-    "publish": "node ./gh-pages.js"
+    "deploy": "npm run build && node ./gh-pages.js"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
@@ -28,6 +28,7 @@
     "@splidejs/svelte-splide": "^0.2.9",
     "chart.js": "^4.0.1",
     "d3": "^7.7.0",
+    "dotenv": "^16.0.3",
     "globe.gl": "^2.26.10",
     "sirv-cli": "^2.0.0",
     "svelte-chartjs": "^3.1.0",
