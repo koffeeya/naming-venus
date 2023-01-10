@@ -9,6 +9,7 @@
 	import SectionIntro from './lib/elements/SectionIntro.svelte';
 	import Header from './lib/elements/Header.svelte';
 	import SectionCards from './lib/elements/SectionCards.svelte';
+	import VenusIcon from './lib/svg/VenusIcon.svelte';
 
 	// libraries
 	import { onMount } from 'svelte';
@@ -63,6 +64,7 @@
 					<div class='filter-numbers'>
 						<p class='feature-number'>{formatValue($data.length)} {$data.length == 1 ? "feature" : "features"}</p>
 						<p class='visible-number'>{$visibleData.length} visible on globe</p>
+
 					</div>
 					{#if $data.length == dataSource.length}
 						<div>

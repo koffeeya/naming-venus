@@ -1,33 +1,26 @@
 <script>
-    export let modalStyle, themeColor, name, description, bio, imgCaption, imgUrl;
-
-    function shortenBio(bio) {
-        if (bio.length > 0) {
-            const split = bio.split(" ")
-            const keep = split.slice(0, 8)
-            keep.push("...")
-            const join = keep.join(" ")
-            return join;
-        } else {
-            return bio;
-        }
-    }
+    export let modalStyle, themeColor, name, description, bio, searchTerm;
 </script>
 
 {#if modalStyle}
 <div class='card-body' style="--theme-color:{themeColor}; --theme-opacity:{themeColor}26;">
-    {#if imgUrl!=""}
+   <!--  {#if imgUrl!=""}
         <div class='card-image-wrapper'>
             <img class='card-image' alt={imgCaption} src={imgUrl} />
             <p class='card-image-caption'>{imgCaption}</p>
         </div>
-    {/if}
+    {/if} -->
     <div class='card-description'>
         <p>{description}</p>
     </div>
    <div class='card-bio'>
         <p>{bio}</p>
    </div>
+   {#if searchTerm != ""}
+        <div class='learn-more'>
+                <a href='https://en.wikipedia.org/wiki/{searchTerm}' target="_blank">LEARN MORE</a>
+        </div>
+   {/if}
 </div>
 {:else}
     <div class='card-body' style="--theme-color:{themeColor}; --theme-opacity:{themeColor}26;">
@@ -63,6 +56,12 @@
         max-height: 200px;
         overflow: auto;
         font-family: var(--gentium);
+    }
+
+    .learn-more {
+        font-size: 0.75rem;
+        letter-spacing: 0.12rem;
+        font-weight: 600;
     }
 
     /* IMAGE */

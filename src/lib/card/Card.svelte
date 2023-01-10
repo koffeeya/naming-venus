@@ -25,6 +25,7 @@
     const imgUrl =          cardData.image_url;
     const description =     cardData.description == "" ? "N/A" : cardData.description;
     const bio =             cardData.bio == "" ? "" : cardData.bio;
+    const searchTerm =      cardData.search_term;
 
     // state
     /* If the card has image data, then show the modal */
@@ -49,8 +50,8 @@
     <div class='outer-border'>
         <div class='inner-border'>
             <div class='content'>
-                <CardHeader {id} {type} {name} {feature} {origin} {year} />
-                <CardBody modalStyle={false} {themeColor} {name} {description} {bio} {imgCaption} {imgUrl} />
+                <CardHeader modalStyle={showModal} {id} {type} {name} {feature} {origin} {year} />
+                <CardBody modalStyle={false} {themeColor} {name} {description} {bio} />
                 <CardFooter {themeColor} />
             </div>
         </div>
@@ -64,8 +65,8 @@
             <div class='outer-border'>
                 <div class='inner-border'>
                     <div class='content'>
-                        <CardHeader {id} {type} {name} {feature} {origin} {year} />
-                        <CardBody modalStyle={true} {themeColor} {name} {description} {bio} {imgCaption} {imgUrl} />
+                        <CardHeader modalStyle={false} {id} {type} {name} {feature} {origin} {year} />
+                        <CardBody modalStyle={true} {themeColor} {name} {description} {bio} {searchTerm} />
                         <CardFooter {themeColor} />
                     </div>
                 </div>

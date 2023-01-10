@@ -12,6 +12,7 @@
     export let year;
     export let type;
     export let featDefinition = getDefinition(feature);
+    export let modalStyle;
 
     function getDefinition(feature) {
         const found = featureData.find(element => element.feature == feature.toLowerCase());
@@ -25,11 +26,14 @@
     $: hovering = false;
 </script>
 
+
 <div class='card-header' style="--theme-color:{getThemeColor(type)}; --light-theme:{getThemeColor(type, 100, true)}">
     <div class='name-header'>
-        <!-- <button class='card-icon' aria-expanded="false" id='move-button-{id}' title={"Move globe to feature"}>
-			<VenusIcon themeFill={hovering == false ? getThemeColor(type) : getThemeColor(type, 100, true)} />
-		</button> -->
+        {#if modalStyle}
+            <button class='card-icon' aria-expanded="false" title={"Click to view more information"}>
+                <VenusIcon themeFill={hovering == false ? getThemeColor(type) : getThemeColor(type, 100, true)} />
+            </button>
+        {/if}
         <h3 class='name'>{name}</h3>
     </div>
     <div class='category-grid'>

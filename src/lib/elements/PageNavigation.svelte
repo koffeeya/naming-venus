@@ -1,6 +1,7 @@
 <script>
     import { page, data, pageTheme, cardsPerPage } from "../../stores/global";
     import { getThemeColor } from "../../js/utils";
+    import VenusIcon from "../svg/VenusIcon.svelte";
     
     $: themeColor = getThemeColor($pageTheme, 100, false)
 	$: numberOfPages = Math.ceil($data.length / $cardsPerPage);
@@ -41,6 +42,11 @@
             {/each}
         </div>
         <button class='nav-arrow' aria-expanded="false" id="next-button" title='Go to the next page' disabled='{ $page + 1 > numberOfPages - 1 }' on:click={page.set($page + 1)}>&rarr;</button>
+    </div>
+
+    <div class='more-info-explanation'>
+        <VenusIcon />
+        <p class='more-info-text'>Click to view more info about this name</p>
     </div>
 </div>
 
@@ -115,6 +121,18 @@
     .active-page-button:hover {
         background-color: var(--theme-color);
 		color: black;
+    }
+
+    .more-info-explanation {
+		display: flex;
+		color: gray;
+        margin: auto;
+        width: fit-content;
+	}
+
+    .more-info-text {
+        font-size: 0.8rem;
+        margin: 0rem 0rem 0rem 0.3rem;
     }
 
 </style>
