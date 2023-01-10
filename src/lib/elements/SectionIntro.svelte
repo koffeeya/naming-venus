@@ -33,9 +33,13 @@
             <SplideSlide>
                 <div class='intro-card'>
                     <IntroTextCard cardNumber={2}>
-                        <p class='intro-paragraph'>Venus — Earth's twin, the Morning Star, the brightest planet in our sky — has captured our imagination for more than 5,000 years. But until remarkably recently, its surface was a mystery. Neither the naked eye nor regular telescopes can see through the thick acid clouds that envelop the whole planet.</p>
+                        <p class='intro-paragraph'>Venus — Earth's twin, the Morning Star, the brightest planet — has captured our collective imagination for more than 5,000 years.</p>
+
+                        <p class='intro-paragraph'>But for a remarkably long time, its surface was a mystery. Normal telescopes can't see through the dense sulfuric acid clouds that envelop the whole planet.</p>
                 
-                        <p class='intro-paragraph'>The invention of radar telescopes in 1961 brought about a flurry of interest in Venus </p>
+                        <p class='intro-paragraph'>It was only in the last 50 years, and the invention of radar imaging, that astronomers could peer through the clouds and see craters, valleys, and mountains on Venus for the first time.</p>
+
+                        <p class='intro-paragraph'>There was an explosion of discovery — and what we saw, we named.</p>
                     </IntroTextCard>
                 </div>
             </SplideSlide>
@@ -43,7 +47,26 @@
             <SplideSlide>
                 <div class='intro-card'>
                     <IntroTextCard cardNumber={3}>
-                        <p class='intro-paragraph'>Nearly all of the features on Venus are named after women: goddesses, heroines, famous women, and female first names. But not everyone on Earth can look at Venus and see themselves reflected back: 40% of those names are European in origin.</p>
+                        <p class='intro-paragraph'>Why do we name features on other worlds?</p>
+
+                        <p class='intro-paragraph'>It's more than just convenience: naming is an expression of culture and ownership. An alien landscape feels more human, more <em>ours</em>, when we call it names from home.</p>
+
+                        <p class='intro-paragraph'>On Venus, nearly every one of its 1,976 recorded features honor women: famous women, heroines, goddesses, and female names.</p>
+
+                        <p class='intro-paragraph'>But 40% of those names are European in origin, reflecting the bias of those early astronomers who discovered so many features so quickly.</p>
+
+                    </IntroTextCard>
+                </div>
+            </SplideSlide>
+
+            <SplideSlide>
+                <div class='intro-card'>
+                    <IntroTextCard cardNumber={3}>
+                        <p class='intro-paragraph'>Every feature on Venus tells a story, and this project is my attempt to more easily find and explore those stories.</p>
+
+                        <p class='intro-paragraph'>The names we give our surroundings reveal more about ourselves — and our values — than they do the landscape we observe.</p>
+
+                        <p class='intro-paragraph'>See what stories you can find:</p>
 
                         <div class='intro-button-wrapper'>
                             <button id='intro-button' on:click={e => handlePageChange($activePage, $globe)} on:keypress={e => handlePageChange($activePage, $globe)}>Explore the names</button>
@@ -61,7 +84,7 @@
 
                         <p class='about-data-paragraph'>The site is made in <a href="https://svelte.dev/" target="_blank">Svelte</a>. The globe uses Vasco Asturiano’s <a href="https://globe.gl/" target="_blank">Globe.GL</a> package, a convenience wrapper for ThreeJS. The globe's contour map is derived from a 1993 <a href="https://astrogeology.usgs.gov/search/map/Venus/Magellan/RadarProperties/Venus_Magellan_Topography_Global_4641m_v02" target="_blank">topographic elevation map</a> captured by NASA's Magellan team. The map was taken into <a href="https://www.qgis.org/en/site/" target="_blank">QGIS</a> to generate contours, exported as an SVG file, and styled using Adobe Illustrator.</p>
 
-                        <p class='about-data-paragraph'>This project is a capstone for the CUNY Graduate Center’s <a href="https://www.gc.cuny.edu/data-analysis-and-visualization/curriculum-and-degree-information" target="_blank">M.S. in Data Analysis & Visualization</a> program for fall 2022.  It was inspired by the works of Eleanor Lutz, Patricia Monaghan, and Inkleby.</p>
+                        <p class='about-data-paragraph'>This project is a capstone for the CUNY Graduate Center’s <a href="https://www.gc.cuny.edu/data-analysis-and-visualization/curriculum-and-degree-information" target="_blank">M.S. in Data Analysis & Visualization</a> program for fall 2022.  It was inspired by the works of <a href="https://tabletopwhale.com/2017/03/06/goddesses-of-venus.html" target="_blank">Eleanor Lutz</a>, <a href="https://bookshop.org/p/books/encyclopedia-of-goddesses-heroines-revised-patricia-monaghan/107143" target="_blank">Patricia Monaghan</a>, <a href="https://wenamethestars.inkleby.com/world/venus" target="_blank">Inkleby</a>, and <a href="https://hargitaihenrik.wordpress.com/" target="_blank">Henrik Hargitai</a>.</p>
 
                         <p class='about-data-paragraph'>Special thanks to Aucher Serr, Matthew Gold, Jason Nieslen, and my colleagues at <a href="https://twitter.com/axiosvisuals" target="_blank">Axios Visuals</a> for their support. And to Leighton, who made me so many cups of tea.</p>
 
