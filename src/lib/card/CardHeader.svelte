@@ -2,7 +2,6 @@
     import { getThemeColor, moveGlobeToPoint } from '../../js/utils.js'
     import featureData from '../../data/features.json'
     import HoverText from "../elements/HoverText.svelte";
-    import CardImage from "./CardImage.svelte";
     import VenusIcon from '../svg/VenusIcon.svelte';
     import { data, globe } from '../../stores/global.js';
 
@@ -11,8 +10,6 @@
     export let feature;
     export let origin;
     export let year;
-    export let imgCaption;
-    export let imgUrl;
     export let type;
     export let featDefinition = getDefinition(feature);
 
