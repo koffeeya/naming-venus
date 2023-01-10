@@ -1,4 +1,6 @@
-const ghpages = require('gh-pages');
+var ghpages = require('gh-pages');
+
+console.log('publishing!');
 
 ghpages.publish(
     'public', // path to public directory
