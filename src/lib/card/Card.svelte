@@ -1,7 +1,8 @@
 <script>
-    import { getThemeColor, showGlobePoints, moveGlobeToPoint, resetGlobe } from '../../js/utils.js';
-    import { pageTheme, data, globe, isMobile } from '../../stores/global.js'
+    import { getThemeColor, moveGlobeToPoint } from '../../js/utils.js';
+    import { pageTheme, data, globe } from '../../stores/global.js'
     export let cardData;
+    export let cardIndex;
 
     // Card components
     import CardHeader from './CardHeader.svelte';
@@ -29,7 +30,7 @@
     }
 </script>
 
-<div class='card' on:mouseover='{handleCardHover}' on:focus={handleCardHover} style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" >
+<div class='card' on:mouseover='{handleCardHover}' on:focus={handleCardHover} style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" tabindex="{cardIndex}">
     <div class='outer-border'>
         <div class='inner-border'>
             <div class='content'>

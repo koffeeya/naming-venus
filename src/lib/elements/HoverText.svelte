@@ -15,17 +15,17 @@
 
 {#if tooltip == null}
     <span class='hover-text' style="--theme-color:{color}; text-align: {align};">
-        <button class='hover-button' title={text}>{text}</button>
+        <p class='hover-button'>{text}</p>
     </span>
 {:else}
     <span class='hover-text' style="--theme-color:{color}; text-align: {align};">
-        <button class='hover-button' use:tippy={props} title={text}>{text}</button>
+        <p class='hover-button' use:tippy={props} title={text}>{text}</p>
     </span>
 {/if}
 
 
 <style lang="scss">
-    button {
+    .hover-button {
         text-transform: uppercase;
         font-family: "TragicGrotesk", sans-serif;
         background-color: transparent;
@@ -36,12 +36,12 @@
         width: fit-content;
         margin: 0px;
         border-radius: 2px;
+    }
 
-        &:hover {
-            cursor: pointer;
-            color: white;
-            text-decoration: underline dashed white 1px;
-        }
+    .hover-button:hover {
+        cursor: pointer;
+        color: white;
+        text-decoration: underline dashed white 1px;
     }
 
     :global(.tooltip) {

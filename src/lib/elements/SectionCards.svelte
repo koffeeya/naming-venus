@@ -28,9 +28,9 @@
 <div class='cards'>
     {#key $data}
         {#key $page}
-            {#each $visibleData as feature}
+            {#each $visibleData as feature, index}
                 <div in:fade={{ delay: 50 }}>
-                    <Card cardData={feature} />
+                    <Card cardData={feature} cardIndex={index} />
                 </div>
             {/each}
         {/key}
