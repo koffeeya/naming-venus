@@ -49,7 +49,9 @@
 
 <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
     <!-- svelte-ignore a11y-autofocus -->
-	<button autofocus on:click={close}>close modal</button>
+    <div class='modal-button-wrapper'>
+        <button class='modal-close-button' autofocus on:click={close}>close</button>
+    </div>
     <slot name="card" class="card-slot"></slot>
 </div>
 
@@ -74,12 +76,29 @@
 		transform: translate(-50%,-50%);
 		padding: 1em;
 		border-radius: 0.2em;
-		background: black;
+		background: #000000cc;
         z-index: 300;
-        border: 1px solid gray;
+        border: 1px solid #000000;
 	}
 
-	button {
+    .modal-button-wrapper {
+        display: flex;
+        justify-content: right;
+    }
+
+	.modal-close-button {
+        border: none;
+        text-decoration: none;
+        font-family: var(--tragic-grotesk);
+        cursor: pointer;
+        text-align: center;
 		display: block;
+        background-color: transparent;
+        color: white;
+        opacity: 75%;
+	}
+
+    .modal-close-button:hover {
+        opacity: 100%;
 	}
 </style>

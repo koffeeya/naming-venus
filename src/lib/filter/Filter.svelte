@@ -4,7 +4,7 @@
     import {writable} from 'svelte/store';
     import dataSource from "../../data/data.json";
     import FilterButton from "./FilterButton.svelte";
-    import MiniBar from "../chart/MiniBar.svelte";
+    import MiniBar from "./MiniBar.svelte";
     import { scaleLinear } from 'd3'
 
     export let variable;
@@ -94,7 +94,7 @@
 
 <style lang="scss">
     .filter-group {
-        margin: 0.3rem 0rem;
+        margin: 0.7rem 0rem;
         width: 100%;
     }
 

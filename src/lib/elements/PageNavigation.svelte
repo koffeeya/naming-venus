@@ -45,8 +45,8 @@
     </div>
 
     <div class='more-info-explanation'>
-        <VenusIcon />
-        <p class='more-info-text'>Click to view more info about this name</p>
+        <VenusIcon opacityNum={50} />
+        <p class='more-info-text'>Click on features with this symbol to learn more</p>
     </div>
 </div>
 
@@ -132,7 +132,7 @@
 
     .more-info-text {
         font-size: 0.8rem;
-        margin: 0rem 0rem 0rem 0.3rem;
+        margin: auto auto auto 0.3rem;
     }
 
 </style>
