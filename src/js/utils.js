@@ -13,6 +13,13 @@ const debounce = (func, delay) => {
     };
 };
 
+const defaultFilters = {
+    "type": [...new Set(dataSource.map(d => d["type"]))].sort(),
+    "feature": [...new Set(dataSource.map(d => d["feature"]))].sort(),
+    "continent": [...new Set(dataSource.map(d => d["continent"]))].sort(),
+    "year": [...new Set(dataSource.map(d => d["year"]))].sort(),
+}
+
 // Get the theme color based on the feature
 // Optional "alpha" param to control transparency (0-100)
 function getThemeColor(type, alpha, light) {
@@ -160,7 +167,38 @@ function parseValue(value) {
     }
 }
 
+function getPercentages(data, defaultFilters) {
+    let output = {}
+    let sorted = {}
+    const keys = Object.keys(defaultFilters)
+
+    keys.map(variable => {
+        output[variable] = []
+        const obj = defaultFilters[variable]
+        obj.map(value => {
+            const values = data.filter((d) => d[variable] == value).length;
+            const total = data.length;
+            const percent = values == 0 ? 0 : total == 0 ? 0 : (values / total) * 100;
+            output[variable].push([
+                value,
+                percent
+            ]);
+        })
+    })
+
+    keys.map(variable => {
+        const arr = output[variable];
+        const sortedOutput = arr.sort(function(a, b) {
+            return b[1] - a[1];
+        });
+        sorted[variable] = sortedOutput;
+    })
+
+    return sorted;
+}
+
 export {
+    defaultFilters,
     getThemeColor,
     moveGlobeToPoint,
     resetGlobe,
@@ -169,4 +207,5 @@ export {
     filterData,
     handlePageChange,
     parseValue,
+    getPercentages
 };

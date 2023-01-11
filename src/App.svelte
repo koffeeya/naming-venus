@@ -1,6 +1,7 @@
 <script>
 	// stores
-	import { data, activePage, resetData, filterObj, defaultFilters, visibleData, globe } from './stores/global.js'
+	import { data, activePage, resetData, filterObj, visibleData, globe } from './stores/global.js';
+	import { defaultFilters } from './js/utils.js';
 
 	// components
 	import Globe from "./lib/globe/Globe.svelte";
@@ -9,7 +10,6 @@
 	import SectionIntro from './lib/elements/SectionIntro.svelte';
 	import Header from './lib/elements/Header.svelte';
 	import SectionCards from './lib/elements/SectionCards.svelte';
-	import VenusIcon from './lib/svg/VenusIcon.svelte';
 
 	// libraries
 	import { onMount } from 'svelte';

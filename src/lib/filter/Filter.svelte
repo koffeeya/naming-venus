@@ -1,33 +1,32 @@
 <script>
-    import { data, filterObj, isMobile } from "../../stores/global";
+    import { data, filterObj, isMobile, percentages, setPercentages } from "../../stores/global";
+    import { defaultFilters, getPercentages } from "../../js/utils";
+    import {writable} from 'svelte/store';
     import dataSource from "../../data/data.json";
-    import { filterData, parseValue } from "../../js/utils";
     import FilterButton from "./FilterButton.svelte";
+    import MiniBar from "../chart/MiniBar.svelte";
+    import { scaleLinear } from 'd3'
 
     export let variable;
     let open = $isMobile == true ? false : true;
     const allValues = [...new Set(dataSource.map(d => d[variable]))].sort();
-    let share = {};
-    $: {
-        const tempObj = {}
-        allValues.map(value => {
-            const filtered = $data.filter((d) => d[variable] == value).length;
-            const total = $data.length;
-            const percent = total == 0 ? 0 : (filtered / total) * 100;
-            tempObj[value] = percent;
-        })
-        const keys = Object.keys(tempObj)
-        const sorted = keys.sort(function(a, b) { return tempObj[a] - tempObj[b] })
-        sorted.map(v => {
-            share[v] = tempObj[v]
-        })
+
+    function handleButtonClick() {
+        open = !open;
+        setPercentages(getPercentages($data, defaultFilters));
     }
 
-    function getBgColor(variable, value) {
-        let colorMap;
+    function getTippyProps(valuePair) {
+        return {
+            content: `${valuePair[0]}: ${Math.round(valuePair[1])}%`,
+            allowHTML: true,
+            arrow: true
+        }
+    }
 
+    function getBgColor(variable, valuePair) {
         if (variable == "type") {
-            colorMap = {
+            const colorMap = {
                 "Default": "#6b6b6b",
                 "Goddess": "#D7A954",
                 "Heroine": "#8AB67B",
@@ -35,20 +34,24 @@
                 "Famous Woman": "#C97889",
                 "Other": "#9B9B9B",
             };
-            return colorMap[value];
+            return colorMap[valuePair[0]];
         } else {
-            return "white";
+            const colors = scaleLinear()
+                 .domain([0, 100])
+                 .range(["#181818", "#ffffff"]);
+
+            return colors(valuePair[1]);
         }
     }
 </script>
 
 
 <div class='filter-group'>
-
+ 
 <!-- Header -->
 <div class='filter-header'>
     {#if $isMobile == true}
-        <button on:click={() => {open = !open}} title="Click to {open == true ? 'close' : 'open'} the {variable} filter">
+        <button on:click={handleButtonClick} title="Click to {open == true ? 'close' : 'open'} the {variable} filter">
             <div>
                 <p>Filter <b>{variable}</b> &nbsp;<span class='filter-visible-number'>({$filterObj[variable].length} active)</span></p>
             </div>
@@ -60,41 +63,30 @@
 </div>
 
 <!-- Bars -->
-{#if allValues.length < 25}
-    <div class='bar-container'>
-        {#each allValues as value}
-            {#if share[value] > 0}
-                <div class='value-bar' id='bar-{variable}-{parseValue(value)}' style='min-width: {share[value]}%; background-color: {getBgColor(variable, value)}'></div>
-            {/if}
+<div class='bar-container'>
+    {#key $percentages}
+        {#each $percentages[variable] as valuePair}
+            <MiniBar 
+                width={valuePair[1]} 
+                variable={variable} 
+                value={valuePair[0]}
+                tippyProps={getTippyProps(valuePair)}
+                bgColor={getBgColor(variable, valuePair)}
+            />
         {/each}
-    </div>
-{/if}
+    {/key}
+</div>
 
-{#if open == true}
-    {#if allValues.length < 25}
-        <!-- Buttons -->
-        <div class='filter-buttons'>
-            {#each allValues as value}
-                {#if $filterObj[variable].includes(value)}
-                    <FilterButton {variable} {value} activeStatus={true} />
-                {:else}
-                    <FilterButton {variable} {value} activeStatus={false} />
-                {/if}
-            {/each}
-        </div>
-    {:else}
-        <!-- Dropdown -->
-        <div class='filter-dropdowns'>
-            <select multiple >
-                {#each $filterObj[variable] as value}
-                    <option {value} on:click={filterData($filterObj, [value], variable, $data, false)}>
-                        { value }
-                    </option>
-                {/each}
-            </select>
-        </div>
-    {/if}
-{/if}
+<!-- Filter Buttons -->
+<div class='filter-buttons'>
+    {#each allValues as value}
+        {#if $filterObj[variable].includes(value)}
+            <FilterButton {variable} {value} activeStatus={true} />
+        {:else}
+            <FilterButton {variable} {value} activeStatus={false} />
+        {/if}
+    {/each}
+</div>
 
 </div>
 
@@ -135,16 +127,6 @@
         display: flex;
         width: 100%;
         margin: 0.4rem 0rem;
-    }
-
-    .value-bar {
-        transition: 0.2s ease-in-out all;
-        height: 0.7rem;
-        margin: 0px;
-        opacity: 80%;
-        -webkit-box-shadow:inset 0px 0px 0px 0.5px #000;
-        -moz-box-shadow:inset 0px 0px 0px 0.5px #000;
-        box-shadow:inset 0px 0px 0px 0.5px #000;
     }
 
     .active-filter-buttons {

@@ -51,7 +51,7 @@
         <div class='inner-border'>
             <div class='content'>
                 <CardHeader modalStyle={showModal} {id} {type} {name} {feature} {origin} {year} />
-                <CardBody modalStyle={false} {themeColor} {name} {description} {bio} />
+                <CardBody modalStyle={false} {themeColor} {name} {description} {bio} {searchTerm} />
                 <CardFooter {themeColor} />
             </div>
         </div>
