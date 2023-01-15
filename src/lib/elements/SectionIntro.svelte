@@ -69,7 +69,7 @@
                     <IntroTextCard cardNumber={3}>
                         <p class='intro-paragraph'>Every feature on Venus tells a story, and this project is my attempt to more easily find and explore those stories.</p>
 
-                        <p class='intro-paragraph'>Explore 1,976 names of Venus, and especially look for the 769 goddesses, heroines, and famous women with extra color and detail.</p>
+                        <p class='intro-paragraph'>Explore the 1,976 names of Venus, and especially look for the 769 goddesses, heroines, and famous women with extra detail.</p>
 
                         <p class='intro-paragraph'>The names we give our surroundings reveal more about ourselves — and our values — than they do the landscape we observe.</p>
 
