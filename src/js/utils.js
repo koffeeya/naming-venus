@@ -1,18 +1,7 @@
 import dataSource from "../data/data.json";
-import { data, updateData, setActivePage } from "../stores/global.js";
+import { updateData, setActivePage } from "../stores/global.js";
 
-// run a function on a delay
-const debounce = (func, delay) => {
-    let timer;
-
-    return function () {
-        const context = this;
-        const args = arguments;
-        clearTimeout(timer);
-        timer = setTimeout(() => func.apply(context, args), delay);
-    };
-};
-
+// Constant
 const defaultFilters = {
     "type": [...new Set(dataSource.map(d => d["type"]))].sort(),
     "feature": [...new Set(dataSource.map(d => d["feature"]))].sort(),
@@ -56,6 +45,7 @@ function getThemeColor(type, alpha, light) {
     return output;
 }
 
+// Move globe to point at a specific feature
 function moveGlobeToPoint(id, data, world) {
     const found = data.find((element) => element.feature_id == id);
     const lat = found.center_lat;
@@ -70,6 +60,8 @@ function moveGlobeToPoint(id, data, world) {
     );
 }
 
+
+// Reset globe view to default view, (0, 0)
 function resetGlobe(world) {
     world.pointOfView(
         {
@@ -140,7 +132,7 @@ function filterData(filterObj, targetValues, variable, dataToFilter, activate) {
     updateData(filteredData, newFilterObj);
 }
 
-
+// Fade the two pages in and out
 function handlePageChange(activePage, globe) {
     const introSection = document.querySelector(`.intro-mode`);
     const mainSection = document.querySelector(`.main-mode`);
@@ -159,6 +151,7 @@ function handlePageChange(activePage, globe) {
     setActivePage(newPage);
 }
 
+// Clean up a value if it is a string to remove whitespace
 function parseValue(value) {
     if (typeof(value) == "string") {
         return value.toLowerCase().replace(" ","")
@@ -167,6 +160,8 @@ function parseValue(value) {
     }
 }
 
+// Get the share of features that match the filters
+// E.g. the share of features that are Famous Women
 function getPercentages(data, defaultFilters) {
     let output = {}
     let sorted = {}

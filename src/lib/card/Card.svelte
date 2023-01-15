@@ -1,6 +1,10 @@
 <script>
     import { getThemeColor, moveGlobeToPoint } from '../../js/utils.js';
-    import { pageTheme, data, globe } from '../../stores/global.js'
+    import { pageTheme, data, globe, setModalLocation } from '../../stores/global.js'
+    import { onMount } from 'svelte'
+
+    let loaded = false
+    let thisCard;
 
     // props
     export let cardData;
@@ -21,8 +25,6 @@
     const year =            cardData.year == undefined ? 2022 : cardData.year;
     const origin =          cardData.origin == undefined ? "N/A" : cardData.origin;
     const feature =         cardData.feature == undefined ? "N/A" : cardData.feature;
-    const imgCaption =      cardData.image_caption == "" ? "No image caption" : cardData.image_caption;
-    const imgUrl =          cardData.image_url;
     const description =     cardData.description == "" ? "N/A" : cardData.description;
     const bio =             cardData.bio == "" ? "" : cardData.bio;
     const searchTerm =      cardData.search_term;
@@ -43,10 +45,22 @@
         const allModals = document.querySelectorAll('.modal');
         allModals.innerHTML = "";
         openModal = true;
+
+        const bodyRect = document.body.getBoundingClientRect();
+        const currentCard = document.querySelector(`#card-${id}`);
+        const cardRect = currentCard.getBoundingClientRect();
+        const offset = cardRect.top - bodyRect.top;
+        setModalLocation(offset);
     }
+
+    onMount(() => {
+        thisCard.onload = () => {
+            loaded = true
+        }
+    }) 
 </script>
 
-<div class='card' on:mouseover='{handleCardHover}' on:focus={handleCardHover} style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" on:click={handleCardClick} tabindex="{cardIndex}">
+<div class='card' id='card-{id}' bind:this={thisCard} on:mouseover='{handleCardHover}' on:focus={handleCardHover} style="--theme-color:{themeColor}; --theme-light:{themeColorLight}" on:click={handleCardClick} tabindex="{cardIndex}">
     <div class='outer-border'>
         <div class='inner-border'>
             <div class='content'>
@@ -90,7 +104,7 @@
         text-align: center;
         transform: scale(0.98);
         transition: 0.1s ease-in-out all;
-        /* width: clamp(200px, 300px, 300px); */
+        width: clamp(200px, 300px, 300px);
     }
 
     .card:hover {

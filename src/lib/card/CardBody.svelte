@@ -1,19 +1,21 @@
 <script>
     export let modalStyle, themeColor, name, description, bio, searchTerm;
+    import tippy from "sveltejs-tippy";
+
+    const descriptionTippyProps = {
+        content: "This is the official description from the International Astronomical Union. It may be out of date.",
+        allowHTML: true,
+        arrow: true
+    }
 </script>
 
 {#if modalStyle}
 <div class='card-body' style="--theme-color:{themeColor}; --theme-opacity:{themeColor}26;">
-   <!--  {#if imgUrl!=""}
-        <div class='card-image-wrapper'>
-            <img class='card-image' alt={imgCaption} src={imgUrl} />
-            <p class='card-image-caption'>{imgCaption}</p>
-        </div>
-    {/if} -->
-    <div class='card-description'>
+    <div class='card-description' use:tippy={descriptionTippyProps}>
         <p>{description}</p>
     </div>
    <div class='card-bio'>
+        <p class='bio-subtitle'>FROM WIKIPEDIA:</p>
         <p>{bio}</p>
    </div>
    {#if searchTerm != ""}
@@ -24,7 +26,7 @@
 </div>
 {:else}
     <div class='card-body' style="--theme-color:{themeColor}; --theme-opacity:{themeColor}26;">
-        <div class='card-description'>
+        <div class='card-description' use:tippy={descriptionTippyProps}>
             <p>{description}</p>
         </div>
     </div>
@@ -51,11 +53,20 @@
 
     .card-bio {
         margin: 1.3rem;
-        line-height: 1.25rem;
+        line-height: 1.3rem;
         font-size: 1rem;
-        max-height: 200px;
+        max-height: 250px;
         overflow: auto;
         font-family: var(--gentium);
+    }
+
+    .bio-subtitle {
+        font-size: 0.7rem;
+        color: gray;
+        letter-spacing: 0.2rem;
+        font-family: var(--tragic-grotesk);
+        font-weight: 600;
+        margin: 0px 0px 2px 0px;
     }
 
     .learn-more {

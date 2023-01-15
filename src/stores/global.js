@@ -4,6 +4,7 @@ import dataSource from "../data/data.json";
 
 export const windowWidth = writable(window.innerWidth);
 export const windowHeight = writable(window.innerHeight);
+export const modalLocation = writable(0);
 
 export const isMobile = derived(windowWidth,
     $windowWidth => $windowWidth <= 560 ? true : false
@@ -53,4 +54,8 @@ export function setActivePage(newPage) {
 
 export function setPercentages(newArr) {
     percentages.set(newArr)
+}
+
+export function setModalLocation(newValue) {
+    modalLocation.set(newValue)
 }

@@ -20,7 +20,7 @@
 
         // globe settings
         //const width = globeWrapper == null ? 275 : globeWrapper.offsetWidth * 0.7;
-        const width = $activePage == "intro" ? 275 : 375;
+        const width = $activePage == "intro" ? 275 : 315;
         const myGlobe = Globe({
             animateIn: false
         });

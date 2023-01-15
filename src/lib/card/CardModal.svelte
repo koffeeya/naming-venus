@@ -1,6 +1,7 @@
 <!-- https://svelte.dev/examples/modal -->
 <script>
 	import { createEventDispatcher, onDestroy} from 'svelte';
+	import { isMobile, modalLocation } from '../../stores/global';
 
 	const dispatch = createEventDispatcher();
 	const close = () => dispatch('close');
@@ -41,13 +42,15 @@
         allModals.innerHTML = "";
         close();
 	});
+
+	$: topValue = $isMobile == true ? `${$modalLocation}` : "50%";
 </script>
 
 <svelte:window on:keydown={handle_keydown}/>
 
 <div class="modal-background" on:click={close}></div>
 
-<div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
+<div class="modal" role="dialog" aria-modal="true" bind:this={modal} style='top: {topValue}'>
     <!-- svelte-ignore a11y-autofocus -->
     <div class='modal-button-wrapper'>
         <button class='modal-close-button' autofocus on:click={close}>close</button>
@@ -68,7 +71,6 @@
 	.modal {
 		position: absolute;
 		left: 50%;
-		top: 50%;
 		width: calc(100vw - 4em);
 		max-width: 22em;
 		max-height: calc(100vh - 4em);

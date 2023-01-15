@@ -20,7 +20,7 @@
         background-color: black;
         color: white;
         padding: 0.2rem;
-        opacity: 80%
+        opacity: 80%;
     }
 
     #title-button:hover {

@@ -26,7 +26,7 @@
 	// Add "hide" class to page that is not active
 	$: showIntroPage = $activePage == "intro" ? "" : "hide";
 	$: showMainPage = $activePage == "main" ? "" : "hide";
-	$: globeMargin = $activePage == "intro" ? "148px 55px" : "0px 35px";
+	$: globeMargin = $activePage == "intro" ? "148px 55px" : "-20px 35px";
 
 	onMount(async () => {
 		resetData();
@@ -170,7 +170,7 @@
 	.globe-reset {
 		position: absolute;
 		z-index: 101;
-		margin: 225px 16px;
+		margin: 0px;
 		background-color: transparent;
 		color: white;
 		opacity: 80%
@@ -181,7 +181,7 @@
 	}
 
 	.globe-spacer {
-		margin: 275px 0px 0px 0px;
+		margin: 250px 0px 0px 0px;
 	}
 
 	.page-buttons-wrapper {
@@ -205,7 +205,7 @@
 	}
 
 	.filter-section {
-		margin: 1.2rem 1.2rem 2rem 1.2rem;
+		margin: 1.2rem 1.2rem 2rem 0rem;
 
 	}
 
