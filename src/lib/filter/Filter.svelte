@@ -13,7 +13,7 @@
 
     function handleButtonClick() {
         open = !open;
-        setPercentages(getPercentages($data, defaultFilters));
+        //setPercentages(getPercentages($data, defaultFilters));
     }
 
     function getTippyProps(valuePair) {
@@ -78,16 +78,17 @@
 </div>
 
 <!-- Filter Buttons -->
-<div class='filter-buttons'>
-    {#each allValues as value}
-        {#if $filterObj[variable].includes(value)}
-            <FilterButton {variable} {value} activeStatus={true} />
-        {:else}
-            <FilterButton {variable} {value} activeStatus={false} />
-        {/if}
-    {/each}
-</div>
-
+{#if open}
+    <div class='filter-buttons'>
+        {#each allValues as value}
+            {#if $filterObj[variable].includes(value)}
+                <FilterButton {variable} {value} activeStatus={true} />
+            {:else}
+                <FilterButton {variable} {value} activeStatus={false} />
+            {/if}
+        {/each}
+    </div>
+{/if}
 </div>
 
 

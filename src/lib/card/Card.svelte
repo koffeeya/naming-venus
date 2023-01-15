@@ -1,6 +1,6 @@
 <script>
     import { getThemeColor, moveGlobeToPoint } from '../../js/utils.js';
-    import { pageTheme, data, globe, setModalLocation } from '../../stores/global.js'
+    import { pageTheme, data, globe, isMobile, setModalLocation } from '../../stores/global.js'
     import { onMount } from 'svelte'
 
     let loaded = false
@@ -37,7 +37,9 @@
     // card hover
     function handleCardHover(e) {
         pageTheme.set(type)
-        moveGlobeToPoint(id, $data, $globe);
+        if ($isMobile == false) {
+            moveGlobeToPoint(id, $data, $globe);
+        }
         //showGlobePoints([id], $globe);
     }
 

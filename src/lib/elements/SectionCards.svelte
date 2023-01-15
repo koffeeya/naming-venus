@@ -45,7 +45,7 @@
         margin: 0px auto auto auto;
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1400px) {
         .cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -53,7 +53,7 @@
     }
 
 
-    @media (max-width: 750px) {
+    @media (max-width: 1000px) {
         .cards {
             display: grid;
             grid-template-columns: 1fr;

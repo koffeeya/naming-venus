@@ -1,7 +1,7 @@
 <script>
 	// stores
-	import { data, activePage, resetData, filterObj, visibleData, globe } from './stores/global.js';
-	import { defaultFilters } from './js/utils.js';
+	import { data, activePage, resetData, filterObj, visibleData, globe, isMobile, setPercentages } from './stores/global.js';
+	import { defaultFilters, getPercentages } from './js/utils.js';
 
 	// components
 	import Globe from "./lib/globe/Globe.svelte";
@@ -52,13 +52,18 @@
 		<!-- Globe and filters sidebar -->
 		<div class='sidebar'>
 			<!-- Globe for intro -->
-			<button class='globe-reset' on:click={() => resetGlobe($globe)} title="Reset the globe's latitude and longitude" aria-hidden="true">Reset globe</button>
-			<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" >
-				<Globe targetNode="cards-globe" />
-			</div>
+			{#if $isMobile == false}
+				<button class='globe-reset' on:click={() => resetGlobe($globe)} title="Reset the globe's latitude and longitude" aria-hidden="true">Reset globe</button>
+				<div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" >
+					<Globe targetNode="cards-globe" />
+				</div>
+			{/if}
 			<!-- Filters -->
 			<div class='filter-section'>
-				<div class='globe-spacer'></div>
+				{#if $isMobile == false}
+					<div class='globe-spacer'></div>
+				{/if}
+				
 				<!-- Filter header -->
 				<div class='filter-header'>
 					<div class='filter-numbers'>
@@ -214,7 +219,7 @@
 		grid-template-columns: 4fr 1fr;
 	}
 
-	@media (max-width: 1200px) {
+	@media (max-width: 1400px) {
         .content-grid {
 			margin: auto;
 			display: grid;
