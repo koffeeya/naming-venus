@@ -48,10 +48,17 @@
         allModals.innerHTML = "";
         openModal = true;
 
-        const bodyRect = document.body.getBoundingClientRect();
+        let offset;
+        const bodyHeight = document.body.offsetHeight;
         const currentCard = document.querySelector(`#card-${id}`);
         const cardRect = currentCard.getBoundingClientRect();
-        const offset = cardRect.top - bodyRect.top;
+
+        if (e.clientY > (bodyHeight * 0.65)) {
+            offset = bodyHeight * 0.1
+        } else {
+            offset = cardRect.top;
+        }
+
         setModalLocation(offset);
     }
 

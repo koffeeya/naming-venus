@@ -6,9 +6,11 @@
     import Globe from "../globe/Globe.svelte";
     import TitleCard from "../svg/TitleCard.svelte";
     import { fade } from "svelte/transition";
+    import StarSpinning from "../svg/StarSpinning.svelte";
     import "@splidejs/splide/dist/css/splide.min.css";
 
     $: globeMargin = $activePage == "intro" ? "134px 40px" : "0% 0%";
+
 
     const options = {
         focus  : 'center',
@@ -25,6 +27,9 @@
                 <div class='intro-card' id="card-1">
                     <div class='globe-wrapper' style='margin: {globeMargin};' aria-hidden="true" focusable="false" in:fade="{{duration: 500, delay: 2000}}">
                         <Globe targetNode="intro-globe" />
+                    </div>
+                    <div class='globe-spinner'>
+                        <StarSpinning />
                     </div>
                     <TitleCard width={350} height={600} />
                 </div>
@@ -116,6 +121,11 @@
 
     .intro-card {
         margin: 15px;
+    }
+
+    .globe-spinner {
+        position: absolute;
+        margin: 232px 0 0 141px;
     }
 
     .globe-wrapper {

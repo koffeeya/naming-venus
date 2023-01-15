@@ -25,6 +25,8 @@
     }
 
     function getBgColor(variable, valuePair) {
+        const valueLimit = 100; 
+
         if (variable == "type") {
             const colorMap = {
                 "Default": "#6b6b6b",
@@ -35,9 +37,27 @@
                 "Other": "#9B9B9B",
             };
             return colorMap[valuePair[0]];
+        } else if (variable == "feature") {
+            const colors = scaleLinear()
+                 .domain([0, valueLimit])
+                 .range(["#ffffff", "#8ab67b"]);
+
+            return colors(valuePair[1]);
+        } else if (variable == "continent") {
+            const colors = scaleLinear()
+                 .domain([0, valueLimit])
+                 .range(["#ffffff", "#6cb4cc"]);
+
+            return colors(valuePair[1]);
+        } else if (variable == "year") {
+            const colors = scaleLinear()
+                 .domain([0, valueLimit])
+                 .range(["#ffffff", "#d7a954"]);
+
+            return colors(valuePair[1]);
         } else {
             const colors = scaleLinear()
-                 .domain([0, 100])
+                 .domain([0, valueLimit])
                  .range(["#181818", "#ffffff"]);
 
             return colors(valuePair[1]);
