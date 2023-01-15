@@ -34623,10 +34623,6 @@ var app = (function () {
         }
     }
 
-    function clearGlobePoints(world) {
-        world.pointRadius(d => 0);
-    }
-
     /**
      * Filters the data for specific values in a variable, and then updates the $data store
      * @param {Array} filterObj - The entire filter object in store
@@ -34675,7 +34671,7 @@ var app = (function () {
         const newPage = activePage == "intro" ? "main" : "intro";
 
         if (newPage == "intro") {
-            clearGlobePoints(globe);
+            //clearGlobePoints(globe);
             mainSection.style.opacity = 0;
             introSection.style.opacity = 1;
         } else {
@@ -118896,8 +118892,8 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<SectionIntro> was created with unknown prop '${key}'`);
     	});
 
-    	const click_handler = e => handlePageChange($activePage, $globe);
-    	const keypress_handler = e => handlePageChange($activePage, $globe);
+    	const click_handler = e => handlePageChange($activePage);
+    	const keypress_handler = e => handlePageChange($activePage);
 
     	$$self.$capture_state = () => ({
     		Splide: Splide_1,
@@ -119034,8 +119030,8 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Header> was created with unknown prop '${key}'`);
     	});
 
-    	const click_handler = e => handlePageChange($activePage, $globe);
-    	const keypress_handler = e => handlePageChange($activePage, $globe);
+    	const click_handler = e => handlePageChange($activePage);
+    	const keypress_handler = e => handlePageChange($activePage);
 
     	$$self.$capture_state = () => ({
     		activePage,

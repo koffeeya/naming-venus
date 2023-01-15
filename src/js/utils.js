@@ -139,7 +139,7 @@ function handlePageChange(activePage, globe) {
     const newPage = activePage == "intro" ? "main" : "intro";
 
     if (newPage == "intro") {
-        clearGlobePoints(globe);
+        //clearGlobePoints(globe);
         mainSection.style.opacity = 0;
         introSection.style.opacity = 1;
     } else {
