@@ -14,11 +14,11 @@
 </script>
 
 {#if tooltip == null}
-    <span class='hover-text' style="--theme-color:{color}; display: flex; justify-content: {align};">
+    <span class='hover-text' style="--theme-color:{color}; float: {align};">
         <p class='hover-button'>{text}</p>
     </span>
 {:else}
-    <span class='hover-text' style="--theme-color:{color}; display: flex; justify-content: {align};">
+    <span class='hover-text' style="--theme-color:{color}; float: {align};">
         <p class='hover-button' use:tippy={props} title={text}>{text}</p>
     </span>
 {/if}
@@ -36,6 +36,7 @@
         width: fit-content;
         margin: 0px;
         border-radius: 2px;
+        font-size: 0.8rem;
     }
 
     .hover-button:hover {

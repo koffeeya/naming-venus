@@ -74,19 +74,4 @@
         letter-spacing: 0.12rem;
         font-weight: 600;
     }
-
-    /* IMAGE */
-    .card-image {
-        max-height: 75px;
-        border-radius: 50%;
-        margin: 0.5rem 0rem 0rem 0rem;
-    }
-    
-    .card-image-caption {
-        font-size: 0.7rem;
-        color: gray;
-        margin: auto;
-        line-height: 0.8rem;
-        max-width: 75%;
-    }
 </style>

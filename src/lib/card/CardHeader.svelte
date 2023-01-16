@@ -37,15 +37,21 @@
         <h3 class='name'>{name}</h3>
     </div>
     <div class='category-grid'>
-        <div class='category feature'>
-            <HoverText text={feature} tooltip={featDefinition} color={getThemeColor(type)} align="left" />
+        <div class='category-wrapper'>
+            <div class='category feature' style='float: left'>
+                <HoverText text={feature} tooltip={featDefinition} color={getThemeColor(type)} align="left" />
+            </div>
         </div>
-        <p class='category year'>
-            <HoverText text={year} tooltip="Year discovered" color={getThemeColor(type)} align="center" />
-        </p>
-        <p class='category origin'>
-            <HoverText text={origin} tooltip="Culture or country of origin" color={getThemeColor(type)} align="right" />
-        </p>
+        <div class='category-wrapper'>
+            <div class='category year'>
+                <HoverText text={year} tooltip="Year discovered" color={getThemeColor(type)} align="center" />
+            </div>
+        </div>
+        <div class='category-wrapper'>
+            <div class='category origin' style='float: right'>
+                <HoverText text={origin} tooltip="Culture or country of origin" color={getThemeColor(type)} align="right" />
+            </div>
+        </div>
     </div>
 </div>
 
@@ -71,17 +77,19 @@
 
     .category {
         text-transform: uppercase;
-        margin-top: auto;
-        margin-bottom: auto;
+        margin: auto;
         font-size: 14px;
         line-height: 14px;
+        width: fit-content;
+        padding: 0px 0px 4px;
+        font-size: 0.8rem;
     }
 
     .category-grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        padding: 3% 3% 3% 2%;
-        margin: 0% 2%;
+        padding: 3%;
+        margin: auto;
     }
 
 </style>

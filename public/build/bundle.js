@@ -119270,14 +119270,13 @@ var app = (function () {
     			span = element("span");
     			p = element("p");
     			t = text(/*text*/ ctx[0]);
-    			attr_dev(p, "class", "hover-button svelte-c5vyum");
+    			attr_dev(p, "class", "hover-button svelte-zykqoo");
     			attr_dev(p, "title", /*text*/ ctx[0]);
-    			add_location(p, file$8, 21, 8, 600);
+    			add_location(p, file$8, 21, 8, 550);
     			attr_dev(span, "class", "hover-text");
     			set_style(span, "--theme-color", /*color*/ ctx[2]);
-    			set_style(span, "display", "flex");
-    			set_style(span, "justify-content", /*align*/ ctx[3]);
-    			add_location(span, file$8, 20, 4, 494);
+    			set_style(span, "float", /*align*/ ctx[3]);
+    			add_location(span, file$8, 20, 4, 469);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -119301,7 +119300,7 @@ var app = (function () {
     			}
 
     			if (dirty & /*align*/ 8) {
-    				set_style(span, "justify-content", /*align*/ ctx[3]);
+    				set_style(span, "float", /*align*/ ctx[3]);
     			}
     		},
     		d: function destroy(detaching) {
@@ -119333,12 +119332,11 @@ var app = (function () {
     			span = element("span");
     			p = element("p");
     			t = text(/*text*/ ctx[0]);
-    			attr_dev(p, "class", "hover-button svelte-c5vyum");
-    			add_location(p, file$8, 17, 8, 435);
+    			attr_dev(p, "class", "hover-button svelte-zykqoo");
+    			add_location(p, file$8, 17, 8, 410);
     			attr_dev(span, "class", "hover-text");
     			set_style(span, "--theme-color", /*color*/ ctx[2]);
-    			set_style(span, "display", "flex");
-    			set_style(span, "justify-content", /*align*/ ctx[3]);
+    			set_style(span, "float", /*align*/ ctx[3]);
     			add_location(span, file$8, 16, 4, 329);
     		},
     		m: function mount(target, anchor) {
@@ -119354,7 +119352,7 @@ var app = (function () {
     			}
 
     			if (dirty & /*align*/ 8) {
-    				set_style(span, "justify-content", /*align*/ ctx[3]);
+    				set_style(span, "float", /*align*/ ctx[3]);
     			}
     		},
     		d: function destroy(detaching) {
@@ -119571,7 +119569,7 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			create_component(venusicon.$$.fragment);
-    			attr_dev(button, "class", "card-icon svelte-154iy8j");
+    			attr_dev(button, "class", "card-icon svelte-1jp11gf");
     			attr_dev(button, "aria-expanded", "false");
     			attr_dev(button, "title", "Click to view more information");
     			add_location(button, file$7, 32, 12, 1026);
@@ -119617,20 +119615,23 @@ var app = (function () {
     }
 
     function create_fragment$7(ctx) {
-    	let div3;
+    	let div8;
     	let div0;
     	let t0;
     	let h3;
     	let t1;
     	let t2;
+    	let div7;
     	let div2;
     	let div1;
     	let hovertext0;
     	let t3;
-    	let p0;
+    	let div4;
+    	let div3;
     	let hovertext1;
     	let t4;
-    	let p1;
+    	let div6;
+    	let div5;
     	let hovertext2;
     	let current;
     	let if_block = /*modalStyle*/ ctx[6] && create_if_block$3(ctx);
@@ -119667,59 +119668,73 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div3 = element("div");
+    			div8 = element("div");
     			div0 = element("div");
     			if (if_block) if_block.c();
     			t0 = space();
     			h3 = element("h3");
     			t1 = text(/*name*/ ctx[0]);
     			t2 = space();
+    			div7 = element("div");
     			div2 = element("div");
     			div1 = element("div");
     			create_component(hovertext0.$$.fragment);
     			t3 = space();
-    			p0 = element("p");
+    			div4 = element("div");
+    			div3 = element("div");
     			create_component(hovertext1.$$.fragment);
     			t4 = space();
-    			p1 = element("p");
+    			div6 = element("div");
+    			div5 = element("div");
     			create_component(hovertext2.$$.fragment);
-    			attr_dev(h3, "class", "name svelte-154iy8j");
+    			attr_dev(h3, "class", "name svelte-1jp11gf");
     			add_location(h3, file$7, 36, 8, 1275);
     			attr_dev(div0, "class", "name-header");
     			add_location(div0, file$7, 30, 4, 963);
-    			attr_dev(div1, "class", "category feature svelte-154iy8j");
-    			add_location(div1, file$7, 39, 8, 1355);
-    			attr_dev(p0, "class", "category year svelte-154iy8j");
-    			add_location(p0, file$7, 42, 8, 1516);
-    			attr_dev(p1, "class", "category origin svelte-154iy8j");
-    			add_location(p1, file$7, 45, 8, 1670);
-    			attr_dev(div2, "class", "category-grid svelte-154iy8j");
-    			add_location(div2, file$7, 38, 4, 1319);
-    			attr_dev(div3, "class", "card-header svelte-154iy8j");
-    			set_style(div3, "--theme-color", getThemeColor(/*type*/ ctx[4]));
-    			set_style(div3, "--light-theme", getThemeColor(/*type*/ ctx[4], 100, true));
-    			add_location(div3, file$7, 29, 0, 841);
+    			attr_dev(div1, "class", "category feature svelte-1jp11gf");
+    			set_style(div1, "float", "left");
+    			add_location(div1, file$7, 40, 12, 1398);
+    			attr_dev(div2, "class", "category-wrapper");
+    			add_location(div2, file$7, 39, 8, 1355);
+    			attr_dev(div3, "class", "category year svelte-1jp11gf");
+    			add_location(div3, file$7, 45, 12, 1645);
+    			attr_dev(div4, "class", "category-wrapper");
+    			add_location(div4, file$7, 44, 8, 1602);
+    			attr_dev(div5, "class", "category origin svelte-1jp11gf");
+    			set_style(div5, "float", "right");
+    			add_location(div5, file$7, 50, 12, 1869);
+    			attr_dev(div6, "class", "category-wrapper");
+    			add_location(div6, file$7, 49, 8, 1826);
+    			attr_dev(div7, "class", "category-grid svelte-1jp11gf");
+    			add_location(div7, file$7, 38, 4, 1319);
+    			attr_dev(div8, "class", "card-header svelte-1jp11gf");
+    			set_style(div8, "--theme-color", getThemeColor(/*type*/ ctx[4]));
+    			set_style(div8, "--light-theme", getThemeColor(/*type*/ ctx[4], 100, true));
+    			add_location(div8, file$7, 29, 0, 841);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div3, anchor);
-    			append_dev(div3, div0);
+    			insert_dev(target, div8, anchor);
+    			append_dev(div8, div0);
     			if (if_block) if_block.m(div0, null);
     			append_dev(div0, t0);
     			append_dev(div0, h3);
     			append_dev(h3, t1);
-    			append_dev(div3, t2);
-    			append_dev(div3, div2);
+    			append_dev(div8, t2);
+    			append_dev(div8, div7);
+    			append_dev(div7, div2);
     			append_dev(div2, div1);
     			mount_component(hovertext0, div1, null);
-    			append_dev(div2, t3);
-    			append_dev(div2, p0);
-    			mount_component(hovertext1, p0, null);
-    			append_dev(div2, t4);
-    			append_dev(div2, p1);
-    			mount_component(hovertext2, p1, null);
+    			append_dev(div7, t3);
+    			append_dev(div7, div4);
+    			append_dev(div4, div3);
+    			mount_component(hovertext1, div3, null);
+    			append_dev(div7, t4);
+    			append_dev(div7, div6);
+    			append_dev(div6, div5);
+    			mount_component(hovertext2, div5, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -119762,11 +119777,11 @@ var app = (function () {
     			hovertext2.$set(hovertext2_changes);
 
     			if (!current || dirty & /*type*/ 16) {
-    				set_style(div3, "--theme-color", getThemeColor(/*type*/ ctx[4]));
+    				set_style(div8, "--theme-color", getThemeColor(/*type*/ ctx[4]));
     			}
 
     			if (!current || dirty & /*type*/ 16) {
-    				set_style(div3, "--light-theme", getThemeColor(/*type*/ ctx[4], 100, true));
+    				set_style(div8, "--light-theme", getThemeColor(/*type*/ ctx[4], 100, true));
     			}
     		},
     		i: function intro(local) {
@@ -119785,7 +119800,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div3);
+    			if (detaching) detach_dev(div8);
     			if (if_block) if_block.d();
     			destroy_component(hovertext0);
     			destroy_component(hovertext1);
@@ -120029,11 +120044,11 @@ var app = (function () {
     			div0 = element("div");
     			p = element("p");
     			t = text(/*description*/ ctx[2]);
-    			attr_dev(p, "class", "svelte-pdgo34");
+    			attr_dev(p, "class", "svelte-1rnyp63");
     			add_location(p, file$6, 29, 12, 1048);
-    			attr_dev(div0, "class", "card-description svelte-pdgo34");
+    			attr_dev(div0, "class", "card-description svelte-1rnyp63");
     			add_location(div0, file$6, 28, 8, 971);
-    			attr_dev(div1, "class", "card-body svelte-pdgo34");
+    			attr_dev(div1, "class", "card-body svelte-1rnyp63");
     			set_style(div1, "--theme-color", /*themeColor*/ ctx[1]);
     			set_style(div1, "--theme-opacity", /*themeColor*/ ctx[1] + "26");
     			add_location(div1, file$6, 27, 4, 871);
@@ -120110,17 +120125,17 @@ var app = (function () {
     			t4 = text(/*bio*/ ctx[3]);
     			t5 = space();
     			if (if_block) if_block.c();
-    			attr_dev(p0, "class", "svelte-pdgo34");
+    			attr_dev(p0, "class", "svelte-1rnyp63");
     			add_location(p0, file$6, 14, 8, 528);
-    			attr_dev(div0, "class", "card-description svelte-pdgo34");
+    			attr_dev(div0, "class", "card-description svelte-1rnyp63");
     			add_location(div0, file$6, 13, 4, 455);
-    			attr_dev(p1, "class", "bio-subtitle svelte-pdgo34");
+    			attr_dev(p1, "class", "bio-subtitle svelte-1rnyp63");
     			add_location(p1, file$6, 17, 8, 594);
-    			attr_dev(p2, "class", "svelte-pdgo34");
+    			attr_dev(p2, "class", "svelte-1rnyp63");
     			add_location(p2, file$6, 18, 8, 646);
-    			attr_dev(div1, "class", "card-bio svelte-pdgo34");
+    			attr_dev(div1, "class", "card-bio svelte-1rnyp63");
     			add_location(div1, file$6, 16, 3, 563);
-    			attr_dev(div2, "class", "card-body svelte-pdgo34");
+    			attr_dev(div2, "class", "card-body svelte-1rnyp63");
     			set_style(div2, "--theme-color", /*themeColor*/ ctx[1]);
     			set_style(div2, "--theme-opacity", /*themeColor*/ ctx[1] + "26");
     			add_location(div2, file$6, 12, 0, 359);
@@ -120202,9 +120217,9 @@ var app = (function () {
     			t = text("LEARN MORE");
     			attr_dev(a, "href", a_href_value = "https://en.wikipedia.org/wiki/" + /*searchTerm*/ ctx[4]);
     			attr_dev(a, "target", "_blank");
-    			attr_dev(a, "class", "svelte-pdgo34");
+    			attr_dev(a, "class", "svelte-1rnyp63");
     			add_location(a, file$6, 22, 16, 744);
-    			attr_dev(div, "class", "learn-more svelte-pdgo34");
+    			attr_dev(div, "class", "learn-more svelte-1rnyp63");
     			add_location(div, file$6, 21, 8, 703);
     		},
     		m: function mount(target, anchor) {
