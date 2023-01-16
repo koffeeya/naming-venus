@@ -31,7 +31,7 @@
 	onMount(async () => {
 		resetData();
 		const defaultPercentages = getPercentages($data, defaultFilters);
-		setPercentages(defaultPercentages);
+		//setPercentages(defaultPercentages);
 		ready = true;
 	})
 </script>

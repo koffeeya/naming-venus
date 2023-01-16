@@ -105947,46 +105947,6 @@ var app = (function () {
 
     var featureData = [
     	{
-    		feature: "crater",
-    		feature_plural: "craters",
-    		definition: "A circular depression created by an impact event. On Venus, craters under 20km in diameter are named after common female first names.",
-    		diameter: "Under 20km",
-    		naming_convention: "Common female first names",
-    		type: "Common female first names"
-    	},
-    	{
-    		feature: "patera",
-    		feature_plural: "paterae",
-    		definition: "An irregular crater, usually referring to the dish-shaped depression atop a volcano. On Venus, paterae are named after famous women.",
-    		diameter: "",
-    		naming_convention: "Famous women",
-    		type: "Famous women"
-    	},
-    	{
-    		feature: "crater",
-    		feature_plural: "craters",
-    		definition: "A circular depression created by an impact event. On Venus, craters 20km or wider in diameter are named after famous women.",
-    		diameter: "20km or over",
-    		naming_convention: "Famous women",
-    		type: "Famous women"
-    	},
-    	{
-    		feature: "regio",
-    		feature_plural: "regiones",
-    		definition: "A large area that is strongly differentiated in color or brightness from its surroundings. On Venus, regiones are named after giantesses and titanesses (and two after Greek letters of the alphabet).",
-    		diameter: "",
-    		naming_convention: "Giantesses and Titanesses (and two after Greek letters of the alphabet)",
-    		type: "Female giants and titans"
-    	},
-    	{
-    		feature: "vallis",
-    		feature_plural: "valles",
-    		definition: "A valley. On Venus, valles under 400km in length are named after river goddesses.",
-    		diameter: "Under 400km",
-    		naming_convention: "River goddesses",
-    		type: "Goddesses"
-    	},
-    	{
     		feature: "chasma",
     		feature_plural: "chasmata",
     		definition: "A deep, elongated, steep-sided depression. On Venus, chasmata are named after goddesses of the hunt or moon.",
@@ -106003,11 +105963,43 @@ var app = (function () {
     		type: "Goddesses"
     	},
     	{
+    		feature: "corona",
+    		feature_plural: "coronae",
+    		definition: "An oval-shaped feature. On Venus, coronae are named after fertility and earth goddesses.",
+    		diameter: "",
+    		naming_convention: "Fertility and earth goddesses",
+    		type: "Goddesses"
+    	},
+    	{
+    		feature: "crater",
+    		feature_plural: "craters",
+    		definition: "A circular depression created by an impact event. On Venus, small craters are named after common female first names, and large ones after after famous women.",
+    		diameter: "Under 20km",
+    		naming_convention: "Common female first names",
+    		type: "Common female first names"
+    	},
+    	{
+    		feature: "crater",
+    		feature_plural: "craters",
+    		definition: "A circular depression created by an impact event. On Venus, small craters are named after common female first names, and large ones after after famous women.",
+    		diameter: "20km or over",
+    		naming_convention: "Famous women",
+    		type: "Famous women"
+    	},
+    	{
     		feature: "dorsum",
     		feature_plural: "dorsa",
     		definition: "A ridge, sometimes called a wrinkle ridge. On Venus, dorsa are named after sky goddesses.",
     		diameter: "",
     		naming_convention: "Sky goddesses",
+    		type: "Goddesses"
+    	},
+    	{
+    		feature: "farrum",
+    		feature_plural: "farra",
+    		definition: "A pancake-like structure, or a row of such structures. On Venus, farra are named after water goddesses.",
+    		diameter: "",
+    		naming_convention: "Water goddesses",
     		type: "Goddesses"
     	},
     	{
@@ -106035,6 +106027,14 @@ var app = (function () {
     		type: "Goddesses"
     	},
     	{
+    		feature: "linea",
+    		feature_plural: "lineae",
+    		definition: "A general term for any long marking, dark or bright, on a planet's surface. On Venus, lineae are named after goddesses of war.",
+    		diameter: "",
+    		naming_convention: "Goddesses of war",
+    		type: "Goddesses"
+    	},
+    	{
     		feature: "mons",
     		feature_plural: "montes",
     		definition: "A mountain; plural montes. On Venus, montes are named after miscellaneous goddesses, and one radar scientist.",
@@ -106043,12 +106043,36 @@ var app = (function () {
     		type: "Goddesses"
     	},
     	{
+    		feature: "patera",
+    		feature_plural: "paterae",
+    		definition: "An irregular crater, usually referring to the dish-shaped depression atop a volcano. On Venus, paterae are named after famous women.",
+    		diameter: "",
+    		naming_convention: "Famous women",
+    		type: "Famous women"
+    	},
+    	{
+    		feature: "planitia",
+    		feature_plural: "planitiae",
+    		definition: "A low plain. On Venus, planitiae are named after mythological heroines.",
+    		diameter: "",
+    		naming_convention: "Mythological heroines",
+    		type: "Heroines"
+    	},
+    	{
     		feature: "planum",
     		feature_plural: "plana",
     		definition: "A plateau or high plain. On Venus, plana are named after goddesses of prosperity.",
     		diameter: "",
     		naming_convention: "Goddesses of prosperity",
     		type: "Goddesses"
+    	},
+    	{
+    		feature: "regio",
+    		feature_plural: "regiones",
+    		definition: "A large area that is strongly differentiated in color or brightness from its surroundings. On Venus, regiones are named after giantesses and titanesses (and two after Greek letters of the alphabet).",
+    		diameter: "",
+    		naming_convention: "Giantesses and Titanesses (and two after Greek letters of the alphabet)",
+    		type: "Female giants and titans"
     	},
     	{
     		feature: "rupes",
@@ -106067,46 +106091,6 @@ var app = (function () {
     		type: "Goddesses"
     	},
     	{
-    		feature: "tholus",
-    		feature_plural: "tholi",
-    		definition: "A small domical mountain or hill. On Venus, tholi are named after miscellaneous goddesses.",
-    		diameter: "",
-    		naming_convention: "Miscellaneous goddesses",
-    		type: "Goddesses"
-    	},
-    	{
-    		feature: "unda",
-    		feature_plural: "undae",
-    		definition: "A field of dunes. On Venus, undae are named after desert goddesses.",
-    		diameter: "",
-    		naming_convention: "Desert goddesses",
-    		type: "Goddesses"
-    	},
-    	{
-    		feature: "corona",
-    		feature_plural: "coronae",
-    		definition: "An oval-shaped feature. On Venus, coronae are named after fertility and earth goddesses.",
-    		diameter: "",
-    		naming_convention: "Fertility and earth goddesses",
-    		type: "Goddesses"
-    	},
-    	{
-    		feature: "farrum",
-    		feature_plural: "farra",
-    		definition: "A pancake-like structure, or a row of such structures. On Venus, farra are named after water goddesses.",
-    		diameter: "",
-    		naming_convention: "Water goddesses",
-    		type: "Goddesses"
-    	},
-    	{
-    		feature: "linea",
-    		feature_plural: "lineae",
-    		definition: "A general term for any long marking, dark or bright, on a planet's surface. On Venus, lineae are named after goddesses of war.",
-    		diameter: "",
-    		naming_convention: "Goddesses of war",
-    		type: "Goddesses"
-    	},
-    	{
     		feature: "tessera",
     		feature_plural: "tesserae",
     		definition: "An area of tile-like, polygonal terrain. Often represents the oldest material at any given location. On Venus, tesserae are named after goddesses of fate and fortune.",
@@ -106115,17 +106099,33 @@ var app = (function () {
     		type: "Goddesses"
     	},
     	{
-    		feature: "planitia",
-    		feature_plural: "planitiae",
-    		definition: "A low plain. On Venus, planitiae are named after mythological heroines.",
+    		feature: "tholus",
+    		feature_plural: "tholi",
+    		definition: "A small domical mountain or hill. On Venus, tholi are named after miscellaneous goddesses.",
     		diameter: "",
-    		naming_convention: "Mythological heroines",
-    		type: "Heroines"
+    		naming_convention: "Miscellaneous goddesses",
+    		type: "Goddesses"
+    	},
+    	{
+    		feature: "undae",
+    		feature_plural: "undae",
+    		definition: "A field of dunes. On Venus, undae are named after desert goddesses.",
+    		diameter: "",
+    		naming_convention: "Desert goddesses",
+    		type: "Goddesses"
     	},
     	{
     		feature: "vallis",
     		feature_plural: "valles",
-    		definition: "A valley. On Venus, valles 400km or longer in length are named after the word for Venus in various world languages.",
+    		definition: "A valley. On Venus, small valles are named after river goddesses, while large ones are named after the word for Venus in various world languages.",
+    		diameter: "Under 400km",
+    		naming_convention: "River goddesses",
+    		type: "Goddesses"
+    	},
+    	{
+    		feature: "vallis",
+    		feature_plural: "valles",
+    		definition: "A valley. On Venus, small valles are named after river goddesses, while large ones are named after the word for Venus in various world languages.",
     		diameter: "400km or over",
     		naming_convention: "The word for Venus in various world languages",
     		type: "Words for Venus"
@@ -122072,27 +122072,27 @@ var app = (function () {
     			div7 = element("div");
     			create_component(sectioncards.$$.fragment);
     			attr_dev(div0, "class", div0_class_value = "intro-mode " + /*showIntroPage*/ ctx[3] + " svelte-1sffoyp");
-    			add_location(div0, file, 41, 1, 1329);
+    			add_location(div0, file, 41, 1, 1331);
     			attr_dev(div1, "class", div1_class_value = "header-wrapper " + /*showMainPage*/ ctx[2] + " svelte-1sffoyp");
-    			add_location(div1, file, 47, 2, 1476);
+    			add_location(div1, file, 47, 2, 1478);
     			attr_dev(p, "class", "feature-number svelte-1sffoyp");
-    			add_location(p, file, 71, 6, 2263);
+    			add_location(p, file, 71, 6, 2265);
     			attr_dev(div2, "class", "filter-numbers");
-    			add_location(div2, file, 70, 5, 2228);
+    			add_location(div2, file, 70, 5, 2230);
     			attr_dev(div3, "class", "filter-header svelte-1sffoyp");
-    			add_location(div3, file, 69, 4, 2195);
+    			add_location(div3, file, 69, 4, 2197);
     			attr_dev(div4, "class", "filter-wrapper");
-    			add_location(div4, file, 88, 4, 2993);
+    			add_location(div4, file, 88, 4, 2995);
     			attr_dev(div5, "class", "filter-section svelte-1sffoyp");
-    			add_location(div5, file, 63, 3, 2053);
+    			add_location(div5, file, 63, 3, 2055);
     			attr_dev(div6, "class", "sidebar");
-    			add_location(div6, file, 54, 2, 1634);
+    			add_location(div6, file, 54, 2, 1636);
     			attr_dev(div7, "class", div7_class_value = "nav-cards " + /*showMainPage*/ ctx[2] + " svelte-1sffoyp");
-    			add_location(div7, file, 97, 2, 3169);
+    			add_location(div7, file, 97, 2, 3171);
     			attr_dev(div8, "class", "content-grid svelte-1sffoyp");
-    			add_location(div8, file, 52, 2, 1568);
+    			add_location(div8, file, 52, 2, 1570);
     			attr_dev(div9, "class", div9_class_value = "main-mode " + /*showMainPage*/ ctx[2] + " svelte-1sffoyp");
-    			add_location(div9, file, 46, 1, 1420);
+    			add_location(div9, file, 46, 1, 1422);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -122320,12 +122320,12 @@ var app = (function () {
     			attr_dev(button, "class", "globe-reset svelte-1sffoyp");
     			attr_dev(button, "title", "Reset the globe's latitude and longitude");
     			attr_dev(button, "aria-hidden", "true");
-    			add_location(button, file, 57, 4, 1716);
+    			add_location(button, file, 57, 4, 1718);
     			attr_dev(div, "class", "globe-wrapper svelte-1sffoyp");
     			set_style(div, "margin", /*globeMargin*/ ctx[1]);
     			attr_dev(div, "aria-hidden", "true");
     			attr_dev(div, "focusable", "false");
-    			add_location(div, file, 58, 4, 1873);
+    			add_location(div, file, 58, 4, 1875);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -122382,7 +122382,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr_dev(div, "class", "globe-spacer svelte-1sffoyp");
-    			add_location(div, file, 65, 5, 2116);
+    			add_location(div, file, 65, 5, 2118);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -122416,7 +122416,7 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = text(" visible on globe");
     			attr_dev(p, "class", "visible-number svelte-1sffoyp");
-    			add_location(p, file, 73, 7, 2404);
+    			add_location(p, file, 73, 7, 2406);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -122455,8 +122455,8 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Show all";
     			attr_dev(button, "class", "reset-button svelte-1sffoyp");
-    			add_location(button, file, 83, 7, 2827);
-    			add_location(div, file, 82, 6, 2814);
+    			add_location(button, file, 83, 7, 2829);
+    			add_location(div, file, 82, 6, 2816);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -122503,8 +122503,8 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Hide all";
     			attr_dev(button, "class", "reset-button svelte-1sffoyp");
-    			add_location(button, file, 79, 7, 2562);
-    			add_location(div, file, 78, 6, 2549);
+    			add_location(button, file, 79, 7, 2564);
+    			add_location(div, file, 78, 6, 2551);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -122596,7 +122596,7 @@ var app = (function () {
     			main = element("main");
     			if (if_block) if_block.c();
     			attr_dev(main, "class", "svelte-1sffoyp");
-    			add_location(main, file, 38, 0, 1280);
+    			add_location(main, file, 38, 0, 1282);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -122687,8 +122687,9 @@ var app = (function () {
 
     	onMount(async () => {
     		resetData();
-    		const defaultPercentages = getPercentages($data, defaultFilters);
-    		setPercentages(defaultPercentages);
+    		getPercentages($data, defaultFilters);
+
+    		//setPercentages(defaultPercentages);
     		$$invalidate(0, ready = true);
     	});
 
