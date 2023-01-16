@@ -30,6 +30,8 @@
 
 	onMount(async () => {
 		resetData();
+		const defaultPercentages = getPercentages($data, defaultFilters);
+		setPercentages(defaultPercentages);
 		ready = true;
 	})
 </script>
@@ -68,7 +70,9 @@
 				<div class='filter-header'>
 					<div class='filter-numbers'>
 						<p class='feature-number'>{formatValue($data.length)} {$data.length == 1 ? "feature" : "features"}</p>
-						<p class='visible-number'>{$visibleData.length} visible on globe</p>
+						{#if $isMobile == false}
+							<p class='visible-number'>{$visibleData.length} visible on globe</p>
+						{/if}
 
 					</div>
 					{#if $data.length == dataSource.length}
