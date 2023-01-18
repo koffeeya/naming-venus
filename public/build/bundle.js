@@ -118154,6 +118154,9 @@ var app = (function () {
     	let p2;
     	let t11;
     	let p3;
+    	let t12;
+    	let a2;
+    	let t14;
 
     	const block = {
     		c: function create() {
@@ -118161,7 +118164,7 @@ var app = (function () {
     			p0.textContent = "Venus — the brightest planet — has captured human imagination for more than 5,000 years.";
     			t1 = space();
     			p1 = element("p");
-    			t2 = text("Until surprsingly recently, however, we had no clue what its surface looked like. This is because the planet is a ");
+    			t2 = text("Until surprisingly recently, though, we had no clue what its surface looked like. This is because the planet is a ");
     			a0 = element("a");
     			a0.textContent = "hellscape";
     			t4 = text(". Thick acid clouds, intense heat and crushing pressure destroyed ");
@@ -118176,7 +118179,10 @@ var app = (function () {
     			p2.textContent = "It wasn't until the 1990s that radar technology advanced enough for scientists to peer through the clouds and map its surface for the first time, in detail.";
     			t11 = space();
     			p3 = element("p");
-    			p3.textContent = "There was an explosion of discovery. Hundreds of new features were getting discovered — and named — every year.";
+    			t12 = text("There was an ");
+    			a2 = element("a");
+    			a2.textContent = "explosion of discovery";
+    			t14 = text(". At its peak, hundreds of new features were discovered — and named — every year.");
     			attr_dev(p0, "class", "intro-paragraph svelte-17kny5m");
     			add_location(p0, file$a, 43, 24, 1767);
     			attr_dev(a0, "href", "https://climate.nasa.gov/news/2475/nasa-climate-modeling-suggests-venus-may-have-been-habitable/");
@@ -118192,6 +118198,10 @@ var app = (function () {
     			add_location(p1, file$a, 45, 24, 1912);
     			attr_dev(p2, "class", "intro-paragraph svelte-17kny5m");
     			add_location(p2, file$a, 47, 24, 2453);
+    			attr_dev(a2, "href", "https://www2.jpl.nasa.gov/magellan/pr1353.html");
+    			attr_dev(a2, "target", "_blank");
+    			attr_dev(a2, "class", "svelte-17kny5m");
+    			add_location(a2, file$a, 49, 64, 2706);
     			attr_dev(p3, "class", "intro-paragraph svelte-17kny5m");
     			add_location(p3, file$a, 49, 24, 2666);
     		},
@@ -118210,6 +118220,9 @@ var app = (function () {
     			insert_dev(target, p2, anchor);
     			insert_dev(target, t11, anchor);
     			insert_dev(target, p3, anchor);
+    			append_dev(p3, t12);
+    			append_dev(p3, a2);
+    			append_dev(p3, t14);
     		},
     		p: noop$2,
     		d: function destroy(detaching) {
@@ -118315,10 +118328,10 @@ var app = (function () {
     			p0.textContent = "The naming of Venus is remarkable for more than just its rapid pace.";
     			t1 = space();
     			p1 = element("p");
-    			p1.textContent = "With few exceptions, every one of the features on its surface is named after women — mythological heroines, goddesses, famous women, and female first names.";
+    			p1.textContent = "With few exceptions, every feature on its surface is named after a woman — mythological heroines, goddesses, famous women, and female first names.";
     			t3 = space();
     			p2 = element("p");
-    			t4 = text("This reveals a deeper truth: naming is more than just a matter of convenience. It is an expression of culture. An alien landscape feels more human, more ");
+    			t4 = text("This reveals that naming is more than just a matter of convenience; it is an expression of culture. An alien landscape feels more human, more ");
     			em = element("em");
     			em.textContent = "ours";
     			t6 = text(", when we call it names from home.");
@@ -118326,14 +118339,14 @@ var app = (function () {
     			p3 = element("p");
     			p3.textContent = "But not everyone on Earth is reflected in Venus. 45% of the names on the planet are European in origin; a miniscule 2% come from South America.";
     			attr_dev(p0, "class", "intro-paragraph svelte-17kny5m");
-    			add_location(p0, file$a, 57, 24, 3043);
+    			add_location(p0, file$a, 57, 24, 3125);
     			attr_dev(p1, "class", "intro-paragraph svelte-17kny5m");
-    			add_location(p1, file$a, 59, 24, 3168);
-    			add_location(em, file$a, 61, 204, 3561);
+    			add_location(p1, file$a, 59, 24, 3250);
+    			add_location(em, file$a, 61, 193, 3622);
     			attr_dev(p2, "class", "intro-paragraph svelte-17kny5m");
-    			add_location(p2, file$a, 61, 24, 3381);
+    			add_location(p2, file$a, 61, 24, 3453);
     			attr_dev(p3, "class", "intro-paragraph svelte-17kny5m");
-    			add_location(p3, file$a, 63, 24, 3638);
+    			add_location(p3, file$a, 63, 24, 3699);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
@@ -118390,7 +118403,7 @@ var app = (function () {
     			div = element("div");
     			create_component(introtextcard.$$.fragment);
     			attr_dev(div, "class", "intro-card svelte-17kny5m");
-    			add_location(div, file$a, 55, 16, 2943);
+    			add_location(div, file$a, 55, 16, 3025);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -118453,7 +118466,7 @@ var app = (function () {
     			p0.textContent = "This project is an attempt to share the stories behind the names on Venus.";
     			t1 = space();
     			p1 = element("p");
-    			p1.textContent = "Explore 1,976 names on the planet, and look for the 769 goddesses, heroines, and famous women with extra information.";
+    			p1.textContent = "Explore the 1,976 named surface features on the planet, and look for the 769 goddesses, heroines, and famous women with extra information.";
     			t3 = space();
     			p2 = element("p");
     			p2.textContent = "The names we give our surroundings reveal more about ourselves — and our values — than they do the landscape we observe.";
@@ -118465,18 +118478,18 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Explore the names";
     			attr_dev(p0, "class", "intro-paragraph svelte-17kny5m");
-    			add_location(p0, file$a, 71, 24, 4043);
+    			add_location(p0, file$a, 71, 24, 4104);
     			attr_dev(p1, "class", "intro-paragraph svelte-17kny5m");
-    			add_location(p1, file$a, 73, 24, 4174);
+    			add_location(p1, file$a, 73, 24, 4235);
     			attr_dev(p2, "class", "intro-paragraph svelte-17kny5m");
-    			add_location(p2, file$a, 75, 24, 4348);
+    			add_location(p2, file$a, 75, 24, 4430);
     			attr_dev(p3, "class", "intro-paragraph svelte-17kny5m");
-    			add_location(p3, file$a, 77, 24, 4525);
+    			add_location(p3, file$a, 77, 24, 4607);
     			attr_dev(button, "id", "intro-button");
     			attr_dev(button, "class", "svelte-17kny5m");
-    			add_location(button, file$a, 80, 28, 4675);
+    			add_location(button, file$a, 80, 28, 4757);
     			attr_dev(div, "class", "intro-button-wrapper svelte-17kny5m");
-    			add_location(div, file$a, 79, 24, 4612);
+    			add_location(div, file$a, 79, 24, 4694);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
@@ -118546,7 +118559,7 @@ var app = (function () {
     			div = element("div");
     			create_component(introtextcard.$$.fragment);
     			attr_dev(div, "class", "intro-card svelte-17kny5m");
-    			add_location(div, file$a, 69, 16, 3943);
+    			add_location(div, file$a, 69, 16, 4004);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -118697,71 +118710,71 @@ var app = (function () {
     			attr_dev(a0, "href", "https://planetarynames.wr.usgs.gov/SearchResults?Target=15_Venus");
     			attr_dev(a0, "target", "_blank");
     			attr_dev(a0, "class", "svelte-17kny5m");
-    			add_location(a0, file$a, 89, 125, 5201);
+    			add_location(a0, file$a, 89, 125, 5283);
     			attr_dev(p0, "class", "about-data-paragraph svelte-17kny5m");
-    			add_location(p0, file$a, 89, 24, 5100);
+    			add_location(p0, file$a, 89, 24, 5182);
     			attr_dev(a1, "href", "https://pypi.org/project/wikipedia/");
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "class", "svelte-17kny5m");
-    			add_location(a1, file$a, 91, 127, 5532);
+    			add_location(a1, file$a, 91, 127, 5614);
     			attr_dev(p1, "class", "about-data-paragraph svelte-17kny5m");
-    			add_location(p1, file$a, 91, 24, 5429);
+    			add_location(p1, file$a, 91, 24, 5511);
     			attr_dev(a2, "href", "https://svelte.dev/");
     			attr_dev(a2, "target", "_blank");
     			attr_dev(a2, "class", "svelte-17kny5m");
-    			add_location(a2, file$a, 93, 76, 5734);
+    			add_location(a2, file$a, 93, 76, 5816);
     			attr_dev(a3, "href", "https://globe.gl/");
     			attr_dev(a3, "target", "_blank");
     			attr_dev(a3, "class", "svelte-17kny5m");
-    			add_location(a3, file$a, 93, 167, 5825);
+    			add_location(a3, file$a, 93, 167, 5907);
     			attr_dev(a4, "href", "https://astrogeology.usgs.gov/search/map/Venus/Magellan/RadarProperties/Venus_Magellan_Topography_Global_4641m_v02");
     			attr_dev(a4, "target", "_blank");
     			attr_dev(a4, "class", "svelte-17kny5m");
-    			add_location(a4, file$a, 93, 315, 5973);
+    			add_location(a4, file$a, 93, 315, 6055);
     			attr_dev(a5, "href", "https://www.qgis.org/en/site/");
     			attr_dev(a5, "target", "_blank");
     			attr_dev(a5, "class", "svelte-17kny5m");
-    			add_location(a5, file$a, 93, 543, 6201);
+    			add_location(a5, file$a, 93, 543, 6283);
     			attr_dev(p2, "class", "about-data-paragraph svelte-17kny5m");
-    			add_location(p2, file$a, 93, 24, 5682);
+    			add_location(p2, file$a, 93, 24, 5764);
     			attr_dev(a6, "href", "https://www.gc.cuny.edu/data-analysis-and-visualization/curriculum-and-degree-information");
     			attr_dev(a6, "target", "_blank");
     			attr_dev(a6, "class", "svelte-17kny5m");
-    			add_location(a6, file$a, 95, 114, 6468);
+    			add_location(a6, file$a, 95, 114, 6550);
     			attr_dev(a7, "href", "https://tabletopwhale.com/2017/03/06/goddesses-of-venus.html");
     			attr_dev(a7, "target", "_blank");
     			attr_dev(a7, "class", "svelte-17kny5m");
-    			add_location(a7, file$a, 95, 328, 6682);
+    			add_location(a7, file$a, 95, 328, 6764);
     			attr_dev(a8, "href", "https://bookshop.org/p/books/encyclopedia-of-goddesses-heroines-revised-patricia-monaghan/107143");
     			attr_dev(a8, "target", "_blank");
     			attr_dev(a8, "class", "svelte-17kny5m");
-    			add_location(a8, file$a, 95, 433, 6787);
+    			add_location(a8, file$a, 95, 433, 6869);
     			attr_dev(a9, "href", "https://wenamethestars.inkleby.com/world/venus");
     			attr_dev(a9, "target", "_blank");
     			attr_dev(a9, "class", "svelte-17kny5m");
-    			add_location(a9, file$a, 95, 579, 6933);
+    			add_location(a9, file$a, 95, 579, 7015);
     			attr_dev(a10, "href", "https://hargitaihenrik.wordpress.com/");
     			attr_dev(a10, "target", "_blank");
     			attr_dev(a10, "class", "svelte-17kny5m");
-    			add_location(a10, file$a, 95, 669, 7023);
+    			add_location(a10, file$a, 95, 669, 7105);
     			attr_dev(p3, "class", "about-data-paragraph svelte-17kny5m");
-    			add_location(p3, file$a, 95, 24, 6378);
+    			add_location(p3, file$a, 95, 24, 6460);
     			attr_dev(p4, "class", "about-data-paragraph svelte-17kny5m");
-    			add_location(p4, file$a, 97, 24, 7137);
+    			add_location(p4, file$a, 97, 24, 7219);
     			attr_dev(a11, "href", "https://twitter.com/KavyaBeheraj");
     			attr_dev(a11, "target", "_blank");
     			attr_dev(a11, "class", "svelte-17kny5m");
-    			add_location(a11, file$a, 99, 86, 7424);
+    			add_location(a11, file$a, 99, 86, 7506);
     			attr_dev(a12, "href", "https://www.linkedin.com/in/kavyabeheraj/");
     			attr_dev(a12, "target", "_blank");
     			attr_dev(a12, "class", "svelte-17kny5m");
-    			add_location(a12, file$a, 99, 173, 7511);
+    			add_location(a12, file$a, 99, 173, 7593);
     			attr_dev(a13, "href", "mailto:kavya.beheraj@gmail.com");
     			attr_dev(a13, "target", "_blank");
     			attr_dev(a13, "class", "svelte-17kny5m");
-    			add_location(a13, file$a, 99, 270, 7608);
+    			add_location(a13, file$a, 99, 270, 7690);
     			attr_dev(p5, "class", "about-data-paragraph svelte-17kny5m");
-    			add_location(p5, file$a, 99, 24, 7362);
+    			add_location(p5, file$a, 99, 24, 7444);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
@@ -118855,7 +118868,7 @@ var app = (function () {
     			div = element("div");
     			create_component(introtextcard.$$.fragment);
     			attr_dev(div, "class", "intro-card svelte-17kny5m");
-    			add_location(div, file$a, 87, 16, 5000);
+    			add_location(div, file$a, 87, 16, 5082);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);

@@ -43,11 +43,11 @@
                     <IntroTextCard cardNumber={2}>
                         <p class='intro-paragraph'>Venus — the brightest planet — has captured human imagination for more than 5,000 years.</p>
 
-                        <p class='intro-paragraph'>Until surprsingly recently, however, we had no clue what its surface looked like. This is because the planet is a <a href='https://climate.nasa.gov/news/2475/nasa-climate-modeling-suggests-venus-may-have-been-habitable/' target="_blank">hellscape</a>. Thick acid clouds, intense heat and crushing pressure destroyed <em>Venera 7</em>, the first lander, <a href='https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1970-060A' target="_blank">in 23 minutes</a>.</p>
+                        <p class='intro-paragraph'>Until surprisingly recently, though, we had no clue what its surface looked like. This is because the planet is a <a href='https://climate.nasa.gov/news/2475/nasa-climate-modeling-suggests-venus-may-have-been-habitable/' target="_blank">hellscape</a>. Thick acid clouds, intense heat and crushing pressure destroyed <em>Venera 7</em>, the first lander, <a href='https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1970-060A' target="_blank">in 23 minutes</a>.</p>
                 
                         <p class='intro-paragraph'>It wasn't until the 1990s that radar technology advanced enough for scientists to peer through the clouds and map its surface for the first time, in detail.</p>
 
-                        <p class='intro-paragraph'>There was an explosion of discovery. Hundreds of new features were getting discovered — and named — every year.</p>
+                        <p class='intro-paragraph'>There was an <a href='https://www2.jpl.nasa.gov/magellan/pr1353.html' target="_blank">explosion of discovery</a>. At its peak, hundreds of new features were discovered — and named — every year.</p>
                     </IntroTextCard>
                 </div>
             </SplideSlide>
@@ -57,9 +57,9 @@
                     <IntroTextCard cardNumber={3}>
                         <p class='intro-paragraph'>The naming of Venus is remarkable for more than just its rapid pace.</p>
 
-                        <p class='intro-paragraph'>With few exceptions, every one of the features on its surface is named after women — mythological heroines, goddesses, famous women, and female first names.</p>
+                        <p class='intro-paragraph'>With few exceptions, every feature on its surface is named after a woman — mythological heroines, goddesses, famous women, and female first names.</p>
 
-                        <p class='intro-paragraph'>This reveals a deeper truth: naming is more than just a matter of convenience. It is an expression of culture. An alien landscape feels more human, more <em>ours</em>, when we call it names from home.</p>
+                        <p class='intro-paragraph'>This reveals that naming is more than just a matter of convenience; it is an expression of culture. An alien landscape feels more human, more <em>ours</em>, when we call it names from home.</p>
 
                         <p class='intro-paragraph'>But not everyone on Earth is reflected in Venus. 45% of the names on the planet are European in origin; a miniscule 2% come from South America.</p>
                     </IntroTextCard>
@@ -71,7 +71,7 @@
                     <IntroTextCard cardNumber={4}>
                         <p class='intro-paragraph'>This project is an attempt to share the stories behind the names on Venus.</p>
 
-                        <p class='intro-paragraph'>Explore 1,976 names on the planet, and look for the 769 goddesses, heroines, and famous women with extra information.</p>
+                        <p class='intro-paragraph'>Explore the 1,976 named surface features on the planet, and look for the 769 goddesses, heroines, and famous women with extra information.</p>
 
                         <p class='intro-paragraph'>The names we give our surroundings reveal more about ourselves — and our values — than they do the landscape we observe.</p>
 
