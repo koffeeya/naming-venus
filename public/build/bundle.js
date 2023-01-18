@@ -118006,7 +118006,7 @@ var app = (function () {
 
     // (26:12) <SplideSlide>
     function create_default_slot_9(ctx) {
-    	let div2;
+    	let div3;
     	let div0;
     	let globe_1;
     	let div0_intro;
@@ -118014,6 +118014,13 @@ var app = (function () {
     	let div1;
     	let starspinning;
     	let t1;
+    	let div2;
+    	let p;
+    	let t2;
+    	let br;
+    	let t3;
+    	let div2_intro;
+    	let t4;
     	let titlecard;
     	let current;
 
@@ -118031,34 +118038,51 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div2 = element("div");
+    			div3 = element("div");
     			div0 = element("div");
     			create_component(globe_1.$$.fragment);
     			t0 = space();
     			div1 = element("div");
     			create_component(starspinning.$$.fragment);
     			t1 = space();
+    			div2 = element("div");
+    			p = element("p");
+    			t2 = text("A data visualization project");
+    			br = element("br");
+    			t3 = text("by Kavya Beheraj");
+    			t4 = space();
     			create_component(titlecard.$$.fragment);
-    			attr_dev(div0, "class", "globe-wrapper svelte-475zp9");
+    			attr_dev(div0, "class", "globe-wrapper svelte-17kny5m");
     			set_style(div0, "margin", /*globeMargin*/ ctx[1]);
     			attr_dev(div0, "aria-hidden", "true");
     			attr_dev(div0, "focusable", "false");
     			add_location(div0, file$a, 27, 20, 975);
-    			attr_dev(div1, "class", "globe-spinner svelte-475zp9");
+    			attr_dev(div1, "class", "globe-spinner svelte-17kny5m");
     			add_location(div1, file$a, 30, 20, 1218);
-    			attr_dev(div2, "class", "intro-card svelte-475zp9");
-    			attr_dev(div2, "id", "card-1");
-    			add_location(div2, file$a, 26, 16, 918);
+    			add_location(br, file$a, 34, 55, 1459);
+    			attr_dev(p, "class", "svelte-17kny5m");
+    			add_location(p, file$a, 34, 24, 1428);
+    			attr_dev(div2, "class", "globe-subtitle svelte-17kny5m");
+    			add_location(div2, file$a, 33, 20, 1334);
+    			attr_dev(div3, "class", "intro-card svelte-17kny5m");
+    			attr_dev(div3, "id", "card-1");
+    			add_location(div3, file$a, 26, 16, 918);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div2, anchor);
-    			append_dev(div2, div0);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
     			mount_component(globe_1, div0, null);
-    			append_dev(div2, t0);
-    			append_dev(div2, div1);
+    			append_dev(div3, t0);
+    			append_dev(div3, div1);
     			mount_component(starspinning, div1, null);
-    			append_dev(div2, t1);
-    			mount_component(titlecard, div2, null);
+    			append_dev(div3, t1);
+    			append_dev(div3, div2);
+    			append_dev(div2, p);
+    			append_dev(p, t2);
+    			append_dev(p, br);
+    			append_dev(p, t3);
+    			append_dev(div3, t4);
+    			mount_component(titlecard, div3, null);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -118078,6 +118102,14 @@ var app = (function () {
     			}
 
     			transition_in(starspinning.$$.fragment, local);
+
+    			if (!div2_intro) {
+    				add_render_callback(() => {
+    					div2_intro = create_in_transition(div2, fade, { duration: 500, delay: 1500 });
+    					div2_intro.start();
+    				});
+    			}
+
     			transition_in(titlecard.$$.fragment, local);
     			current = true;
     		},
@@ -118088,7 +118120,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div2);
+    			if (detaching) detach_dev(div3);
     			destroy_component(globe_1);
     			destroy_component(starspinning);
     			destroy_component(titlecard);
@@ -118106,45 +118138,77 @@ var app = (function () {
     	return block;
     }
 
-    // (40:20) <IntroTextCard cardNumber={2}>
+    // (43:20) <IntroTextCard cardNumber={2}>
     function create_default_slot_8(ctx) {
     	let p0;
     	let t1;
     	let p1;
-    	let t3;
+    	let t2;
+    	let a0;
+    	let t4;
+    	let em;
+    	let t6;
+    	let a1;
+    	let t8;
+    	let t9;
     	let p2;
-    	let t5;
+    	let t11;
     	let p3;
 
     	const block = {
     		c: function create() {
     			p0 = element("p");
-    			p0.textContent = "Venus — Earth's twin, the Morning Star, the brightest planet — has captured our collective imagination for more than 5,000 years.";
+    			p0.textContent = "Venus — the brightest planet — has captured human imagination for more than 5,000 years.";
     			t1 = space();
     			p1 = element("p");
-    			p1.textContent = "But for a remarkably long time, its surface was a mystery. Normal telescopes can't see through the dense sulfuric acid clouds that envelop the whole planet.";
-    			t3 = space();
+    			t2 = text("Until surprsingly recently, however, we had no clue what its surface looked like. This is because the planet is a ");
+    			a0 = element("a");
+    			a0.textContent = "hellscape";
+    			t4 = text(". Thick acid clouds, intense heat and crushing pressure destroyed ");
+    			em = element("em");
+    			em.textContent = "Venera 7";
+    			t6 = text(", the first lander, ");
+    			a1 = element("a");
+    			a1.textContent = "in 23 minutes";
+    			t8 = text(".");
+    			t9 = space();
     			p2 = element("p");
-    			p2.textContent = "It was only in the last 50 years, and the invention of radar imaging, that astronomers could peer through the clouds and see craters, valleys, and mountains on Venus for the first time.";
-    			t5 = space();
+    			p2.textContent = "It wasn't until the 1990s that radar technology advanced enough for scientists to peer through the clouds and map its surface for the first time, in detail.";
+    			t11 = space();
     			p3 = element("p");
-    			p3.textContent = "There was an explosion of discovery — and what we saw, we named.";
-    			attr_dev(p0, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p0, file$a, 40, 24, 1570);
-    			attr_dev(p1, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p1, file$a, 42, 24, 1756);
-    			attr_dev(p2, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p2, file$a, 44, 24, 1985);
-    			attr_dev(p3, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p3, file$a, 46, 24, 2227);
+    			p3.textContent = "There was an explosion of discovery. Hundreds of new features were getting discovered — and named — every year.";
+    			attr_dev(p0, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p0, file$a, 43, 24, 1767);
+    			attr_dev(a0, "href", "https://climate.nasa.gov/news/2475/nasa-climate-modeling-suggests-venus-may-have-been-habitable/");
+    			attr_dev(a0, "target", "_blank");
+    			attr_dev(a0, "class", "svelte-17kny5m");
+    			add_location(a0, file$a, 45, 165, 2053);
+    			add_location(em, file$a, 45, 367, 2255);
+    			attr_dev(a1, "href", "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1970-060A");
+    			attr_dev(a1, "target", "_blank");
+    			attr_dev(a1, "class", "svelte-17kny5m");
+    			add_location(a1, file$a, 45, 404, 2292);
+    			attr_dev(p1, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p1, file$a, 45, 24, 1912);
+    			attr_dev(p2, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p2, file$a, 47, 24, 2453);
+    			attr_dev(p3, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p3, file$a, 49, 24, 2666);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
     			insert_dev(target, t1, anchor);
     			insert_dev(target, p1, anchor);
-    			insert_dev(target, t3, anchor);
+    			append_dev(p1, t2);
+    			append_dev(p1, a0);
+    			append_dev(p1, t4);
+    			append_dev(p1, em);
+    			append_dev(p1, t6);
+    			append_dev(p1, a1);
+    			append_dev(p1, t8);
+    			insert_dev(target, t9, anchor);
     			insert_dev(target, p2, anchor);
-    			insert_dev(target, t5, anchor);
+    			insert_dev(target, t11, anchor);
     			insert_dev(target, p3, anchor);
     		},
     		p: noop$2,
@@ -118152,9 +118216,9 @@ var app = (function () {
     			if (detaching) detach_dev(p0);
     			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(p1);
-    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(t9);
     			if (detaching) detach_dev(p2);
-    			if (detaching) detach_dev(t5);
+    			if (detaching) detach_dev(t11);
     			if (detaching) detach_dev(p3);
     		}
     	};
@@ -118163,14 +118227,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_8.name,
     		type: "slot",
-    		source: "(40:20) <IntroTextCard cardNumber={2}>",
+    		source: "(43:20) <IntroTextCard cardNumber={2}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (38:12) <SplideSlide>
+    // (41:12) <SplideSlide>
     function create_default_slot_7(ctx) {
     	let div;
     	let introtextcard;
@@ -118189,8 +118253,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(introtextcard.$$.fragment);
-    			attr_dev(div, "class", "intro-card svelte-475zp9");
-    			add_location(div, file$a, 38, 16, 1470);
+    			attr_dev(div, "class", "intro-card svelte-17kny5m");
+    			add_location(div, file$a, 41, 16, 1667);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -118225,61 +118289,61 @@ var app = (function () {
     		block,
     		id: create_default_slot_7.name,
     		type: "slot",
-    		source: "(38:12) <SplideSlide>",
+    		source: "(41:12) <SplideSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (54:20) <IntroTextCard cardNumber={3}>
+    // (57:20) <IntroTextCard cardNumber={3}>
     function create_default_slot_6(ctx) {
     	let p0;
     	let t1;
     	let p1;
-    	let t2;
-    	let em;
-    	let t4;
-    	let t5;
+    	let t3;
     	let p2;
+    	let t4;
+    	let em;
+    	let t6;
     	let t7;
     	let p3;
 
     	const block = {
     		c: function create() {
     			p0 = element("p");
-    			p0.textContent = "Why do we name features on other worlds?";
+    			p0.textContent = "The naming of Venus is remarkable for more than just its rapid pace.";
     			t1 = space();
     			p1 = element("p");
-    			t2 = text("It's more than just convenience: naming is an expression of culture and ownership. An alien landscape feels more human, more ");
+    			p1.textContent = "With few exceptions, every one of the features on its surface is named after women — mythological heroines, goddesses, famous women, and female first names.";
+    			t3 = space();
+    			p2 = element("p");
+    			t4 = text("This reveals a deeper truth: naming is more than just a matter of convenience. It is an expression of culture. An alien landscape feels more human, more ");
     			em = element("em");
     			em.textContent = "ours";
-    			t4 = text(", when we call it names from home.");
-    			t5 = space();
-    			p2 = element("p");
-    			p2.textContent = "On Venus, nearly every one of its 1,976 recorded features honor women: famous women, heroines, goddesses, and female names.";
+    			t6 = text(", when we call it names from home.");
     			t7 = space();
     			p3 = element("p");
-    			p3.textContent = "But 40% of those names are European in origin, reflecting the bias of those early astronomers who discovered so many features so quickly.";
-    			attr_dev(p0, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p0, file$a, 54, 24, 2557);
-    			add_location(em, file$a, 56, 176, 2806);
-    			attr_dev(p1, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p1, file$a, 56, 24, 2654);
-    			attr_dev(p2, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p2, file$a, 58, 24, 2883);
-    			attr_dev(p3, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p3, file$a, 60, 24, 3063);
+    			p3.textContent = "But not everyone on Earth is reflected in Venus. 45% of the names on the planet are European in origin; a miniscule 2% come from South America.";
+    			attr_dev(p0, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p0, file$a, 57, 24, 3043);
+    			attr_dev(p1, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p1, file$a, 59, 24, 3168);
+    			add_location(em, file$a, 61, 204, 3561);
+    			attr_dev(p2, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p2, file$a, 61, 24, 3381);
+    			attr_dev(p3, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p3, file$a, 63, 24, 3638);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
     			insert_dev(target, t1, anchor);
     			insert_dev(target, p1, anchor);
-    			append_dev(p1, t2);
-    			append_dev(p1, em);
-    			append_dev(p1, t4);
-    			insert_dev(target, t5, anchor);
+    			insert_dev(target, t3, anchor);
     			insert_dev(target, p2, anchor);
+    			append_dev(p2, t4);
+    			append_dev(p2, em);
+    			append_dev(p2, t6);
     			insert_dev(target, t7, anchor);
     			insert_dev(target, p3, anchor);
     		},
@@ -118288,7 +118352,7 @@ var app = (function () {
     			if (detaching) detach_dev(p0);
     			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(p1);
-    			if (detaching) detach_dev(t5);
+    			if (detaching) detach_dev(t3);
     			if (detaching) detach_dev(p2);
     			if (detaching) detach_dev(t7);
     			if (detaching) detach_dev(p3);
@@ -118299,14 +118363,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_6.name,
     		type: "slot",
-    		source: "(54:20) <IntroTextCard cardNumber={3}>",
+    		source: "(57:20) <IntroTextCard cardNumber={3}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (52:12) <SplideSlide>
+    // (55:12) <SplideSlide>
     function create_default_slot_5(ctx) {
     	let div;
     	let introtextcard;
@@ -118325,8 +118389,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(introtextcard.$$.fragment);
-    			attr_dev(div, "class", "intro-card svelte-475zp9");
-    			add_location(div, file$a, 52, 16, 2457);
+    			attr_dev(div, "class", "intro-card svelte-17kny5m");
+    			add_location(div, file$a, 55, 16, 2943);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -118361,14 +118425,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5.name,
     		type: "slot",
-    		source: "(52:12) <SplideSlide>",
+    		source: "(55:12) <SplideSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (69:20) <IntroTextCard cardNumber={3}>
+    // (71:20) <IntroTextCard cardNumber={4}>
     function create_default_slot_4(ctx) {
     	let p0;
     	let t1;
@@ -118386,10 +118450,10 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			p0 = element("p");
-    			p0.textContent = "Every feature on Venus tells a story, and this project is my attempt to more easily find and explore those stories.";
+    			p0.textContent = "This project is an attempt to share the stories behind the names on Venus.";
     			t1 = space();
     			p1 = element("p");
-    			p1.textContent = "Explore the 1,976 names of Venus, and especially look for the 769 goddesses, heroines, and famous women with extra detail.";
+    			p1.textContent = "Explore 1,976 names on the planet, and look for the 769 goddesses, heroines, and famous women with extra information.";
     			t3 = space();
     			p2 = element("p");
     			p2.textContent = "The names we give our surroundings reveal more about ourselves — and our values — than they do the landscape we observe.";
@@ -118400,19 +118464,19 @@ var app = (function () {
     			div = element("div");
     			button = element("button");
     			button.textContent = "Explore the names";
-    			attr_dev(p0, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p0, file$a, 69, 24, 3463);
-    			attr_dev(p1, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p1, file$a, 71, 24, 3635);
-    			attr_dev(p2, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p2, file$a, 73, 24, 3814);
-    			attr_dev(p3, "class", "intro-paragraph svelte-475zp9");
-    			add_location(p3, file$a, 75, 24, 3991);
+    			attr_dev(p0, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p0, file$a, 71, 24, 4043);
+    			attr_dev(p1, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p1, file$a, 73, 24, 4174);
+    			attr_dev(p2, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p2, file$a, 75, 24, 4348);
+    			attr_dev(p3, "class", "intro-paragraph svelte-17kny5m");
+    			add_location(p3, file$a, 77, 24, 4525);
     			attr_dev(button, "id", "intro-button");
-    			attr_dev(button, "class", "svelte-475zp9");
-    			add_location(button, file$a, 78, 28, 4141);
-    			attr_dev(div, "class", "intro-button-wrapper svelte-475zp9");
-    			add_location(div, file$a, 77, 24, 4078);
+    			attr_dev(button, "class", "svelte-17kny5m");
+    			add_location(button, file$a, 80, 28, 4675);
+    			attr_dev(div, "class", "intro-button-wrapper svelte-17kny5m");
+    			add_location(div, file$a, 79, 24, 4612);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
@@ -118455,14 +118519,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(69:20) <IntroTextCard cardNumber={3}>",
+    		source: "(71:20) <IntroTextCard cardNumber={4}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (67:12) <SplideSlide>
+    // (69:12) <SplideSlide>
     function create_default_slot_3(ctx) {
     	let div;
     	let introtextcard;
@@ -118470,7 +118534,7 @@ var app = (function () {
 
     	introtextcard = new IntroTextCard({
     			props: {
-    				cardNumber: 3,
+    				cardNumber: 4,
     				$$slots: { default: [create_default_slot_4] },
     				$$scope: { ctx }
     			},
@@ -118481,8 +118545,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(introtextcard.$$.fragment);
-    			attr_dev(div, "class", "intro-card svelte-475zp9");
-    			add_location(div, file$a, 67, 16, 3363);
+    			attr_dev(div, "class", "intro-card svelte-17kny5m");
+    			add_location(div, file$a, 69, 16, 3943);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -118517,14 +118581,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(67:12) <SplideSlide>",
+    		source: "(69:12) <SplideSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (87:20) <IntroTextCard cardNumber={4}>
+    // (89:20) <IntroTextCard cardNumber={5}>
     function create_default_slot_2(ctx) {
     	let p0;
     	let t0;
@@ -118576,7 +118640,7 @@ var app = (function () {
     			t0 = text("This project's data source is the International Astronomical Union’s ");
     			a0 = element("a");
     			a0.textContent = "Gazetteer of Planetary Nomenclature";
-    			t2 = text(". Note that some of the terms used by the IAU are out of date.");
+    			t2 = text(". Note that some of the language used by the IAU may be out of date.");
     			t3 = space();
     			p1 = element("p");
     			t4 = text("Extended descriptions for 769 features were collected using the Python ");
@@ -118632,72 +118696,72 @@ var app = (function () {
     			a13.textContent = "Email";
     			attr_dev(a0, "href", "https://planetarynames.wr.usgs.gov/SearchResults?Target=15_Venus");
     			attr_dev(a0, "target", "_blank");
-    			attr_dev(a0, "class", "svelte-475zp9");
-    			add_location(a0, file$a, 87, 125, 4667);
-    			attr_dev(p0, "class", "about-data-paragraph svelte-475zp9");
-    			add_location(p0, file$a, 87, 24, 4566);
+    			attr_dev(a0, "class", "svelte-17kny5m");
+    			add_location(a0, file$a, 89, 125, 5201);
+    			attr_dev(p0, "class", "about-data-paragraph svelte-17kny5m");
+    			add_location(p0, file$a, 89, 24, 5100);
     			attr_dev(a1, "href", "https://pypi.org/project/wikipedia/");
     			attr_dev(a1, "target", "_blank");
-    			attr_dev(a1, "class", "svelte-475zp9");
-    			add_location(a1, file$a, 89, 127, 4992);
-    			attr_dev(p1, "class", "about-data-paragraph svelte-475zp9");
-    			add_location(p1, file$a, 89, 24, 4889);
+    			attr_dev(a1, "class", "svelte-17kny5m");
+    			add_location(a1, file$a, 91, 127, 5532);
+    			attr_dev(p1, "class", "about-data-paragraph svelte-17kny5m");
+    			add_location(p1, file$a, 91, 24, 5429);
     			attr_dev(a2, "href", "https://svelte.dev/");
     			attr_dev(a2, "target", "_blank");
-    			attr_dev(a2, "class", "svelte-475zp9");
-    			add_location(a2, file$a, 91, 76, 5194);
+    			attr_dev(a2, "class", "svelte-17kny5m");
+    			add_location(a2, file$a, 93, 76, 5734);
     			attr_dev(a3, "href", "https://globe.gl/");
     			attr_dev(a3, "target", "_blank");
-    			attr_dev(a3, "class", "svelte-475zp9");
-    			add_location(a3, file$a, 91, 167, 5285);
+    			attr_dev(a3, "class", "svelte-17kny5m");
+    			add_location(a3, file$a, 93, 167, 5825);
     			attr_dev(a4, "href", "https://astrogeology.usgs.gov/search/map/Venus/Magellan/RadarProperties/Venus_Magellan_Topography_Global_4641m_v02");
     			attr_dev(a4, "target", "_blank");
-    			attr_dev(a4, "class", "svelte-475zp9");
-    			add_location(a4, file$a, 91, 315, 5433);
+    			attr_dev(a4, "class", "svelte-17kny5m");
+    			add_location(a4, file$a, 93, 315, 5973);
     			attr_dev(a5, "href", "https://www.qgis.org/en/site/");
     			attr_dev(a5, "target", "_blank");
-    			attr_dev(a5, "class", "svelte-475zp9");
-    			add_location(a5, file$a, 91, 543, 5661);
-    			attr_dev(p2, "class", "about-data-paragraph svelte-475zp9");
-    			add_location(p2, file$a, 91, 24, 5142);
+    			attr_dev(a5, "class", "svelte-17kny5m");
+    			add_location(a5, file$a, 93, 543, 6201);
+    			attr_dev(p2, "class", "about-data-paragraph svelte-17kny5m");
+    			add_location(p2, file$a, 93, 24, 5682);
     			attr_dev(a6, "href", "https://www.gc.cuny.edu/data-analysis-and-visualization/curriculum-and-degree-information");
     			attr_dev(a6, "target", "_blank");
-    			attr_dev(a6, "class", "svelte-475zp9");
-    			add_location(a6, file$a, 93, 114, 5928);
+    			attr_dev(a6, "class", "svelte-17kny5m");
+    			add_location(a6, file$a, 95, 114, 6468);
     			attr_dev(a7, "href", "https://tabletopwhale.com/2017/03/06/goddesses-of-venus.html");
     			attr_dev(a7, "target", "_blank");
-    			attr_dev(a7, "class", "svelte-475zp9");
-    			add_location(a7, file$a, 93, 328, 6142);
+    			attr_dev(a7, "class", "svelte-17kny5m");
+    			add_location(a7, file$a, 95, 328, 6682);
     			attr_dev(a8, "href", "https://bookshop.org/p/books/encyclopedia-of-goddesses-heroines-revised-patricia-monaghan/107143");
     			attr_dev(a8, "target", "_blank");
-    			attr_dev(a8, "class", "svelte-475zp9");
-    			add_location(a8, file$a, 93, 433, 6247);
+    			attr_dev(a8, "class", "svelte-17kny5m");
+    			add_location(a8, file$a, 95, 433, 6787);
     			attr_dev(a9, "href", "https://wenamethestars.inkleby.com/world/venus");
     			attr_dev(a9, "target", "_blank");
-    			attr_dev(a9, "class", "svelte-475zp9");
-    			add_location(a9, file$a, 93, 579, 6393);
+    			attr_dev(a9, "class", "svelte-17kny5m");
+    			add_location(a9, file$a, 95, 579, 6933);
     			attr_dev(a10, "href", "https://hargitaihenrik.wordpress.com/");
     			attr_dev(a10, "target", "_blank");
-    			attr_dev(a10, "class", "svelte-475zp9");
-    			add_location(a10, file$a, 93, 669, 6483);
-    			attr_dev(p3, "class", "about-data-paragraph svelte-475zp9");
-    			add_location(p3, file$a, 93, 24, 5838);
-    			attr_dev(p4, "class", "about-data-paragraph svelte-475zp9");
-    			add_location(p4, file$a, 95, 24, 6597);
+    			attr_dev(a10, "class", "svelte-17kny5m");
+    			add_location(a10, file$a, 95, 669, 7023);
+    			attr_dev(p3, "class", "about-data-paragraph svelte-17kny5m");
+    			add_location(p3, file$a, 95, 24, 6378);
+    			attr_dev(p4, "class", "about-data-paragraph svelte-17kny5m");
+    			add_location(p4, file$a, 97, 24, 7137);
     			attr_dev(a11, "href", "https://twitter.com/KavyaBeheraj");
     			attr_dev(a11, "target", "_blank");
-    			attr_dev(a11, "class", "svelte-475zp9");
-    			add_location(a11, file$a, 97, 86, 6884);
+    			attr_dev(a11, "class", "svelte-17kny5m");
+    			add_location(a11, file$a, 99, 86, 7424);
     			attr_dev(a12, "href", "https://www.linkedin.com/in/kavyabeheraj/");
     			attr_dev(a12, "target", "_blank");
-    			attr_dev(a12, "class", "svelte-475zp9");
-    			add_location(a12, file$a, 97, 173, 6971);
+    			attr_dev(a12, "class", "svelte-17kny5m");
+    			add_location(a12, file$a, 99, 173, 7511);
     			attr_dev(a13, "href", "mailto:kavya.beheraj@gmail.com");
     			attr_dev(a13, "target", "_blank");
-    			attr_dev(a13, "class", "svelte-475zp9");
-    			add_location(a13, file$a, 97, 270, 7068);
-    			attr_dev(p5, "class", "about-data-paragraph svelte-475zp9");
-    			add_location(p5, file$a, 97, 24, 6822);
+    			attr_dev(a13, "class", "svelte-17kny5m");
+    			add_location(a13, file$a, 99, 270, 7608);
+    			attr_dev(p5, "class", "about-data-paragraph svelte-17kny5m");
+    			add_location(p5, file$a, 99, 24, 7362);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
@@ -118764,14 +118828,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(87:20) <IntroTextCard cardNumber={4}>",
+    		source: "(89:20) <IntroTextCard cardNumber={5}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (85:12) <SplideSlide>
+    // (87:12) <SplideSlide>
     function create_default_slot_1(ctx) {
     	let div;
     	let introtextcard;
@@ -118779,7 +118843,7 @@ var app = (function () {
 
     	introtextcard = new IntroTextCard({
     			props: {
-    				cardNumber: 4,
+    				cardNumber: 5,
     				$$slots: { default: [create_default_slot_2] },
     				$$scope: { ctx }
     			},
@@ -118790,8 +118854,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(introtextcard.$$.fragment);
-    			attr_dev(div, "class", "intro-card svelte-475zp9");
-    			add_location(div, file$a, 85, 16, 4466);
+    			attr_dev(div, "class", "intro-card svelte-17kny5m");
+    			add_location(div, file$a, 87, 16, 5000);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -118826,7 +118890,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(85:12) <SplideSlide>",
+    		source: "(87:12) <SplideSlide>",
     		ctx
     	});
 
@@ -119015,11 +119079,11 @@ var app = (function () {
     			t1 = space();
     			section = element("section");
     			create_component(splide.$$.fragment);
-    			attr_dev(h2, "class", "sr-only svelte-475zp9");
+    			attr_dev(h2, "class", "sr-only svelte-17kny5m");
     			add_location(h2, file$a, 21, 4, 709);
     			attr_dev(section, "class", "carousel");
     			add_location(section, file$a, 23, 4, 752);
-    			attr_dev(div, "class", "intro svelte-475zp9");
+    			attr_dev(div, "class", "intro svelte-17kny5m");
     			add_location(div, file$a, 20, 0, 685);
     		},
     		l: function claim(nodes) {
@@ -120045,13 +120109,13 @@ var app = (function () {
     			p = element("p");
     			t = text(/*description*/ ctx[2]);
     			attr_dev(p, "class", "svelte-1rnyp63");
-    			add_location(p, file$6, 29, 12, 1048);
+    			add_location(p, file$6, 29, 12, 1043);
     			attr_dev(div0, "class", "card-description svelte-1rnyp63");
-    			add_location(div0, file$6, 28, 8, 971);
+    			add_location(div0, file$6, 28, 8, 966);
     			attr_dev(div1, "class", "card-body svelte-1rnyp63");
     			set_style(div1, "--theme-color", /*themeColor*/ ctx[1]);
     			set_style(div1, "--theme-opacity", /*themeColor*/ ctx[1] + "26");
-    			add_location(div1, file$6, 27, 4, 871);
+    			add_location(div1, file$6, 27, 4, 866);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -120126,19 +120190,19 @@ var app = (function () {
     			t5 = space();
     			if (if_block) if_block.c();
     			attr_dev(p0, "class", "svelte-1rnyp63");
-    			add_location(p0, file$6, 14, 8, 528);
+    			add_location(p0, file$6, 14, 8, 523);
     			attr_dev(div0, "class", "card-description svelte-1rnyp63");
-    			add_location(div0, file$6, 13, 4, 455);
+    			add_location(div0, file$6, 13, 4, 450);
     			attr_dev(p1, "class", "bio-subtitle svelte-1rnyp63");
-    			add_location(p1, file$6, 17, 8, 594);
+    			add_location(p1, file$6, 17, 8, 589);
     			attr_dev(p2, "class", "svelte-1rnyp63");
-    			add_location(p2, file$6, 18, 8, 646);
+    			add_location(p2, file$6, 18, 8, 641);
     			attr_dev(div1, "class", "card-bio svelte-1rnyp63");
-    			add_location(div1, file$6, 16, 3, 563);
+    			add_location(div1, file$6, 16, 3, 558);
     			attr_dev(div2, "class", "card-body svelte-1rnyp63");
     			set_style(div2, "--theme-color", /*themeColor*/ ctx[1]);
     			set_style(div2, "--theme-opacity", /*themeColor*/ ctx[1] + "26");
-    			add_location(div2, file$6, 12, 0, 359);
+    			add_location(div2, file$6, 12, 0, 354);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -120218,9 +120282,9 @@ var app = (function () {
     			attr_dev(a, "href", a_href_value = "https://en.wikipedia.org/wiki/" + /*searchTerm*/ ctx[4]);
     			attr_dev(a, "target", "_blank");
     			attr_dev(a, "class", "svelte-1rnyp63");
-    			add_location(a, file$6, 22, 16, 744);
+    			add_location(a, file$6, 22, 16, 739);
     			attr_dev(div, "class", "learn-more svelte-1rnyp63");
-    			add_location(div, file$6, 21, 8, 703);
+    			add_location(div, file$6, 21, 8, 698);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -120309,7 +120373,7 @@ var app = (function () {
     	let { modalStyle, themeColor, name, description, bio, searchTerm } = $$props;
 
     	const descriptionTippyProps = {
-    		content: "This is the official description from the International Astronomical Union. It may be out of date.",
+    		content: "Official description from the International Astronomical Union; some language be out of date.",
     		allowHTML: true,
     		arrow: true
     	};

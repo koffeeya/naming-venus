@@ -3,7 +3,7 @@
     import tippy from "sveltejs-tippy";
 
     const descriptionTippyProps = {
-        content: "This is the official description from the International Astronomical Union. It may be out of date.",
+        content: "Official description from the International Astronomical Union; some language be out of date.",
         allowHTML: true,
         arrow: true
     }
