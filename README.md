@@ -13,17 +13,13 @@ Capstone, Fall 2022<br>
 
 ## Background
 
-Although humans have been observing Venus for more than 5,000 years, mapping its surface has nearly always been impossible since the planet is shrouded in thick clouds.
+Venus — the brightest planet — has captured human imagination for more than 5,000 years. However, since the planet is shrouded in thick clouds, mapping its surface has nearly always been impossible.
 
 A breakthrough came just fifty years ago with the invention of radar imaging, leading to the discovery (and naming) of hundreds of new features in a relatively short length of time.
 
-
-The rapid naming of Venus is a case study on the impact of planetary nomenclature — the process of naming features on other worlds. While the act of naming streamlines communication and humanizes alien landscapes, it is subject to bias, and not all of Earth gets equal representation.
-
 On Venus, nearly all 1,976 recorded features are named after famous women, female first names, heroines, or goddesses. However, 45% of those names are European in origin — and only 2% come from South America.
 
-
-My capstone project, Naming Venus — which can be accessed at this link: https://koffeeya.github.io/naming-venus/index.html — is an interactive web application that aims to draw attention to the impact of nomenclature.
+My capstone project, <b>Naming Venus</b> — which can be accessed at this link: https://koffeeya.github.io/naming-venus/index.html — is an interactive web application that aims to draw attention to the impact of nomenclature.
 
 <br>
 
